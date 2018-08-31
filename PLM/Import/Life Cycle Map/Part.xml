@@ -1,0 +1,260 @@
+﻿<AML>
+ <Item type="Life Cycle Map" id="E337EBF706FA4172B2CD1A6487E00875" action="add">
+  <description>Default Part Life Cycle</description>
+  <start_state keyed_name="Preliminary" type="Life Cycle State">72A2322564FE4193933CFB5339487A06</start_state>
+  <name>Part</name>
+  <Relationships>
+   <Item type="Life Cycle State" id="864DDCF7AF534247B4D11FE5E4F8ADA3" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <label xml:lang="en">Approved</label>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>1</set_not_lockable>
+    <sort_order>1152</sort_order>
+    <source_id keyed_name="Part" type="Life Cycle Map">E337EBF706FA4172B2CD1A6487E00875</source_id>
+    <x>356</x>
+    <y>210</y>
+    <name>Approved</name>
+   </Item>
+   <Item type="Life Cycle State" id="BE7478E822444326A2EC9F1E11A88963" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <item_behavior>fixed</item_behavior>
+    <set_is_released>1</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>512</sort_order>
+    <source_id keyed_name="Part" type="Life Cycle Map">E337EBF706FA4172B2CD1A6487E00875</source_id>
+    <x>667</x>
+    <y>199</y>
+    <name>In Change</name>
+   </Item>
+   <Item type="Life Cycle State" id="AA93A121BC7346C4907F69820303D2A4" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <item_behavior>float</item_behavior>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="Part" type="Life Cycle Map">E337EBF706FA4172B2CD1A6487E00875</source_id>
+    <state_permission_id keyed_name="SRE_ReviewPart" type="Permission">170392720CD047E88D7396C4DF8A0941</state_permission_id>
+    <workflow keyed_name="SRE_documentPartReviewProcess" type="Workflow Map">F8800EE4A046482B95E931651F8853ED</workflow>
+    <x>239</x>
+    <y>210</y>
+    <name>In Review</name>
+   </Item>
+   <Item type="Life Cycle State" id="A2438DC9ED424A8EA9876D47CAEFB6BC" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <item_behavior>fixed</item_behavior>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>768</sort_order>
+    <source_id keyed_name="Part" type="Life Cycle Map">E337EBF706FA4172B2CD1A6487E00875</source_id>
+    <state_permission_id keyed_name="Aras PLM Full" type="Permission">AF7BF15BE4444847ACDC18721B207788</state_permission_id>
+    <x>535</x>
+    <y>330</y>
+    <name>Manual Change</name>
+   </Item>
+   <Item type="Life Cycle State" id="CF9E614C2C814637A3C8068DC211BA6D" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <set_is_released>1</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>896</sort_order>
+    <source_id keyed_name="Part" type="Life Cycle Map">E337EBF706FA4172B2CD1A6487E00875</source_id>
+    <x>937</x>
+    <y>199</y>
+    <name>Obsolete</name>
+   </Item>
+   <Item type="Life Cycle State" id="72A2322564FE4193933CFB5339487A06" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <item_behavior>float</item_behavior>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="Part" type="Life Cycle Map">E337EBF706FA4172B2CD1A6487E00875</source_id>
+    <state_permission_id keyed_name="SRE_newPart" type="Permission">8D6AA607ACE34BB9B6E00455BCC0EB87</state_permission_id>
+    <x>36</x>
+    <y>211</y>
+    <name>Preliminary</name>
+   </Item>
+   <Item type="Life Cycle State" id="42BB3B183A7748C3B4AA9D33F7BF70AC" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <item_behavior>fixed</item_behavior>
+    <set_is_released>1</set_is_released>
+    <set_not_lockable>1</set_not_lockable>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="Part" type="Life Cycle Map">E337EBF706FA4172B2CD1A6487E00875</source_id>
+    <state_permission_id keyed_name="SRE_releasedPart" type="Permission">CFB8203B9A2B46DC9DE9E38AACDD683B</state_permission_id>
+    <x>522</x>
+    <y>205</y>
+    <name>Released</name>
+   </Item>
+   <Item type="Life Cycle State" id="E7A383494C724B338518A4DD1EB867FA" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <item_behavior>fixed</item_behavior>
+    <set_is_released>1</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>640</sort_order>
+    <source_id keyed_name="Part" type="Life Cycle Map">E337EBF706FA4172B2CD1A6487E00875</source_id>
+    <x>798</x>
+    <y>198</y>
+    <name>Superseded</name>
+   </Item>
+   <Item type="Life Cycle Transition" id="4A643EF0FC3B4AEABBF6071495D200B8" action="add">
+    <from_state keyed_name="Released" type="Life Cycle State">42BB3B183A7748C3B4AA9D33F7BF70AC</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="Aras PLM" type="Identity">56A96DA9E981481688563E2D14D5D878</role>
+    <segments />
+    <sort_order>1408</sort_order>
+    <source_id keyed_name="Part" type="Life Cycle Map">E337EBF706FA4172B2CD1A6487E00875</source_id>
+    <to_state keyed_name="Manual Change" type="Life Cycle State">A2438DC9ED424A8EA9876D47CAEFB6BC</to_state>
+    <x>15</x>
+    <y>42</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="71EE42F333754819A030C5CC2BC44BFC" action="add">
+    <from_state keyed_name="Released" type="Life Cycle State">42BB3B183A7748C3B4AA9D33F7BF70AC</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="SE5000 Configuration Management" type="Identity">623DDCF96A4B44F9A1A5DABF776196A1</role>
+    <segments>673,119</segments>
+    <sort_order>1792</sort_order>
+    <source_id keyed_name="Part" type="Life Cycle Map">E337EBF706FA4172B2CD1A6487E00875</source_id>
+    <to_state keyed_name="Obsolete" type="Life Cycle State">CF9E614C2C814637A3C8068DC211BA6D</to_state>
+    <x>34</x>
+    <y>-90</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="73F3DA2B23DD43BAB3D5AE4DD6E0DD31" action="add">
+    <from_state keyed_name="Released" type="Life Cycle State">42BB3B183A7748C3B4AA9D33F7BF70AC</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="Maria Eriksson" type="Identity">02B5523B78DD41BF965CAFD37AB50A12</role>
+    <segments>379,127</segments>
+    <sort_order>4096</sort_order>
+    <source_id keyed_name="Part" type="Life Cycle Map">E337EBF706FA4172B2CD1A6487E00875</source_id>
+    <to_state keyed_name="Preliminary" type="Life Cycle State">72A2322564FE4193933CFB5339487A06</to_state>
+    <x>-93</x>
+    <y>-71</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="9FE5AA8284F140088928D743E7405A0C" action="add">
+    <from_state keyed_name="Released" type="Life Cycle State">42BB3B183A7748C3B4AA9D33F7BF70AC</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="Aras PLM" type="Identity">56A96DA9E981481688563E2D14D5D878</role>
+    <segments>689,374</segments>
+    <sort_order>1664</sort_order>
+    <source_id keyed_name="Part" type="Life Cycle Map">E337EBF706FA4172B2CD1A6487E00875</source_id>
+    <to_state keyed_name="Superseded" type="Life Cycle State">E7A383494C724B338518A4DD1EB867FA</to_state>
+    <x>161</x>
+    <y>114</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="F8F2A7C9B6854195949CE32F59120199" action="add">
+    <from_state keyed_name="Released" type="Life Cycle State">42BB3B183A7748C3B4AA9D33F7BF70AC</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="Aras PLM" type="Identity">56A96DA9E981481688563E2D14D5D878</role>
+    <segments />
+    <sort_order>384</sort_order>
+    <source_id keyed_name="Part" type="Life Cycle Map">E337EBF706FA4172B2CD1A6487E00875</source_id>
+    <to_state keyed_name="In Change" type="Life Cycle State">BE7478E822444326A2EC9F1E11A88963</to_state>
+    <x>-8</x>
+    <y>-20</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="5A85C1DAA647458F9B7B261225FFA2BA" action="add">
+    <from_state keyed_name="Preliminary" type="Life Cycle State">72A2322564FE4193933CFB5339487A06</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="SRE_CoreUserGroup" type="Identity">93FA7BC57D0844329494BA5F70976DA4</role>
+    <segments />
+    <sort_order>128</sort_order>
+    <source_id keyed_name="Part" type="Life Cycle Map">E337EBF706FA4172B2CD1A6487E00875</source_id>
+    <to_state keyed_name="In Review" type="Life Cycle State">AA93A121BC7346C4907F69820303D2A4</to_state>
+    <x>48</x>
+    <y>10</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="A1372AB41C254A7E9F548937CA4567E2" action="add">
+    <from_state keyed_name="Approved" type="Life Cycle State">864DDCF7AF534247B4D11FE5E4F8ADA3</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="Maria Eriksson" type="Identity">02B5523B78DD41BF965CAFD37AB50A12</role>
+    <segments>204,403</segments>
+    <sort_order>3968</sort_order>
+    <source_id keyed_name="Part" type="Life Cycle Map">E337EBF706FA4172B2CD1A6487E00875</source_id>
+    <to_state keyed_name="Preliminary" type="Life Cycle State">72A2322564FE4193933CFB5339487A06</to_state>
+    <x>-160</x>
+    <y>195</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="A495EE3E9621443CB2FA6CCB2642128A" action="add">
+    <from_state keyed_name="Approved" type="Life Cycle State">864DDCF7AF534247B4D11FE5E4F8ADA3</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="Maria Eriksson" type="Identity">02B5523B78DD41BF965CAFD37AB50A12</role>
+    <segments>221,87</segments>
+    <sort_order>4224</sort_order>
+    <source_id keyed_name="Part" type="Life Cycle Map">E337EBF706FA4172B2CD1A6487E00875</source_id>
+    <to_state keyed_name="Preliminary" type="Life Cycle State">72A2322564FE4193933CFB5339487A06</to_state>
+    <x>-121</x>
+    <y>-131</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="D05CAD21E6AE480EB790FAD568776F78" action="add">
+    <from_state keyed_name="Approved" type="Life Cycle State">864DDCF7AF534247B4D11FE5E4F8ADA3</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="Aras PLM" type="Identity">56A96DA9E981481688563E2D14D5D878</role>
+    <sort_order>3456</sort_order>
+    <source_id keyed_name="Part" type="Life Cycle Map">E337EBF706FA4172B2CD1A6487E00875</source_id>
+    <to_state keyed_name="Released" type="Life Cycle State">42BB3B183A7748C3B4AA9D33F7BF70AC</to_state>
+   </Item>
+   <Item type="Life Cycle Transition" id="5AC56964455B45039CA26FE3B939AC5D" action="add">
+    <from_state keyed_name="Manual Change" type="Life Cycle State">A2438DC9ED424A8EA9876D47CAEFB6BC</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="Maria Eriksson" type="Identity">02B5523B78DD41BF965CAFD37AB50A12</role>
+    <segments>457,312</segments>
+    <sort_order>1280</sort_order>
+    <source_id keyed_name="Part" type="Life Cycle Map">E337EBF706FA4172B2CD1A6487E00875</source_id>
+    <to_state keyed_name="Released" type="Life Cycle State">42BB3B183A7748C3B4AA9D33F7BF70AC</to_state>
+    <x>-64</x>
+    <y>-19</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="720430ED411F413089F4F82518D2C5C9" action="add">
+    <from_state keyed_name="In Review" type="Life Cycle State">AA93A121BC7346C4907F69820303D2A4</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="Aras PLM" type="Identity">56A96DA9E981481688563E2D14D5D878</role>
+    <sort_order>3712</sort_order>
+    <source_id keyed_name="Part" type="Life Cycle Map">E337EBF706FA4172B2CD1A6487E00875</source_id>
+    <to_state keyed_name="Approved" type="Life Cycle State">864DDCF7AF534247B4D11FE5E4F8ADA3</to_state>
+   </Item>
+   <Item type="Life Cycle Transition" id="B139235B643E4FDB96D1A11599568194" action="add">
+    <from_state keyed_name="In Review" type="Life Cycle State">AA93A121BC7346C4907F69820303D2A4</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="Aras PLM" type="Identity">56A96DA9E981481688563E2D14D5D878</role>
+    <segments>146,283</segments>
+    <sort_order>3584</sort_order>
+    <source_id keyed_name="Part" type="Life Cycle Map">E337EBF706FA4172B2CD1A6487E00875</source_id>
+    <to_state keyed_name="Preliminary" type="Life Cycle State">72A2322564FE4193933CFB5339487A06</to_state>
+    <x>-127</x>
+    <y>79</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="F6D575845BEF4FD3B63FBFB7A980D959" action="add">
+    <from_state keyed_name="In Review" type="Life Cycle State">AA93A121BC7346C4907F69820303D2A4</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="SRE_CoreUserGroup" type="Identity">93FA7BC57D0844329494BA5F70976DA4</role>
+    <segments>147,113</segments>
+    <sort_order>1152</sort_order>
+    <source_id keyed_name="Part" type="Life Cycle Map">E337EBF706FA4172B2CD1A6487E00875</source_id>
+    <to_state keyed_name="Preliminary" type="Life Cycle State">72A2322564FE4193933CFB5339487A06</to_state>
+    <x>-79</x>
+    <y>-73</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="C53E74F5CC884B9F85CBD64AD08B62FA" action="add">
+    <from_state keyed_name="In Change" type="Life Cycle State">BE7478E822444326A2EC9F1E11A88963</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="Aras PLM" type="Identity">56A96DA9E981481688563E2D14D5D878</role>
+    <segments />
+    <sort_order>1024</sort_order>
+    <source_id keyed_name="Part" type="Life Cycle Map">E337EBF706FA4172B2CD1A6487E00875</source_id>
+    <to_state keyed_name="Superseded" type="Life Cycle State">E7A383494C724B338518A4DD1EB867FA</to_state>
+    <x>-2</x>
+    <y>-19</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="E8C1FF26B0AA4674A476F360EF9A2729" action="add">
+    <from_state keyed_name="Superseded" type="Life Cycle State">E7A383494C724B338518A4DD1EB867FA</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="Aras PLM" type="Identity">56A96DA9E981481688563E2D14D5D878</role>
+    <segments />
+    <sort_order>1920</sort_order>
+    <source_id keyed_name="Part" type="Life Cycle Map">E337EBF706FA4172B2CD1A6487E00875</source_id>
+    <to_state keyed_name="Obsolete" type="Life Cycle State">CF9E614C2C814637A3C8068DC211BA6D</to_state>
+    <x>17</x>
+    <y>7</y>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

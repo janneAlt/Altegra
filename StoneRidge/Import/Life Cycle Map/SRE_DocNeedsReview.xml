@@ -30,6 +30,17 @@
     <y>68</y>
     <name>In Review</name>
    </Item>
+   <Item type="Life Cycle State" id="A13BB891499E411F859A1EC9BA90E0A9" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <label xml:lang="en">Obsolete</label>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>1</set_not_lockable>
+    <sort_order>640</sort_order>
+    <source_id keyed_name="SRE_DocNeedsReview" type="Life Cycle Map">4C024D9D3BCB468CB7E4A97C0087447C</source_id>
+    <x>686</x>
+    <y>64</y>
+    <name>Obsolete</name>
+   </Item>
    <Item type="Life Cycle State" id="A6EF33EC9E9A4055B7389F13CD74C3EC" action="add">
     <image>../images/LifeCycleState.svg</image>
     <label xml:lang="en">Preliminary</label>
@@ -123,6 +134,17 @@
     <to_state keyed_name="Approved" type="Life Cycle State">B79502BA90D94F258B840799519772A7</to_state>
     <x>48</x>
     <y>15</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="510AF873F4AA423DA91AC68FA6B17378" action="add">
+    <from_state keyed_name="Released" type="Life Cycle State">F622E2A50D8C47E1A4876B50FD457953</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="SE5000 Configuration Management" type="Identity">623DDCF96A4B44F9A1A5DABF776196A1</role>
+    <segments />
+    <sort_order>1408</sort_order>
+    <source_id keyed_name="SRE_DocNeedsReview" type="Life Cycle Map">4C024D9D3BCB468CB7E4A97C0087447C</source_id>
+    <to_state keyed_name="Obsolete" type="Life Cycle State">A13BB891499E411F859A1EC9BA90E0A9</to_state>
+    <x>5</x>
+    <y>-25</y>
    </Item>
    <Item type="Life Cycle Transition" id="6EA6EB88C76D43A9B1A50AD8E6873A3D" action="add">
     <from_state keyed_name="Released" type="Life Cycle State">F622E2A50D8C47E1A4876B50FD457953</from_state>
