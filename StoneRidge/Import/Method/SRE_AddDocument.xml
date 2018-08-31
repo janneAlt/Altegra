@@ -9,7 +9,7 @@
 // <date>2/20/2018</date>
 // <summary>Adds a referencing document to a Released Part Javascript</summary>
 // Used in action SRE_AddDocToPart
-
+//Test
 var params = {};
 //Get State of the cuuret item and check it it is released, if not do not allow the user to perform the action
 var state = this.getProperty("state");
