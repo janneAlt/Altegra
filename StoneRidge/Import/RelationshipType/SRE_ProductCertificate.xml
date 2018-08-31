@@ -1,0 +1,127 @@
+﻿<AML>
+ <Item type="RelationshipType" id="72D529A53EE445C8BC66C851D4C4CBDA" action="add" dependencyLevel="0">
+  <auto_search>1</auto_search>
+  <behavior>fixed</behavior>
+  <copy_permissions>0</copy_permissions>
+  <create_related>0</create_related>
+  <hide_in_all>0</hide_in_all>
+  <inc_rel_key_name>1</inc_rel_key_name>
+  <inc_related_key_name>1</inc_related_key_name>
+  <is_list_type>0</is_list_type>
+  <label xml:lang="en">Certificate</label>
+  <new_show_related>1</new_show_related>
+  <related_id keyed_name="SRE_Certificate" type="ItemType" name="SRE_Certificate">94354B694EB34056A75F2CE9393CFBFE</related_id>
+  <related_notnull>1</related_notnull>
+  <related_option>2</related_option>
+  <relationship_id keyed_name="SRE_ProductCertificate" type="ItemType" name="SRE_ProductCertificate">
+   <Item type="ItemType" id="0120A4422BE24B5BAA838840523EF22A" action="add">
+    <allow_private_permission>1</allow_private_permission>
+    <auto_search>0</auto_search>
+    <enforce_discovery>0</enforce_discovery>
+    <hide_where_used>0</hide_where_used>
+    <implementation_type>table</implementation_type>
+    <instance_data>SRE_PRODUCTCERTIFICATE</instance_data>
+    <is_dependent>0</is_dependent>
+    <is_relationship>1</is_relationship>
+    <is_versionable>0</is_versionable>
+    <revisions keyed_name="Default" type="Revision">7FE395DD8B9F4E1090756A34B733D75E</revisions>
+    <show_parameters_tab>1</show_parameters_tab>
+    <structure_view>tabs off</structure_view>
+    <unlock_on_logout>0</unlock_on_logout>
+    <use_src_access>1</use_src_access>
+    <name>SRE_ProductCertificate</name>
+    <Relationships>
+     <Item type="Property" id="86BB66CA335F4E51925ED867CFDE77AD" action="add">
+      <column_alignment>left</column_alignment>
+      <data_source>
+       <Item type="Property" action="get" select="id">
+        <name>related_id</name>
+        <source_id>0120A4422BE24B5BAA838840523EF22A</source_id>
+       </Item>
+      </data_source>
+      <data_type>foreign</data_type>
+      <foreign_property>
+       <Item type="Property" action="get" select="id">
+        <keyed_name>keyed_name</keyed_name>
+        <source_id>
+         <Item type="ItemType" action="get" select="id">
+          <name>SRE_Certificate</name>
+         </Item>
+        </source_id>
+       </Item>
+      </foreign_property>
+      <is_hidden>0</is_hidden>
+      <is_hidden2>0</is_hidden2>
+      <is_indexed>0</is_indexed>
+      <is_keyed>0</is_keyed>
+      <is_multi_valued>0</is_multi_valued>
+      <is_required>0</is_required>
+      <label xml:lang="en">certificate</label>
+      <range_inclusive>0</range_inclusive>
+      <readonly>0</readonly>
+      <sort_order>3712</sort_order>
+      <source_id keyed_name="SRE_ProductCertificate" type="ItemType" name="SRE_ProductCertificate">0120A4422BE24B5BAA838840523EF22A</source_id>
+      <track_history>0</track_history>
+      <name>certificate</name>
+     </Item>
+     <Item type="Property" id="8ABC7594ADC04A9DB0AB0F81E9E2501C" action="add">
+      <column_alignment>left</column_alignment>
+      <data_source>
+       <Item type="Property" action="get" select="id">
+        <name>source_id</name>
+        <source_id>0120A4422BE24B5BAA838840523EF22A</source_id>
+       </Item>
+      </data_source>
+      <data_type>foreign</data_type>
+      <foreign_property>
+       <Item type="Property" action="get" select="id">
+        <keyed_name>keyed_name</keyed_name>
+        <source_id>
+         <Item type="ItemType" action="get" select="id">
+          <name>SRE_Product</name>
+         </Item>
+        </source_id>
+       </Item>
+      </foreign_property>
+      <is_hidden>0</is_hidden>
+      <is_hidden2>0</is_hidden2>
+      <is_indexed>0</is_indexed>
+      <is_keyed>0</is_keyed>
+      <is_multi_valued>0</is_multi_valued>
+      <is_required>0</is_required>
+      <label xml:lang="en">product</label>
+      <range_inclusive>0</range_inclusive>
+      <readonly>0</readonly>
+      <sort_order>3584</sort_order>
+      <source_id keyed_name="SRE_ProductCertificate" type="ItemType" name="SRE_ProductCertificate">0120A4422BE24B5BAA838840523EF22A</source_id>
+      <track_history>0</track_history>
+      <name>product</name>
+     </Item>
+     <Item type="TOC Access" id="19F008ACD5A646FDBF55E243883A9246" action="add">
+      <related_id keyed_name="Maria Eriksson" type="Identity">02B5523B78DD41BF965CAFD37AB50A12</related_id>
+      <sort_order>128</sort_order>
+      <source_id keyed_name="SRE_ProductCertificate" type="ItemType" name="SRE_ProductCertificate">0120A4422BE24B5BAA838840523EF22A</source_id>
+      <category>Documents</category>
+     </Item>
+    </Relationships>
+   </Item>
+  </relationship_id>
+  <sort_order>3</sort_order>
+  <source_id keyed_name="SRE_Product" type="ItemType" name="SRE_Product">104DF3C55A9742FE895AAEA695146100</source_id>
+  <name>SRE_ProductCertificate</name>
+  <Relationships>
+   <Item type="Relationship Grid Event" id="DAAAAF79A6494979B7932924E9D21AB6" action="add">
+    <grid_event>oninsertrow</grid_event>
+    <related_id keyed_name="SRE_ValidateRelInsert" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>SRE_ValidateRelInsert</name>
+     </Item>
+    </related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_ProductCertificate" type="RelationshipType">72D529A53EE445C8BC66C851D4C4CBDA</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+ <Item type="View" action="delete" where="source_id='0120A4422BE24B5BAA838840523EF22A'" />
+ <Item type="Form" action="delete" where="name='SRE_ProductCertificate'" />
+</AML>

@@ -1,0 +1,22 @@
+﻿<AML>
+ <Item type="User" id="D37F4B31C33C4DA28AB93E2DB9D2DA34" action="add">
+  <default_vault keyed_name="Default" type="Vault">67BBB9204FE84A8981ED8313049BA06C</default_vault>
+  <email>aje@se5000.local</email>
+  <last_login_date>2018-08-27T11:20:56</last_login_date>
+  <login_name>AJE</login_name>
+  <logon_enabled>1</logon_enabled>
+  <owned_by_id>05A936EB49984BD48F00887A1534BFC1</owned_by_id>
+  <pwd_is_set_on>2018-02-20T16:11:05</pwd_is_set_on>
+  <starting_page>InBasket Task</starting_page>
+  <first_name>Anders</first_name>
+  <last_name>Jerand</last_name>
+  <Relationships>
+   <Item type="Alias" id="52BE20BD7C0D4E4C8BBD03B1EE063139" action="add">
+    <from_date>2018-02-20T14:18:48</from_date>
+    <related_id keyed_name="Anders Jerand" type="Identity">82199FA0A8C1441D8B785B0B3965ACFE</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="Anders Jerand" type="User">D37F4B31C33C4DA28AB93E2DB9D2DA34</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

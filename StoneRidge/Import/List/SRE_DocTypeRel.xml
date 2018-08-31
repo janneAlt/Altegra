@@ -1,0 +1,25 @@
+﻿<AML>
+ <Item type="List" id="A06E6793A203402E823CE84414338000" action="add">
+  <name>SRE_DocTypeRel</name>
+  <Relationships>
+   <Item type="Value" id="8F50880FF7714BBFA4BE024BA48FB46C" action="add">
+    <label xml:lang="en">Referencing</label>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_DocTypeRel" type="List">A06E6793A203402E823CE84414338000</source_id>
+    <value>Referencing</value>
+   </Item>
+   <Item type="Value" id="DE8A91C3B8394C8EB0C6834BD036DBEE" action="add">
+    <label xml:lang="en">Specifying</label>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_DocTypeRel" type="List">A06E6793A203402E823CE84414338000</source_id>
+    <value>Specifying</value>
+   </Item>
+   <Item type="Value" id="271158FD5793457792E888227E9712D2" action="add">
+    <label xml:lang="en">Reporting</label>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="SRE_DocTypeRel" type="List">A06E6793A203402E823CE84414338000</source_id>
+    <value>Reporting</value>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

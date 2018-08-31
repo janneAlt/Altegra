@@ -1,0 +1,22 @@
+﻿<AML>
+ <Item type="User" id="5B0D929B8E2F47CCA430CD0755C89DD1" action="add">
+  <default_vault keyed_name="Default" type="Vault">67BBB9204FE84A8981ED8313049BA06C</default_vault>
+  <email>clo@se5000.local</email>
+  <last_login_date>2018-08-17T09:51:21</last_login_date>
+  <login_name>CLO</login_name>
+  <logon_enabled>1</logon_enabled>
+  <owned_by_id>C8E5AAE8129E4B2EA9322BCFA43E5F20</owned_by_id>
+  <pwd_is_set_on>2018-01-03T17:26:06</pwd_is_set_on>
+  <starting_page>InBasket Task</starting_page>
+  <first_name>Clas</first_name>
+  <last_name>Jönsson</last_name>
+  <Relationships>
+   <Item type="Alias" id="585866E1726046C6A9F78311D07062E8" action="add">
+    <from_date>2018-02-20T14:18:49</from_date>
+    <related_id keyed_name="Clas Jönsson" type="Identity">742090B09ADB4E02B2176A262A3448C2</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="Clas Jönsson" type="User">5B0D929B8E2F47CCA430CD0755C89DD1</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

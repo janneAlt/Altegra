@@ -1,0 +1,86 @@
+﻿<AML>
+ <Item type="Life Cycle Map" id="A9FAA9B3811E4F7D8783D63A3ECABF83" action="add">
+  <description>TOE Lifecycle for Products</description>
+  <start_state keyed_name="Design Phase" type="Life Cycle State">DDFB04C9A63B4058BACF4B9F0AE54476</start_state>
+  <name>SRE_TOELifecycle</name>
+  <Relationships>
+   <Item type="Life Cycle State" id="837399D634434994B9D6DE096FAE8C8C" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <label xml:lang="en">Calibration Phase</label>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="SRE_TOELifecycle" type="Life Cycle Map">A9FAA9B3811E4F7D8783D63A3ECABF83</source_id>
+    <x>433</x>
+    <y>69</y>
+    <name>Calibration Phase</name>
+   </Item>
+   <Item type="Life Cycle State" id="DDFB04C9A63B4058BACF4B9F0AE54476" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <label xml:lang="en">Design Phase</label>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_TOELifecycle" type="Life Cycle Map">A9FAA9B3811E4F7D8783D63A3ECABF83</source_id>
+    <x>106</x>
+    <y>69</y>
+    <name>Design Phase</name>
+   </Item>
+   <Item type="Life Cycle State" id="61C45B19A2424B1F8AA1B5189773554C" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <label xml:lang="en">Operational Phase</label>
+    <set_is_released>1</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>512</sort_order>
+    <source_id keyed_name="SRE_TOELifecycle" type="Life Cycle Map">A9FAA9B3811E4F7D8783D63A3ECABF83</source_id>
+    <x>644</x>
+    <y>69</y>
+    <name>Operational Phase</name>
+   </Item>
+   <Item type="Life Cycle State" id="7EA52AB727144F1D9A7E1FD9B2FBA1CD" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <label xml:lang="en">Production Phase</label>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_TOELifecycle" type="Life Cycle Map">A9FAA9B3811E4F7D8783D63A3ECABF83</source_id>
+    <x>260</x>
+    <y>70</y>
+    <name>Production Phase</name>
+   </Item>
+   <Item type="Life Cycle Transition" id="EE542FB43987435DB17679AC9E202A99" action="add">
+    <from_state keyed_name="Production Phase" type="Life Cycle State">7EA52AB727144F1D9A7E1FD9B2FBA1CD</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="SRE_CoreUserGroup" type="Identity">93FA7BC57D0844329494BA5F70976DA4</role>
+    <segments />
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_TOELifecycle" type="Life Cycle Map">A9FAA9B3811E4F7D8783D63A3ECABF83</source_id>
+    <to_state keyed_name="Calibration Phase" type="Life Cycle State">837399D634434994B9D6DE096FAE8C8C</to_state>
+    <x>31</x>
+    <y>-17</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="3087031A0D2B4550BBFE4253BA10A741" action="add">
+    <from_state keyed_name="Calibration Phase" type="Life Cycle State">837399D634434994B9D6DE096FAE8C8C</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="SRE_CoreUserGroup" type="Identity">93FA7BC57D0844329494BA5F70976DA4</role>
+    <segments />
+    <sort_order>384</sort_order>
+    <source_id keyed_name="SRE_TOELifecycle" type="Life Cycle Map">A9FAA9B3811E4F7D8783D63A3ECABF83</source_id>
+    <to_state keyed_name="Operational Phase" type="Life Cycle State">61C45B19A2424B1F8AA1B5189773554C</to_state>
+    <x>49</x>
+    <y>-16</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="70482360BD874495AA2980B8162A5312" action="add">
+    <from_state keyed_name="Design Phase" type="Life Cycle State">DDFB04C9A63B4058BACF4B9F0AE54476</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="SRE_CoreUserGroup" type="Identity">93FA7BC57D0844329494BA5F70976DA4</role>
+    <segments />
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_TOELifecycle" type="Life Cycle Map">A9FAA9B3811E4F7D8783D63A3ECABF83</source_id>
+    <to_state keyed_name="Production Phase" type="Life Cycle State">7EA52AB727144F1D9A7E1FD9B2FBA1CD</to_state>
+    <x>22</x>
+    <y>-13</y>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

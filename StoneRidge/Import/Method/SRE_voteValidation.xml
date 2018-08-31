@@ -1,0 +1,94 @@
+﻿<AML>
+ <Item type="Method" id="7F662461EED545EF81DDC45A7CB0C244" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[Innovator inn = this.getInnovator();
+Aras.Server.Security.Identity plmIdentity;
+bool permissionWasSet;
+
+// Get workflow process activity through id
+// then workflow process paths and activity assignments
+//Setting security
+plmIdentity = Aras.Server.Security.Identity.GetByName("Aras PLM");
+permissionWasSet = Aras.Server.Security.Permissions.GrantIdentity(plmIdentity);
+
+String Aml = @"<AML>
+  <Item type=""Workflow Process"" action=""get"">
+    <Relationships>
+      <Item type=""Workflow Process Activity"" action=""get"">
+        <related_id>
+          <Item type=""Activity"" id=""{0}"" action=""get"" />
+        </related_id>
+      </Item>
+      <Item type=""Workflow Process Activity"" action=""get"">
+        <related_id>
+          <Item type=""Activity"" action=""get"">
+            <Relationships>
+              <Item type=""Workflow Process Path""></Item>
+              <Item type=""Activity Assignment""></Item>
+            </Relationships>
+          </Item>
+        </related_id>
+      </Item>
+    </Relationships>
+  </Item>
+</AML>";
+Aml = String.Format(Aml, this.getID());
+
+Item WorkflowProcess = inn.applyAML(Aml);
+
+// Get the Controlled Item 
+Item WItem = inn.newItem("Workflow", "get");
+WItem.setAttribute("where", String.Format("[Workflow].related_id = '{0}'", WorkflowProcess.getID()));
+WItem = WItem.apply();
+if (WItem.isError()) {
+    return WItem;
+}
+
+// Change Item ID
+Item changeObject = inn.newItem(WItem.getPropertyAttribute("source_type", "name"), "get");
+changeObject.setID(WItem.getProperty("source_id"));
+changeObject = changeObject.apply();
+string changeObjectID = changeObject.getID();
+
+                  Item getValidations = newItem("SRE_RO_Validations","get");
+                  getValidations.setProperty("source_id",changeObjectID);
+                  getValidations.setProperty("sre_vtype","Error");
+                  getValidations=getValidations.apply(); 
+                  int valiCount = getValidations.getItemCount();
+                  if(valiCount >= 1 )
+                  {
+                      
+                      return inn.newError("there are Unresolved Errors in the change order, clear them to proceed");
+                  }
+                  
+                  
+                      Item getreworkItem = newItem("SRE_subFlow", "get");
+        getreworkItem.setProperty("source_id", changeObject.getID());
+        getreworkItem = getreworkItem.apply();
+        
+                int revcnt = getreworkItem.getItemCount();
+        
+            for (int f = 0; f < revcnt; f++) 
+            
+            {
+                    Item task = inn.newItem("SRE_ReleaseOrdeSubflow", "get");
+                    task.setProperty("id", getreworkItem.getItemByIndex(f).getProperty("related_id"));
+                    task = task.apply();
+                    
+                    if(task.getProperty("state")!="Approved")
+                    
+                    {
+                        return inn.newError("All the sub-tasks in the release order are not approved");
+                        
+                    }
+                
+            }
+
+if (permissionWasSet)
+    Aras.Server.Security.Permissions.RevokeIdentity(plmIdentity);
+return this;
+]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_voteValidation</name>
+ </Item>
+</AML>

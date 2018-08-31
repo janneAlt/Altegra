@@ -1,0 +1,200 @@
+﻿<AML>
+ <Item type="Method" id="EC6E750E02E2450696510749BD1F120E" action="add">
+  <comments>updated</comments>
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[Innovator inn = this.getInnovator();
+
+// Added by Janne 20180830
+IPHostEntry ipHostInfo = Dns.GetHostEntry(System.Net.Dns.GetHostName());
+if (ipHostInfo.AddressList[1].ToString()=="192.168.16.203")
+{
+    // the server is Altegra and we skip pdf generation and Aspose issues
+   return this; 
+}
+
+
+Item vaultLoc = newItem("Variable", "get");
+vaultLoc.setProperty("name", "SRE_VaultLocation");
+vaultLoc = vaultLoc.apply();
+string vaultPath = vaultLoc.getProperty("value");
+//Getting License Path from a variable named SRE_VaultLocation
+Item licPath = newItem("Variable", "get");
+licPath.setProperty("name", "SRE_AsposeLic");
+licPath = licPath.apply();
+string licFileID = licPath.getProperty("value");
+if (licFileID == "") {
+    return inn.newError("Variable SRE_AsposeLic is not set");
+}
+string licfolderFirst = licFileID.Substring(0, 1);
+string licfolderFirstSub = licFileID.Substring(1, 2);
+string licfolderFirstSubSub = licFileID.Substring(3, 29);
+
+//Template File Path in the Vault
+string licFileVaultName = vaultPath + "\\" + licfolderFirst + "\\" + licfolderFirstSub + "\\" + licfolderFirstSubSub + "\\" + "Aspose.Total.lic";
+
+// return inn.newError(licFileVaultName);
+
+Item imgPath = newItem("Variable", "get");
+imgPath.setProperty("name", "SRE_SecureImagePath");
+imgPath = imgPath.apply();
+
+string BASE_PATH = imgPath.getProperty("value");
+
+if (BASE_PATH == "") {
+    return inn.newError("variable SRE_SecureImagePath is not set");
+}
+
+
+
+    string imgpth = BASE_PATH+"secure.png";
+    // return inn.newError(this.getProperty("itmnr"));
+       string fID = this.getProperty("src");
+    //   string fID = "D41892CC60134ECF887172613B088899";
+       Item getFilename = newItem("File", "get");
+       getFilename.setProperty("id", fID);
+       getFilename = getFilename.apply();
+       var Filelist = new List<string>();
+       string sourceFileName = getFilename.getProperty("filename");
+       
+       string partOne = fID.Substring(0, 1);
+       string PartTwo = fID.Substring(1, 2);
+       string PartThree = fID.Substring(3, 29);
+      
+
+       string baseVault = vaultLoc.getProperty("value");
+       string templateFileNameTemplate = baseVault + @"\"+partOne+@"\"+PartTwo+@"\"+PartThree+@"\"+sourceFileName;
+       
+       
+       Item foldLoc = newItem("Variable","get");
+       foldLoc.setProperty("name","SRE_DocTempLocation");
+       foldLoc = foldLoc.apply();
+       if(foldLoc.getProperty("value")=="")
+       {
+           return inn.newError("Export Folder Variable not set");
+       }
+       Item document = newItem("Document","get");
+       document.setProperty("item_number",this.getProperty("itmnr"));
+       document=document.apply();
+
+       string folder =foldLoc.getProperty("value");
+       
+       string ext = Path.GetExtension(templateFileNameTemplate);
+       string targetFileName = folder +this.getProperty("itmnr")+".pdf";
+       if(ext==".docx"||ext==".doc")
+       {
+        Aspose.Words.License license = new Aspose.Words.License();
+        license.SetLicense(licFileVaultName);
+        
+        var doc = new Aspose.Words.Document(templateFileNameTemplate);
+        Aspose.Words.Properties.DocumentPropertyCollection customdocProps = doc.CustomDocumentProperties;
+        
+        Aspose.Words.Properties.DocumentProperty state = customdocProps["SRE_State"];
+            state.Value = "Approved";
+        DocumentBuilder bldr = new DocumentBuilder(doc);
+        bldr.MoveToHeaderFooter(HeaderFooterType.HeaderPrimary);
+
+
+        DocumentBuilder bldrs = new DocumentBuilder(doc);
+        bldrs.MoveToHeaderFooter(HeaderFooterType.HeaderPrimary);
+
+        if(document.getProperty("sre_secure")=="1")
+        {
+            byte[] imgbyt = File.ReadAllBytes(imgpth);
+            MemoryStream ms = new MemoryStream();
+            ms.Write(imgbyt, 0, imgbyt.Length);
+            // Insert a floating picture.
+           Aspose.Words.Drawing.Shape shape = bldr.InsertImage(ms,RelativeHorizontalPosition.RightMargin, 100,RelativeVerticalPosition.BottomMargin,10 , -1, -1, WrapType.None);
+           
+            shape.BehindText = false;
+        
+        }
+
+        doc.UpdateFields();
+        doc.Save(templateFileNameTemplate, Aspose.Words.SaveFormat.Docx);
+        doc.Save(targetFileName, Aspose.Words.SaveFormat.Pdf);
+        Item myfile = inn.newItem("File", "add");
+        myfile.setProperty("filename", this.getProperty("itmnr")+".pdf");
+        myfile.attachPhysicalFile(targetFileName);
+        myfile = myfile.apply();
+        Filelist.Add(myfile.getID());     
+           
+       }
+       
+       else if(ext==".xlsx"||ext==".xls")
+       {
+            Aspose.Cells.License license = new Aspose.Cells.License();
+            license.SetLicense(licFileVaultName);  
+            var workbook = new Aspose.Cells.Workbook(templateFileNameTemplate);
+            Aspose.Cells.Cells cells = workbook.Worksheets[0].Cells;
+            
+             // Title
+            Aspose.Cells.Cell state = cells["C3"];
+            state.PutValue("Approved");
+            if(document.getProperty("sre_secure")=="1")
+            {
+                byte[] imgBytes = File.ReadAllBytes(imgpth);
+                MemoryStream ms = new MemoryStream();
+                ms.Write(imgBytes, 0, imgBytes.Length);
+                int len = workbook.Worksheets.Count;
+                for(int bg=0; bg<len; bg++)
+                {
+                  workbook.Worksheets[bg].Pictures.Add(0, 5, ms);
+                }
+            }
+       
+            workbook.Save(templateFileNameTemplate, Aspose.Cells.SaveFormat.Xlsx); 
+            workbook.Save(targetFileName, Aspose.Cells.SaveFormat.Pdf);
+            Item myfile = inn.newItem("File", "add");
+            myfile.setProperty("filename", this.getProperty("itmnr")+".pdf");
+            myfile.attachPhysicalFile(targetFileName);
+            myfile = myfile.apply();
+            Filelist.Add(myfile.getID());
+  
+           
+       }
+       
+       else if(ext==".pptx"||ext==".ppt")
+       {
+            Aspose.Slides.License license = new Aspose.Slides.License();
+            license.SetLicense(licFileVaultName); 
+            
+            var ppt = new Aspose.Slides.Presentation(templateFileNameTemplate);
+            ppt.Save(targetFileName, Aspose.Slides.Export.SaveFormat.Pdf);
+            Item myfile = inn.newItem("File", "add");
+            myfile.setProperty("filename", this.getProperty("itmnr")+".pdf");
+            myfile.attachPhysicalFile(targetFileName);
+            myfile = myfile.apply();
+            Filelist.Add(myfile.getID());
+           
+       }
+       
+       foreach(string files in Filelist)
+       {
+           
+          string qry ="UPDATE DOCUMENT SET SRE_VIEWABLE='"+files+"' WHERE ID='"+document.getID()+"'";
+          Item aQry= inn.applySQL(qry);
+           
+       }
+       
+
+       
+if(File.Exists(targetFileName))
+{
+    File.Delete(targetFileName);
+}
+   
+       
+       
+       
+       
+       
+       
+       
+       
+       
+
+return document;]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_GeneratePDFApprove</name>
+ </Item>
+</AML>

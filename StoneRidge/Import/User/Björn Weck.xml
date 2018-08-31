@@ -1,0 +1,22 @@
+﻿<AML>
+ <Item type="User" id="5E990B8ED58F447488BFE0E9A50B6E83" action="add">
+  <default_vault keyed_name="Default" type="Vault">67BBB9204FE84A8981ED8313049BA06C</default_vault>
+  <email>bwe@se5000.local</email>
+  <last_login_date>2018-05-18T09:33:37</last_login_date>
+  <login_name>BWE</login_name>
+  <logon_enabled>1</logon_enabled>
+  <owned_by_id>454477C4BFB746D281DB14CFCB55AB50</owned_by_id>
+  <pwd_is_set_on>2018-02-06T15:19:24</pwd_is_set_on>
+  <starting_page>InBasket Task</starting_page>
+  <first_name>Björn</first_name>
+  <last_name>Weck</last_name>
+  <Relationships>
+   <Item type="Alias" id="00395A6E716F4602A20D77BC2CE2BBCA" action="add">
+    <from_date>2018-02-20T14:18:49</from_date>
+    <related_id keyed_name="Björn Weck" type="Identity">8002DBAC3C1A424E913DC7D3F91E56E9</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="Björn Weck" type="User">5E990B8ED58F447488BFE0E9A50B6E83</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

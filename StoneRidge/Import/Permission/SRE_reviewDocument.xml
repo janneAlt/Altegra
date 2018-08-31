@@ -1,0 +1,78 @@
+﻿<AML>
+ <Item type="Permission" id="50B301D6F1094C7ABADE5476BD0EEEBC" action="add">
+  <is_private>0</is_private>
+  <name>SRE_reviewDocument</name>
+  <Relationships>
+   <Item type="Access" id="08EFBB3B0DDF4A5B8FB99D442CAF1C5D" action="add">
+    <can_change_access>1</can_change_access>
+    <can_delete>1</can_delete>
+    <can_discover>1</can_discover>
+    <can_get>1</can_get>
+    <can_update>1</can_update>
+    <related_id keyed_name="Creator" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>Creator</name>
+     </Item>
+    </related_id>
+    <show_permissions_warning>1</show_permissions_warning>
+    <sort_order>896</sort_order>
+    <source_id keyed_name="SRE_reviewDocument" type="Permission">50B301D6F1094C7ABADE5476BD0EEEBC</source_id>
+   </Item>
+   <Item type="Access" id="1CFE9182F78C49D897162CA25FAAFC23" action="add">
+    <can_change_access>0</can_change_access>
+    <can_delete>0</can_delete>
+    <can_discover>1</can_discover>
+    <can_get>1</can_get>
+    <can_update>1</can_update>
+    <related_id keyed_name="Reviewer" type="Identity">0B99F1A57D4449CB8159A4820F7F70E5</related_id>
+    <show_permissions_warning>1</show_permissions_warning>
+    <sort_order>640</sort_order>
+    <source_id keyed_name="SRE_reviewDocument" type="Permission">50B301D6F1094C7ABADE5476BD0EEEBC</source_id>
+   </Item>
+   <Item type="Access" id="214451CDBB3A42D7874E0735081F542F" action="add">
+    <can_change_access>1</can_change_access>
+    <can_delete>1</can_delete>
+    <can_discover>1</can_discover>
+    <can_get>1</can_get>
+    <can_update>1</can_update>
+    <related_id keyed_name="SRE_CoreUserGroup" type="Identity">93FA7BC57D0844329494BA5F70976DA4</related_id>
+    <show_permissions_warning>1</show_permissions_warning>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_reviewDocument" type="Permission">50B301D6F1094C7ABADE5476BD0EEEBC</source_id>
+   </Item>
+   <Item type="Access" id="8163E36F04F24718B19095BADF67883E" action="add">
+    <can_change_access>0</can_change_access>
+    <can_delete>0</can_delete>
+    <can_discover>1</can_discover>
+    <can_get>1</can_get>
+    <can_update>0</can_update>
+    <related_id keyed_name="Reader" type="Identity">0F12B7716FE44CDF8192509B8C67A41F</related_id>
+    <show_permissions_warning>0</show_permissions_warning>
+    <sort_order>512</sort_order>
+    <source_id keyed_name="SRE_reviewDocument" type="Permission">50B301D6F1094C7ABADE5476BD0EEEBC</source_id>
+   </Item>
+   <Item type="Access" id="84ADF0F0B44E43A7B56E84EBB83252D9" action="add">
+    <can_change_access>0</can_change_access>
+    <can_delete>0</can_delete>
+    <can_discover>1</can_discover>
+    <can_get>1</can_get>
+    <can_update>1</can_update>
+    <related_id keyed_name="Editor" type="Identity">8F78DAAD4DE346AC86878E16720A63A0</related_id>
+    <show_permissions_warning>1</show_permissions_warning>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="SRE_reviewDocument" type="Permission">50B301D6F1094C7ABADE5476BD0EEEBC</source_id>
+   </Item>
+   <Item type="Access" id="8814DB02D5ED439C8404240918208895" action="add">
+    <can_change_access>1</can_change_access>
+    <can_delete>1</can_delete>
+    <can_discover>1</can_discover>
+    <can_get>1</can_get>
+    <can_update>1</can_update>
+    <related_id keyed_name="Administrators" type="Identity">2618D6F5A90949BAA7E920D1B04C7EE1</related_id>
+    <show_permissions_warning>1</show_permissions_warning>
+    <sort_order>768</sort_order>
+    <source_id keyed_name="SRE_reviewDocument" type="Permission">50B301D6F1094C7ABADE5476BD0EEEBC</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

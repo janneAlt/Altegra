@@ -1,0 +1,22 @@
+﻿<AML>
+ <Item type="User" id="F4712069634D438A8E33D9EFCED4552F" action="add">
+  <default_vault keyed_name="Default" type="Vault">67BBB9204FE84A8981ED8313049BA06C</default_vault>
+  <email>fol@se5000.local</email>
+  <last_login_date>2018-08-27T10:51:42</last_login_date>
+  <login_name>FOL</login_name>
+  <logon_enabled>1</logon_enabled>
+  <owned_by_id>0F57B79619D646D5ACCD5D955C285E74</owned_by_id>
+  <pwd_is_set_on>2018-01-03T17:26:22</pwd_is_set_on>
+  <starting_page>InBasket Task</starting_page>
+  <first_name>Fredrik</first_name>
+  <last_name>Hafzelius</last_name>
+  <Relationships>
+   <Item type="Alias" id="7D4FD84B4D3B4CF79BC3FDD9F52B27EE" action="add">
+    <from_date>2018-02-20T14:18:49</from_date>
+    <related_id keyed_name="Fredrik Hafzelius" type="Identity">5CC5067486B74D3A97F1960C4533BDDC</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="Fredrik Hafzelius" type="User">F4712069634D438A8E33D9EFCED4552F</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

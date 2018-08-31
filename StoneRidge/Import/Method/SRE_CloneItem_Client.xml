@@ -1,0 +1,26 @@
+﻿<AML>
+ <Item type="Method" id="4EFA6A63BCDF48C4A9384F101DD01073" action="add">
+  <comments>Kick off clone method - client side</comments>
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[// 2018-02-28 LL - First version
+
+var inn = this.getInnovator();
+var thisType = this.getType();
+
+var cloneAction = "SRE_CloneItem";
+this.setAction(cloneAction);
+var clonedItem = this.apply();
+
+if (clonedItem.isError())
+{
+	top.aras.AlertError(clonedItem.getErrorString());
+	return;
+}
+else
+{
+    top.aras.uiShowItemEx(clonedItem.node, undefined,true);
+}]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>SRE_CloneItem_Client</name>
+ </Item>
+</AML>

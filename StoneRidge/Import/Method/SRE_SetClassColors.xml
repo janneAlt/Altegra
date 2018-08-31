@@ -1,0 +1,67 @@
+﻿<AML>
+ <Item type="Method" id="DAAB3A3A6F8B4188846AA304FEAB7B82" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA['' Setting colors in grid on Part properties : state, classification
+
+Dim i As Integer
+
+For i=0 To Me.getItemCount()-1
+
+  Dim bg_color_state As String
+  Dim bg_color_classification As String
+  Dim bg_color_production_state As String
+  Dim myCss As String
+  
+  Dim thisItem As Item = Me.getItemByIndex(i)
+  Dim thisStatus As String = thisItem.getProperty("state","")
+  Dim thisClassification as String = thisItem.getProperty("classification","")
+
+
+    '------
+      Select (thisStatus)
+     
+          Case "Preliminary" 
+          bg_color_state = "" 'none
+            'bg_color_state = "#ffb6c1" 'baby Pink
+          Case "In Review" 
+          bg_color_state = "" 'none
+            'bg_color_state = "#FFA500" 'light Orange
+          Case "Approved" 
+          bg_color_state = "" 'none
+            'bg_color_state = "#FFFFBB" 'light yellow
+          Case "Released" 
+          bg_color_state = "" 'none
+            'bg_color_state = "#99CC33" 'light green
+          Case "Superseded","Obsolete" 
+          bg_color_state = "" 'none
+            'bg_color_state = "#FFBBBB" 'light red
+          Case Else
+        bg_color_state = "" 'none
+      End Select
+      
+      Select (thisClassification)
+          Case "Part" 
+           bg_color_classification = "" 'none
+            'bg_color_classification = "#66CCFF" ' "#77CCFF" 'light blue
+          Case "Customer Variant"
+           bg_color_classification = "" 'none
+            'bg_color_classification = "#0099FF" ' "#668AFF" 'darker light blue
+           Case Else
+            bg_color_classification = "" 'none
+      End Select
+      
+    
+
+  If bg_color_state <> "" or bg_color_classification <> ""  Then
+    myCss = ".state { background-color: " & bg_color_state & " }"
+    myCss &= ".classification { background-color: " & bg_color_classification & "; }"
+       'myCss &= ".classification { background-color: " & bg_color_classification & "; text-indent: 5px;}"
+    thisItem.setProperty("css",myCss)
+    
+  End If
+Next i
+Return Me]]></method_code>
+  <method_type>VB</method_type>
+  <name>SRE_SetClassColors</name>
+ </Item>
+</AML>

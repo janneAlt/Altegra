@@ -1,0 +1,19 @@
+﻿<AML>
+ <Item type="User" id="EB2D5AA617FB41A28F081345B8B5FECB" action="add">
+  <default_vault keyed_name="Default" type="Vault">67BBB9204FE84A8981ED8313049BA06C</default_vault>
+  <last_login_date>2018-08-31T09:50:28</last_login_date>
+  <login_name>vadmin</login_name>
+  <logon_enabled>1</logon_enabled>
+  <permission_id keyed_name="3A1671E145D34D01B934ED33EAA6D698" type="Permission">3A1671E145D34D01B934ED33EAA6D698</permission_id>
+  <first_name>Vault</first_name>
+  <last_name>Admin</last_name>
+  <Relationships>
+   <Item type="Alias" id="9B0DE93E3DF64426B900BB0414B1559C" action="add">
+    <from_date>2002-08-19T17:57:27</from_date>
+    <related_id keyed_name="Vault Admin" type="Identity">E73F43AD85CD4A95951776D57A4D517B</related_id>
+    <sort_order>0</sort_order>
+    <source_id keyed_name="Vault Admin" type="User">EB2D5AA617FB41A28F081345B8B5FECB</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

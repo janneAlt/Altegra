@@ -1,0 +1,23 @@
+﻿<AML>
+ <Item type="User" id="AD30A6D8D3B642F5A2AFED1A4B02BEFA" action="add">
+  <default_vault keyed_name="Default" type="Vault">67BBB9204FE84A8981ED8313049BA06C</default_vault>
+  <last_login_date>2018-08-31T10:12:49</last_login_date>
+  <login_name>root</login_name>
+  <logon_enabled>1</logon_enabled>
+  <permission_id keyed_name="E228B4F6105E4220A5342B5F26DDE35D" type="Permission">E228B4F6105E4220A5342B5F26DDE35D</permission_id>
+  <working_directory>C:</working_directory>
+  <first_name>Super</first_name>
+  <last_name>User</last_name>
+  <Relationships>
+   <Item type="Alias" id="5D022148904F404982684761459051CE" action="add">
+    <related_id keyed_name="Super User" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>Super User</name>
+     </Item>
+    </related_id>
+    <sort_order>0</sort_order>
+    <source_id keyed_name="Super User" type="User">AD30A6D8D3B642F5A2AFED1A4B02BEFA</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

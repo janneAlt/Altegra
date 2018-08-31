@@ -1,0 +1,90 @@
+﻿<AML>
+ <Item type="Method" id="BDBEEC3927C44F9D8D3F914C56CE9033" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[Innovator inn = this.getInnovator();
+
+string sql ="delete  from SRE_RO_VALIDATIONS where SOURCE_ID='"+this.getID()+"' ";
+Item exSql = inn.applySQL(sql);
+string BASE_PATH = "..\\Solutions\\SRE\\images\\";
+string image = BASE_PATH + "Error.png";
+string Warningimage = BASE_PATH + "Warning.png";
+string okImage = BASE_PATH + "Ok.png";
+         Item checkReviewer = newItem("Team Identity","get");
+         checkReviewer.setProperty("source_id",this.getProperty("team_id"));
+         checkReviewer.setProperty("team_role","0B99F1A57D4449CB8159A4820F7F70E5");
+         checkReviewer=checkReviewer.apply();
+         int revCount =checkReviewer.getItemCount();
+         if(revCount==0)
+         {
+             Item addValidation = newItem("SRE_PartValidations","add");
+                  
+                  addValidation.setProperty("sre_itemnumber",this.getProperty("id"));
+                  addValidation.setProperty("sre_itemtype",this.getType());
+                  addValidation.setProperty("sre_status",image);
+                  addValidation.setProperty("sre_vtype","Error");
+                  addValidation.setProperty("sre_errordetail","No Reviewer Added, Please add the reviewer before you Promote to In review");
+                  addValidation.setProperty("source_id",this.getID());
+                  addValidation=addValidation.apply();
+         }
+         for(int k=0; k<revCount; k++)
+         {
+         
+         if(checkReviewer.getItemByIndex(k).getProperty("related_id") == null)
+         {        
+                  
+                Item addValidation = newItem("SRE_PartValidations","add");
+                  
+                  addValidation.setProperty("sre_itemnumber",this.getProperty("id"));
+                  addValidation.setProperty("sre_itemtype",this.getType());
+                  addValidation.setProperty("sre_status",image);
+                  addValidation.setProperty("sre_vtype","Error");
+                  addValidation.setProperty("sre_errordetail","No Reviewer Added, Please add the reviewer before you Promote to In review");
+                  addValidation.setProperty("source_id",this.getID());
+                  addValidation=addValidation.apply();
+             
+         }
+         
+         }
+         
+     Item checkApprover = newItem("Team Identity","get");
+         checkApprover.setProperty("source_id",this.getProperty("team_id"));
+         checkApprover.setProperty("team_role","0B99F1A57D4449CB8159A4820F7F70E5");
+         checkApprover=checkApprover.apply();
+         int appCount =checkApprover.getItemCount();
+         if(appCount==0)
+         
+         {      Item addValidation = newItem("SRE_PartValidations","add");
+                addValidation.setProperty("sre_itemnumber",this.getProperty("id"));
+                  addValidation.setProperty("sre_itemtype",this.getType());
+                  addValidation.setProperty("sre_status",image);
+                  addValidation.setProperty("sre_vtype","Error");
+                  addValidation.setProperty("sre_errordetail","No Approver Added, Please add the Approver before you Promote to In review");
+                  addValidation.setProperty("source_id",this.getID());
+                  addValidation=addValidation.apply();
+         } 
+
+         for(int k=0; k<appCount; k++)
+         {
+         
+         if(checkApprover.getItemByIndex(k).getProperty("related_id") == null)
+         {         
+                  Item addValidation = newItem("SRE_PartValidations","add");
+                  addValidation.setProperty("sre_itemnumber",this.getProperty("id"));
+                  addValidation.setProperty("sre_itemtype",this.getType());
+                  addValidation.setProperty("sre_status",image);
+                  addValidation.setProperty("sre_vtype","Error");
+                  addValidation.setProperty("sre_errordetail","No Approver Added, Please add the Approver before you Promote to In review");
+                  addValidation.setProperty("source_id",this.getID());
+                  addValidation=addValidation.apply();
+         }
+             
+         }
+         
+
+         
+         
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_validateRevApp</name>
+ </Item>
+</AML>

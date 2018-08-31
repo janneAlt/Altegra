@@ -1,0 +1,19 @@
+﻿<AML>
+ <Item type="List" id="0D625EDC2ED84E6BBCE39FF569A9910E" action="add">
+  <name>SRE_PartState</name>
+  <Relationships>
+   <Item type="Value" id="CBC799968D6A41F1ADF748D2AF2175CF" action="add">
+    <label xml:lang="en">P</label>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_PartState" type="List">0D625EDC2ED84E6BBCE39FF569A9910E</source_id>
+    <value>P</value>
+   </Item>
+   <Item type="Value" id="4A8E8CBE91B94EECA5F87C909EBAAFC6" action="add">
+    <label xml:lang="en">R</label>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_PartState" type="List">0D625EDC2ED84E6BBCE39FF569A9910E</source_id>
+    <value>R</value>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

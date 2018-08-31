@@ -1,0 +1,52 @@
+﻿<AML>
+ <Item type="Method" id="2FF3BB01EA9E4BFC8AA31A7C6B9EB280" action="add">
+  <comments>Adds a referencing document to a Released Part</comments>
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[// <copyright Method="SRE_AddDocTOPart_SM" company="Stonerdige Electronics">
+// Copyright (c) 2018 All Rights Reserved
+// </copyright>
+// <author>Sudarshan Srinath</author>
+// <date>2/20/2018</date>
+// <summary>Adds a referencing document to a Released Part</summary>
+
+
+var inn = this.getInnovator();
+
+//partId= Part ID= source_id
+        string partId = this.getProperty("partId");
+        
+//placeholderId= Document ID= related_id        
+        string placeholderId = this.getProperty("placeholderId");
+        
+ //Checking if ID's are Null or blanks 
+        if (partId == null && placeholderId == null) 
+        
+        {
+            return inn.newError("Either the part or document has an invalid ID");
+        }
+
+
+
+/*Setting Temporary permission to execute add on a Released Part; note only Administrators can update the permissions check
+Check Following permssion SRE_releasedPart in part's released State for more info
+*/
+var plmIdentity = Aras.Server.Security.Identity.GetByName("Super User");
+var permissionWasSet = Aras.Server.Security.Permissions.GrantIdentity(plmIdentity);
+
+//Add  document as a relationship to a released part and marking the same as a referincing document
+                     /***************************Core Logic*********************/
+                     Item relation = inn.newItem("Part Document", "add");
+                     relation.setProperty("source_id", partId);
+                     relation.setProperty("related_id", placeholderId);
+                     relation.setProperty("sre_type", "Referencing");
+                     relation = relation.apply();
+                    /***************************Core Logic Ends here************/
+//Revoking Temporary permission
+if (permissionWasSet)
+    Aras.Server.Security.Permissions.RevokeIdentity(plmIdentity);
+
+return relation;]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_AddDocTOPart_SM</name>
+ </Item>
+</AML>

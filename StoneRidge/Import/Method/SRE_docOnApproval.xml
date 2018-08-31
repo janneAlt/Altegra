@@ -1,0 +1,55 @@
+﻿<AML>
+ <Item type="Method" id="B2F7AB0266B94222AB1D941C043AF77E" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[Innovator inn = this.getInnovator();
+string BASE_PATH = "C:\\Program Files (x86)\\Aras SP12\\Innovator\\Innovator\\Client\\Solutions\\StoneRidge\\Images\\";
+string imgpth = BASE_PATH+"prel.png";
+Item docm = inn.getItemById("Document", this.getProperty("docid"));
+Item user = inn.getItemById("User", inn.getUserID());
+            byte[] imgbyt = File.ReadAllBytes(imgpth);
+            MemoryStream ms = new MemoryStream();
+            ms.Write(imgbyt, 0, imgbyt.Length);
+
+
+            // Instantiate a Workbook object
+            // Open an Excel file
+
+            Aspose.Words.Document doc =  new Aspose.Words.Document(this.getProperty("targetFileName"));
+            Aspose.Words.Properties.DocumentPropertyCollection customdocProps = doc.CustomDocumentProperties;
+      
+            Aspose.Words.Properties.DocumentProperty number = customdocProps["sre_docNum"];
+            number.Value = docm.getProperty("item_number");
+
+            Aspose.Words.Properties.DocumentProperty issuedby = customdocProps["sre_issuedBy"];
+            issuedby.Value = "sud";
+            Aspose.Words.Properties.DocumentProperty title = customdocProps["sre_title"];
+            title.Value = "title here";
+            Aspose.Words.Properties.DocumentProperty approvedby = customdocProps["sre_approvedby"];
+            approvedby.Value = "approvedby";
+            Aspose.Words.Properties.DocumentProperty approveddt = customdocProps["sre_approveddt"];
+            approveddt.Value = "today";
+
+            Aspose.Words.Properties.DocumentProperty rev = customdocProps["sre_docRev"];
+            rev.Value = "01";
+            DocumentBuilder bldr = new DocumentBuilder(doc);
+            bldr.MoveToHeaderFooter(HeaderFooterType.HeaderPrimary);
+
+
+            // Insert a floating picture.
+           
+            DocumentBuilder bldrs = new DocumentBuilder(doc);
+            bldrs.MoveToHeaderFooter(HeaderFooterType.HeaderPrimary);
+            NodeCollection mshps = doc.GetChildNodes(NodeType.Shape, true);
+
+            mshps[0].Remove();
+
+
+
+            doc.UpdateFields();
+            doc.Save(this.getProperty("targetFileName"), Aspose.Words.SaveFormat.Docx);
+
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_docOnApproval</name>
+ </Item>
+</AML>

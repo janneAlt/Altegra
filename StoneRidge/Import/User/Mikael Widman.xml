@@ -1,0 +1,22 @@
+﻿<AML>
+ <Item type="User" id="E1F7E3ED2D614F868B5EE44F14AD69DF" action="add">
+  <default_vault keyed_name="Default" type="Vault">67BBB9204FE84A8981ED8313049BA06C</default_vault>
+  <email>miwi@se5000.local</email>
+  <last_login_date>2018-03-12T13:56:26</last_login_date>
+  <login_name>miwi</login_name>
+  <logon_enabled>1</logon_enabled>
+  <owned_by_id>2D656DF05FA5456780909494D15A32E9</owned_by_id>
+  <pwd_is_set_on>2018-02-20T12:46:16</pwd_is_set_on>
+  <starting_page>InBasket Task</starting_page>
+  <first_name>Mikael</first_name>
+  <last_name>Widman</last_name>
+  <Relationships>
+   <Item type="Alias" id="60B3D39B5C314123A002AD7E0B38E269" action="add">
+    <from_date>2018-02-20T14:18:49</from_date>
+    <related_id keyed_name="Mikael Widman" type="Identity">32EB786322804C259868A7461E18FF76</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="Mikael Widman" type="User">E1F7E3ED2D614F868B5EE44F14AD69DF</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

@@ -1,0 +1,26 @@
+﻿<AML>
+ <Item type="Method" id="39FCE4BC578142FCB4546CA35F50427B" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[Innovator inn = this.getInnovator();
+  
+string old_rev = this.getProperty("major_rev");
+
+// Get the latest generation
+Item newVer = this.newItem(this.getType(), "get");
+newVer.setProperty("config_id", this.getProperty("config_id"));
+newVer.setProperty("is_current", "1");
+newVer = newVer.apply();
+
+string new_rev = newVer.getProperty("major_rev","");
+
+// If new revision send the renderfiles flag to be procecced in SRE_RenderPDFProm() trigged OnBeforeUpdate
+if (!new_rev.Equals(old_rev))
+{
+    RequestState.Add("renderfiles", "1");
+}
+
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_SetForRender</name>
+ </Item>
+</AML>

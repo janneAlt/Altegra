@@ -1,0 +1,86 @@
+﻿<AML>
+ <Item type="Method" id="8CEEEA80EA5543EB9FA00CC333760E68" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[
+Innovator inn = this.getInnovator();
+
+Aras.Server.Security.Identity plmIdentity;
+bool permissionWasSet;
+
+plmIdentity = Aras.Server.Security.Identity.GetByName("Aras PLM");
+permissionWasSet = Aras.Server.Security.Permissions.GrantIdentity(plmIdentity);
+
+     Item getRelItems = newItem("SRE_RO_AffectedItems","get");
+     getRelItems.setProperty("source_id",this.getID());
+     getRelItems=getRelItems.apply();
+
+int relCount = getRelItems.getItemCount();
+if(relCount ==0)
+{}
+
+for(int i = 0; i<relCount; i++)
+
+    {
+         
+    string relatedID = getRelItems.getItemByIndex(i).getProperty("related_id");
+    
+         Item getSpecificAffected = newItem("SRE_PolyAffected","get");
+         getSpecificAffected.setProperty("id",relatedID);
+         getSpecificAffected=getSpecificAffected.apply();
+        //  return inn.newError(getSpecificAffected.getID());
+        if(getSpecificAffected.getProperty("state")== "Released")
+        {
+            
+            return inn.newError("Cannot add a released "+getSpecificAffected.getType()+" to the release order"+" "+getSpecificAffected.getProperty("item_number") );
+        }
+         if(getSpecificAffected.getType()== "Part")
+         {
+                 
+                 Item checkRO=newItem("SRE_Part_RO","get");
+                 checkRO.setProperty("source_id",getSpecificAffected.getID());
+                 checkRO.setProperty("related_id",this.getID());
+                 checkRO=checkRO.apply();
+                 int checkROcount = checkRO.getItemCount();
+                 if(checkROcount>=1)
+                 {
+                     
+                 }
+                 else{
+                 Item PartRO = newItem("SRE_Part_RO","add");
+                 PartRO.setProperty("source_id",getSpecificAffected.getID());
+                 PartRO.setProperty("related_id",this.getID());
+                 PartRO=PartRO.apply();
+                 }
+                 
+             
+         }
+         
+         else{
+             
+                 
+                 Item checkROdoc=newItem("SRE_DOC_RO","get");
+                 checkROdoc.setProperty("source_id",getSpecificAffected.getID());
+                 checkROdoc.setProperty("related_id",this.getID());
+                 checkROdoc=checkROdoc.apply();
+                 int checkROdoccount = checkROdoc.getItemCount();
+                 if(checkROdoccount>=1)
+                 {
+                     
+                 }
+                 else{
+                 Item DocRO = newItem("SRE_DOC_RO","add");
+                 DocRO.setProperty("source_id",getSpecificAffected.getID());
+                 DocRO.setProperty("related_id",this.getID());
+                 DocRO=DocRO.apply();     
+                 }
+             
+             
+         }
+}
+if (permissionWasSet)
+    Aras.Server.Security.Permissions.RevokeIdentity(plmIdentity);
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_createChangeRel</name>
+ </Item>
+</AML>

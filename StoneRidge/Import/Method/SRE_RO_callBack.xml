@@ -1,0 +1,79 @@
+﻿<AML>
+ <Item type="Method" id="07108900D1E54594978E63BE85BFCE50" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[
+
+var topWnd = aras.getMostTopWindowWithAras(window);
+topWnd = topWnd.main || topWnd;
+
+// get form
+var formName = "SRE_MassAddReleaseOrder";
+var fetchForm = this.getInnovator().newItem("Form","get");
+fetchForm.setProperty("name",formName);
+fetchForm = fetchForm.apply("get"); 
+var docID = this.getID();
+var type = this.getType();
+var state = this.getProperty("state");
+if(state=="Released")
+{
+    return alert("You cannot create RO for a released Item")
+}
+
+// check form for error
+if (fetchForm.isError())
+    return alert("Can't find a form called " + formName);
+
+// get form params
+var params = {
+    title: 'Add to release Order', 
+    formId: fetchForm.getID(),       // put your form's id here
+    aras: aras,
+    dialogWidth: 800,                // set width int
+    dialogHeight: 400,               // set height int
+    content: 'ShowFormAsADialog.html'
+};
+
+var callback = function(res) {
+    //Perform logic using dialog result here
+    // return alert(res["sre_descrip"])
+    if(res["roid"]!=="")
+    {
+        
+    }
+    var innovator = top.aras.newIOMInnovator();
+    // return alert(docID)
+    if(res["sre_roid"]==""){
+	var r = innovator.applyMethod("SRE_AddtoReleaseOrder_Server",
+	    "<message>" + res["sre_descrip"] + "</message><partId>"+docID+"</partId><type>"+type+"</type><roid>"+res["sre_roid"]+"</roid>");
+	    if(r.isError())
+	    {
+	        
+	        return alert(r)
+	    }
+	    top.aras.uiShowItemEx(r.node, 'tab view',false);
+	    return alert("Ro Created "+r.getID());
+    }
+    
+    else
+    { 
+       var p = innovator.applyMethod("SRE_addToExistingRO",
+	    "<message>" + res["sre_descrip"] + "</message><partId>"+docID+"</partId><type>"+type+"</type><roid>"+res["sre_roid"]+"</roid>");
+	    if(p.isError())
+	    {
+	        
+	        return alert(p)
+	    }
+	    top.aras.uiShowItemEx(p.node, 'tab view',false);
+	    return alert("RO Updated "+p.getID()); 
+    }
+    
+}
+
+// call form in dialog
+topWnd.ArasModules.Dialog.show("iframe", params).promise.then(callback);
+
+return null;]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>SRE_RO_callBack</name>
+ </Item>
+</AML>

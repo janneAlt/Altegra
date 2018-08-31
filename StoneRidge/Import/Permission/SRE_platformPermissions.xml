@@ -1,0 +1,56 @@
+﻿<AML>
+ <Item type="Permission" id="0171C12573C04C1A8C4FDF4BF5BAF671" action="add">
+  <is_private>0</is_private>
+  <name>SRE_platformPermissions</name>
+  <Relationships>
+   <Item type="Access" id="2ED253FBB90F49A7939D6F4952F13EC7" action="add">
+    <can_change_access>1</can_change_access>
+    <can_delete>1</can_delete>
+    <can_discover>1</can_discover>
+    <can_get>1</can_get>
+    <can_update>1</can_update>
+    <related_id keyed_name="Creator" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>Creator</name>
+     </Item>
+    </related_id>
+    <show_permissions_warning>0</show_permissions_warning>
+    <sort_order>512</sort_order>
+    <source_id keyed_name="SRE_platformPermissions" type="Permission">0171C12573C04C1A8C4FDF4BF5BAF671</source_id>
+   </Item>
+   <Item type="Access" id="43A02E1947C743FB9ECE8F6DC99CC335" action="add">
+    <can_change_access>0</can_change_access>
+    <can_delete>0</can_delete>
+    <can_discover>1</can_discover>
+    <can_get>1</can_get>
+    <can_update>0</can_update>
+    <related_id keyed_name="SE5000 All Users" type="Identity">10FAC37B5B9541B88119DB67CEAFB1E7</related_id>
+    <show_permissions_warning>0</show_permissions_warning>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_platformPermissions" type="Permission">0171C12573C04C1A8C4FDF4BF5BAF671</source_id>
+   </Item>
+   <Item type="Access" id="7D32F8565E5A4C43987675B518C0F538" action="add">
+    <can_change_access>1</can_change_access>
+    <can_delete>1</can_delete>
+    <can_discover>1</can_discover>
+    <can_get>1</can_get>
+    <can_update>1</can_update>
+    <related_id keyed_name="Editor" type="Identity">8F78DAAD4DE346AC86878E16720A63A0</related_id>
+    <show_permissions_warning>0</show_permissions_warning>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_platformPermissions" type="Permission">0171C12573C04C1A8C4FDF4BF5BAF671</source_id>
+   </Item>
+   <Item type="Access" id="AC2F8E5050EA44CD8A9586387F2395C0" action="add">
+    <can_change_access>1</can_change_access>
+    <can_delete>0</can_delete>
+    <can_discover>1</can_discover>
+    <can_get>1</can_get>
+    <can_update>1</can_update>
+    <related_id keyed_name="Team Manager" type="Identity">60EBF9D1BB584921A73FA2F8D74DAF80</related_id>
+    <show_permissions_warning>0</show_permissions_warning>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="SRE_platformPermissions" type="Permission">0171C12573C04C1A8C4FDF4BF5BAF671</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

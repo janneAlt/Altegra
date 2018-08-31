@@ -1,0 +1,21 @@
+﻿<AML>
+ <Item type="List" id="FEFEC2EA0AE548CABFFA6E6ED2276772" action="add">
+  <description>Included in TOE
+</description>
+  <name>SRE_IncludedinTOE</name>
+  <Relationships>
+   <Item type="Value" id="20A393E057BF43B797F5C9A6C53F925E" action="add">
+    <label xml:lang="en">Yes</label>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_IncludedinTOE" type="List">FEFEC2EA0AE548CABFFA6E6ED2276772</source_id>
+    <value>Yes</value>
+   </Item>
+   <Item type="Value" id="112EB8FFF48346369ED7E89062124B99" action="add">
+    <label xml:lang="en">N/A</label>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_IncludedinTOE" type="List">FEFEC2EA0AE548CABFFA6E6ED2276772</source_id>
+    <value>NA</value>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

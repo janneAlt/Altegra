@@ -1,0 +1,22 @@
+﻿<AML>
+ <Item type="User" id="4652DC8502AB49E59E88DC2BB2109CEC" action="add">
+  <default_vault keyed_name="Default" type="Vault">67BBB9204FE84A8981ED8313049BA06C</default_vault>
+  <email>mba@se5000.local</email>
+  <last_login_date>2018-04-24T10:03:06</last_login_date>
+  <login_name>MLA</login_name>
+  <logon_enabled>1</logon_enabled>
+  <owned_by_id>A0A499D32670481C90F67AE588501BF3</owned_by_id>
+  <pwd_is_set_on>2018-02-20T16:09:03</pwd_is_set_on>
+  <starting_page>InBasket Task</starting_page>
+  <first_name>Mikael</first_name>
+  <last_name>Lardner</last_name>
+  <Relationships>
+   <Item type="Alias" id="FEEDD76CD17E4208B770579D68EA1438" action="add">
+    <from_date>2018-02-20T14:18:49</from_date>
+    <related_id keyed_name="Mikael Lardner" type="Identity">9359DCFEE1524BCFBF083E9E90CAD945</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="Mikael Lardner" type="User">4652DC8502AB49E59E88DC2BB2109CEC</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

@@ -1,0 +1,147 @@
+﻿<AML>
+ <Item type="Method" id="2F111DBDC1E64196AFD234EDEFD72138" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[Innovator inn = this.getInnovator();
+
+
+var list = new List<string>();
+var fileStream = new FileStream(@"d:\migration\bom2.txt", FileMode.Open, FileAccess.Read);
+using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
+{
+    string line;
+    while ((line = streamReader.ReadLine()) != null)
+    {
+       string[] myline = line.Split('\t');
+       string type = myline[0];
+       string partnumber = myline[1];
+       string maturity = myline[2];
+       string variant = myline[3];
+       string partstate = myline[4];
+       string rstate = myline[5];
+       string identity = myline[6];
+       string pname = myline[7];
+       Item nameid = newItem("SRE_Name","get");
+       nameid.setProperty("sre_name",pname);
+       nameid=nameid.apply();
+       if(nameid.isError())
+       {
+           return inn.newError(pname);
+           
+       }
+       string name = nameid.getProperty("id");
+       string description = myline[8];
+       string um = myline[9];
+       Item qryPart = newItem("Part","get");
+       qryPart.setProperty("item_number",partnumber);
+       Item qryPartres = qryPart.apply();
+       
+       int qrycnt= qryPartres.getItemCount();
+       int gen = Int32.Parse(qryPartres.getProperty("generation"));
+       int newgen = gen+1;
+       if(qryPartres.getProperty("item_number")==partnumber)
+       {
+                 if(rstate.Contains("."))
+       {
+           Item newPart = newItem("Part","version");
+           newPart.setAttribute("id",qryPartres.getID());
+       newPart.setProperty("generation",newgen.ToString());
+       newPart.setProperty("classification",type);
+       newPart.setProperty("item_number",partnumber);
+       newPart.setProperty("sre_maturity",maturity);
+       newPart.setProperty("sre_variant",variant);
+       newPart.setProperty("sre_partstate",partstate);
+       newPart.setProperty("sre_softwareversion",rstate);
+       newPart.setProperty("sre_identity",identity);
+       newPart.setProperty("name",name);
+       newPart.setProperty("description",description);
+       newPart.setProperty("unit",um);
+      Item newPartRes = newPart.apply();
+       if(newPartRes.isError())
+      {
+          
+          return inn.newError("Fail");
+      }
+       }
+       else{
+       Item newPart = newItem("Part","version");
+       newPart.setAttribute("id",qryPartres.getID());
+        newPart.setProperty("generation",newgen.ToString());
+       newPart.setProperty("classification",type);
+       newPart.setProperty("item_number",partnumber);
+       newPart.setProperty("sre_maturity",maturity);
+       newPart.setProperty("sre_variant",variant);
+       newPart.setProperty("sre_partstate",partstate);
+       newPart.setProperty("major_rev",rstate);
+       newPart.setProperty("sre_identity",identity);
+       newPart.setProperty("name",name);
+       newPart.setProperty("description",description);
+       newPart.setProperty("unit",um);
+      Item newPartRes = newPart.apply();
+       if(newPartRes.isError())
+      {
+          
+          return inn.newError("Fail");
+      }
+       }
+      
+          
+       }
+       
+else{
+    
+   if(rstate.Contains("."))
+       {
+           Item newPart = newItem("Part","merge");
+           newPart.setAttribute("id",qryPartres.getID());
+       newPart.setProperty("generation",newgen.ToString());
+       newPart.setProperty("classification",type);
+       newPart.setProperty("item_number",partnumber);
+       newPart.setProperty("sre_maturity",maturity);
+       newPart.setProperty("sre_variant",variant);
+       newPart.setProperty("sre_partstate",partstate);
+       newPart.setProperty("sre_softwareversion",rstate);
+       newPart.setProperty("sre_identity",identity);
+       newPart.setProperty("name",name);
+       newPart.setProperty("description",description);
+       newPart.setProperty("unit",um);
+      Item newPartRes = newPart.apply();
+       if(newPartRes.isError())
+      {
+          
+          return inn.newError("Fail");
+      }
+       }
+       else{
+       Item newPart = newItem("Part","merge");
+       newPart.setAttribute("id",qryPartres.getID());
+        newPart.setProperty("generation",newgen.ToString());
+       newPart.setProperty("classification",type);
+       newPart.setProperty("item_number",partnumber);
+       newPart.setProperty("sre_maturity",maturity);
+       newPart.setProperty("sre_variant",variant);
+       newPart.setProperty("sre_partstate",partstate);
+       newPart.setProperty("major_rev",rstate);
+       newPart.setProperty("sre_identity",identity);
+       newPart.setProperty("name",name);
+       newPart.setProperty("description",description);
+       newPart.setProperty("unit",um);
+      Item newPartRes = newPart.apply();
+       if(newPartRes.isError())
+      {
+          
+          return inn.newError("Fail");
+      }
+       }
+}
+       
+      
+       
+    }
+}
+
+
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>sre_migratemerge</name>
+ </Item>
+</AML>

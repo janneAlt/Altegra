@@ -1,0 +1,216 @@
+﻿<AML>
+ <Item type="ItemType" id="5C2F6D830C6048F3A1737E508C5D28B6" action="add">
+  <allow_private_permission>1</allow_private_permission>
+  <auto_search>0</auto_search>
+  <enforce_discovery>1</enforce_discovery>
+  <hide_where_used>0</hide_where_used>
+  <history_template keyed_name="Default" type="History Template">3BC16EF9E52B4F9792AB76BCE0492F29</history_template>
+  <implementation_type>table</implementation_type>
+  <instance_data>SRE_PRODUCTFAMILY</instance_data>
+  <is_dependent>0</is_dependent>
+  <is_relationship>0</is_relationship>
+  <is_versionable>0</is_versionable>
+  <label xml:lang="en">Product Family</label>
+  <label_plural xml:lang="en">Product Families</label_plural>
+  <large_icon>../Images/portfolio.svg</large_icon>
+  <open_icon>../Images/portfolio.svg</open_icon>
+  <revisions keyed_name="Default" type="Revision">7FE395DD8B9F4E1090756A34B733D75E</revisions>
+  <show_parameters_tab>1</show_parameters_tab>
+  <structure_view>tabs on</structure_view>
+  <unlock_on_logout>0</unlock_on_logout>
+  <use_src_access>0</use_src_access>
+  <name>SRE_ProductFamily</name>
+  <Relationships>
+   <Item type="Property" id="FD085C7577314042BE7E18A8C36517E0" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>250</column_width>
+    <data_type>text</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <keyed_name_order>1</keyed_name_order>
+    <label xml:lang="en">Name</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>150</sort_order>
+    <source_id keyed_name="SRE_ProductFamily" type="ItemType" name="SRE_ProductFamily">5C2F6D830C6048F3A1737E508C5D28B6</source_id>
+    <track_history>0</track_history>
+    <name>sre_name</name>
+   </Item>
+   <Item type="View" id="F5C22E10611F4F3BBA3181FF3D39A6BA" action="add">
+    <client>js</client>
+    <related_id keyed_name="SRE_ProductFamily" type="Form">DBB6C73D23104B2EA3E2DE5422A5CE39</related_id>
+    <role keyed_name="World" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>World</name>
+     </Item>
+    </role>
+    <show_ssvc>0</show_ssvc>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_ProductFamily" type="ItemType" name="SRE_ProductFamily">5C2F6D830C6048F3A1737E508C5D28B6</source_id>
+    <type>default</type>
+   </Item>
+   <Item type="TOC Access" id="93B6B39ED0BA49A08D2DFDA6FA9B68A2" action="add">
+    <related_id keyed_name="SE5000 All Users" type="Identity">10FAC37B5B9541B88119DB67CEAFB1E7</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_ProductFamily" type="ItemType" name="SRE_ProductFamily">5C2F6D830C6048F3A1737E508C5D28B6</source_id>
+   </Item>
+   <Item type="Can Add" id="74137910ED254E1690B420F848D2C9C0" action="add">
+    <can_add>1</can_add>
+    <related_id keyed_name="SRE_CoreUserGroup" type="Identity">93FA7BC57D0844329494BA5F70976DA4</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_ProductFamily" type="ItemType" name="SRE_ProductFamily">5C2F6D830C6048F3A1737E508C5D28B6</source_id>
+   </Item>
+   <Item type="Allowed Permission" id="D2B67F44363C401A9AAAF17C7E15EA85" action="add">
+    <is_default>1</is_default>
+    <related_id keyed_name="SRE ProdcutFamily Permission" type="Permission">33D6015279FA42B4A0148C1916B841EC</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_ProductFamily" type="ItemType" name="SRE_ProductFamily">5C2F6D830C6048F3A1737E508C5D28B6</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+ <Item type="ItemType" id="5C2F6D830C6048F3A1737E508C5D28B6" action="edit">
+  <Relationships>
+   <Item type="Property" id="BCC2936A81B447C7988C103855DA0801" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>130</column_width>
+    <data_type>string</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>1</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">ID</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>130</sort_order>
+    <source_id keyed_name="SRE_ProductFamily" type="ItemType" name="SRE_ProductFamily">5C2F6D830C6048F3A1737E508C5D28B6</source_id>
+    <stored_length>32</stored_length>
+    <track_history>0</track_history>
+    <name>sre_id</name>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='5C2F6D830C6048F3A1737E508C5D28B6' and name='created_by_id'">
+    <column_alignment>left</column_alignment>
+    <column_width>130</column_width>
+    <data_source keyed_name="User" type="ItemType" name="User">45E899CD2859442982EB22BB2DF683E5</data_source>
+    <data_type>item</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>1</is_required>
+    <item_behavior>float</item_behavior>
+    <label xml:lang="en">Created by</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>230</sort_order>
+    <source_id keyed_name="SRE_ProductFamily" type="ItemType" name="SRE_ProductFamily">5C2F6D830C6048F3A1737E508C5D28B6</source_id>
+    <track_history>0</track_history>
+    <name>created_by_id</name>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='5C2F6D830C6048F3A1737E508C5D28B6' and name='created_on'">
+    <column_alignment>left</column_alignment>
+    <column_width>160</column_width>
+    <data_type>date</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>1</is_required>
+    <label xml:lang="en">Created on</label>
+    <pattern>short_date_time</pattern>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>240</sort_order>
+    <source_id keyed_name="SRE_ProductFamily" type="ItemType" name="SRE_ProductFamily">5C2F6D830C6048F3A1737E508C5D28B6</source_id>
+    <track_history>0</track_history>
+    <name>created_on</name>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='5C2F6D830C6048F3A1737E508C5D28B6' and name='locked_by_id'">
+    <column_alignment>left</column_alignment>
+    <column_width>130</column_width>
+    <data_source keyed_name="User" type="ItemType" name="User">45E899CD2859442982EB22BB2DF683E5</data_source>
+    <data_type>item</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <item_behavior>float</item_behavior>
+    <label xml:lang="en">Locke by</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>220</sort_order>
+    <source_id keyed_name="SRE_ProductFamily" type="ItemType" name="SRE_ProductFamily">5C2F6D830C6048F3A1737E508C5D28B6</source_id>
+    <track_history>0</track_history>
+    <name>locked_by_id</name>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='5C2F6D830C6048F3A1737E508C5D28B6' and name='modified_by_id'">
+    <column_alignment>left</column_alignment>
+    <column_width>130</column_width>
+    <data_source keyed_name="User" type="ItemType" name="User">45E899CD2859442982EB22BB2DF683E5</data_source>
+    <data_type>item</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <item_behavior>float</item_behavior>
+    <label xml:lang="en">Modified by</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>250</sort_order>
+    <source_id keyed_name="SRE_ProductFamily" type="ItemType" name="SRE_ProductFamily">5C2F6D830C6048F3A1737E508C5D28B6</source_id>
+    <track_history>0</track_history>
+    <name>modified_by_id</name>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='5C2F6D830C6048F3A1737E508C5D28B6' and name='modified_on'">
+    <column_alignment>left</column_alignment>
+    <column_width>160</column_width>
+    <data_type>date</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">Modified on</label>
+    <pattern>short_date_time</pattern>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>260</sort_order>
+    <source_id keyed_name="SRE_ProductFamily" type="ItemType" name="SRE_ProductFamily">5C2F6D830C6048F3A1737E508C5D28B6</source_id>
+    <track_history>0</track_history>
+    <name>modified_on</name>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='5C2F6D830C6048F3A1737E508C5D28B6' and name='team_id'">
+    <column_alignment>left</column_alignment>
+    <column_width>190</column_width>
+    <data_source keyed_name="Team" type="ItemType" name="Team">CC23F9130F574E7D99DF9659F27590A6</data_source>
+    <data_type>item</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <item_behavior>float</item_behavior>
+    <label xml:lang="en">Team</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>200</sort_order>
+    <source_id keyed_name="SRE_ProductFamily" type="ItemType" name="SRE_ProductFamily">5C2F6D830C6048F3A1737E508C5D28B6</source_id>
+    <track_history>0</track_history>
+    <name>team_id</name>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

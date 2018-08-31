@@ -1,0 +1,58 @@
+﻿<AML>
+ <Item type="Method" id="8C42A8CA16634316A200A24D96307DEA" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[// Aras Labs Project
+// Eli Donahue - 10/5/16
+//
+// Call a custom form in a modal dialog
+// Perform some action based on the values returned from dialog
+
+var topWnd = aras.getMostTopWindowWithAras(window);
+topWnd = topWnd.main || topWnd;
+
+// get form
+var formName = "SRE_SendTOtask";
+var fetchForm = this.getInnovator().newItem("Form","get");
+fetchForm.setProperty("name",formName);
+fetchForm = fetchForm.apply("get"); 
+var docID = this.getID();
+var type = this.getType();
+
+// check form for error
+if (fetchForm.isError())
+    return alert("Can't find a form called " + formName);
+
+// get form params
+var params = {
+    title: 'Test Dialog Parameter Passing', 
+    formId: fetchForm.getID(),       // put your form's id here
+    aras: aras,
+    dialogWidth: 800,                // set width int
+    dialogHeight: 400,               // set height int
+    content: 'ShowFormAsADialog.html'
+};
+
+var callback = function(res) {
+    //Perform logic using dialog result here
+    
+    var innovator = top.aras.newIOMInnovator();
+	var r = innovator.applyMethod("SRE_AddReviewTask_SM",
+	    "<message>" + res["sre_message"] + "</message><user>" + res["sre_userid"] + "</user><doc>"+docID+"</doc><type>"+type+"</type>");
+	    if(r.isError())
+	    {
+	        
+	        return alert(r)
+	    }
+	    return alert("Task Has been Assigned to "+res["sre_user"]);
+	    
+    
+}
+
+// call form in dialog
+topWnd.ArasModules.Dialog.show("iframe", params).promise.then(callback);
+
+return null;]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>SRE_massAddtoRO_CM</name>
+ </Item>
+</AML>

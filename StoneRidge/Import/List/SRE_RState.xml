@@ -1,0 +1,44 @@
+﻿<AML>
+ <Item type="List" id="FC221231D4DF466BA8645B27BF2267A6" action="add">
+  <description>StoneRidge R-States</description>
+  <name>SRE_RState</name>
+  <Relationships>
+   <Item type="Value" id="115CEB93D3344443A7E7BC366F1C1D16" action="add">
+    <label xml:lang="en">R01</label>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_RState" type="List">FC221231D4DF466BA8645B27BF2267A6</source_id>
+    <value>R01</value>
+   </Item>
+   <Item type="Value" id="5AB813100FBE41B29BBCDE1FC0E66AF9" action="add">
+    <label xml:lang="en">R02</label>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_RState" type="List">FC221231D4DF466BA8645B27BF2267A6</source_id>
+    <value>R02</value>
+   </Item>
+   <Item type="Value" id="69F58E3130FE4CD2A13FCA21CC7730E5" action="add">
+    <label xml:lang="en">R03</label>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="SRE_RState" type="List">FC221231D4DF466BA8645B27BF2267A6</source_id>
+    <value>R03</value>
+   </Item>
+   <Item type="Value" id="AB99D68386E946A8B41967A340B6C465" action="add">
+    <label xml:lang="en">R04</label>
+    <sort_order>512</sort_order>
+    <source_id keyed_name="SRE_RState" type="List">FC221231D4DF466BA8645B27BF2267A6</source_id>
+    <value>R04</value>
+   </Item>
+   <Item type="Value" id="E1C4826BAA5C44E59382D19009265D8F" action="add">
+    <label xml:lang="en">R05</label>
+    <sort_order>640</sort_order>
+    <source_id keyed_name="SRE_RState" type="List">FC221231D4DF466BA8645B27BF2267A6</source_id>
+    <value>R05</value>
+   </Item>
+   <Item type="Value" id="FCD298F9A53E490A80437D8A970FD242" action="add">
+    <label xml:lang="en">R06</label>
+    <sort_order>768</sort_order>
+    <source_id keyed_name="SRE_RState" type="List">FC221231D4DF466BA8645B27BF2267A6</source_id>
+    <value>R06</value>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

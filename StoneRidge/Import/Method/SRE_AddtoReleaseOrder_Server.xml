@@ -1,0 +1,152 @@
+﻿<AML>
+ <Item type="Method" id="25A95CC6175C49FCA5D4CD0EFFF5EDCC" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[var inn = this.getInnovator();
+Aras.Server.Security.Identity plmIdentity;
+bool permissionWasSet;
+var affectedParts = new List<string>();
+var itemID = this.getProperty("partId");
+var affectedDocuments = new List<string>();
+
+Item getRO = inn.newItem("SRE_ReleaseOrder","get");
+getRO.setProperty("id",this.getProperty("roid"));
+getRO=getRO.apply();
+
+
+Item createRO = inn.newItem("SRE_ReleaseOrder","add");
+createRO.setProperty("sre_description",this.getProperty("message"));
+createRO=createRO.apply();
+if(this.getProperty("type")=="Part")
+{
+affectedParts.Add(this.getProperty("partId"));
+
+
+
+Item getSpecDoc1 = inn.newItem("Part Document","get");
+    getSpecDoc1.setProperty("source_id",this.getProperty("partId"));
+    getSpecDoc1.setProperty("sre_type","Specifying");
+    getSpecDoc1 = getSpecDoc1.apply();
+    
+    if(getSpecDoc1.getItemCount()==0)
+    { 
+        
+     }
+     else{
+         for(int k=0; k<getSpecDoc1.getItemCount();k++)
+         {
+        Item dc = inn.getItemById("Document",getSpecDoc1.getItemByIndex(k).getProperty("related_id"));
+            
+            if(dc.getProperty("state")!="Released")
+            {
+                // return inn.newError("here");
+    affectedParts.Add(getSpecDoc1.getItemByIndex(k).getProperty("related_id"));
+            }
+        
+        // return inn.newError("here1"+getSpecDoc1.getItemByIndex(k).getProperty("related_id"));
+     }
+     }
+
+    
+
+plmIdentity = Aras.Server.Security.Identity.GetByName("Aras PLM");
+permissionWasSet = Aras.Server.Security.Permissions.GrantIdentity(plmIdentity);
+
+Item callProc = newItem("SQL","SQL PROCESS");
+callProc.setProperty("name","MultiBom_GetCompleteBom1");
+callProc.setProperty("PROCESS","CALL");
+callProc.setProperty("ARG1",this.getProperty("partId"));
+callProc = callProc.apply();
+
+int countBOM = callProc.getItemCount();
+if(countBOM==0)
+{
+}
+else{
+
+for (int i =0; i<countBOM;i++)
+{
+    if(callProc.getItemByIndex(i).getProperty("related_state")!="Released")
+    {
+ affectedParts.Add(callProc.getItemByIndex(i).getProperty("related_id"));
+    }
+    
+    Item getSpecDoc = inn.newItem("Part Document","get");
+    getSpecDoc.setProperty("source_id",callProc.getItemByIndex(i).getProperty("related_id"));
+    getSpecDoc.setProperty("sre_type","Specifying");
+    getSpecDoc = getSpecDoc.apply();
+    if(getSpecDoc.getItemCount()==0)
+    {}
+    else{
+        for(int j =0; j<getSpecDoc.getItemCount();j++)
+        {
+            Item dc = inn.getItemById("Document",getSpecDoc.getItemByIndex(j).getProperty("related_id"));
+            
+            if(dc.getProperty("state")!="Released")
+            {
+                
+    affectedParts.Add(getSpecDoc.getItemByIndex(j).getProperty("related_id"));
+            }
+        }
+    }
+    
+    
+    
+  if (permissionWasSet)
+   Aras.Server.Security.Permissions.RevokeIdentity(plmIdentity);
+   
+}
+}
+
+if(!string.IsNullOrEmpty(this.getProperty("roid")) && this.getProperty("type")=="Part" )
+{
+
+
+foreach(string aff in affectedParts )
+{
+Item createROaffected = newItem("SRE_RO_AffectedItems","add");
+createROaffected.setProperty("source_id",getRO.getID());
+createROaffected.setProperty("related_id",aff);
+createROaffected=createROaffected.apply();
+    
+}
+}
+else{
+    foreach(string aff in affectedParts )
+{
+Item createROaffected = newItem("SRE_RO_AffectedItems","add");
+createROaffected.setProperty("source_id",createRO.getID());
+createROaffected.setProperty("related_id",aff);
+createROaffected=createROaffected.apply();
+    
+}
+}
+
+
+}
+else{
+
+ if(!string.IsNullOrEmpty(this.getProperty("roid")))
+ 
+{
+    Item createROaffecteddoc = newItem("SRE_RO_AffectedItems","add");
+createROaffecteddoc.setProperty("source_id",getRO.getID());
+createROaffecteddoc.setProperty("related_id",itemID);
+createROaffecteddoc=createROaffecteddoc.apply();
+}
+
+else{   
+Item createROaffecteddoc = newItem("SRE_RO_AffectedItems","add");
+createROaffecteddoc.setProperty("source_id",createRO.getID());
+createROaffecteddoc.setProperty("related_id",itemID);
+createROaffecteddoc=createROaffecteddoc.apply();
+}
+
+}
+
+
+
+return createRO;]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_AddtoReleaseOrder_Server</name>
+ </Item>
+</AML>

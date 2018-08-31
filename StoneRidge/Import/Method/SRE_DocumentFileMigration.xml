@@ -1,0 +1,108 @@
+﻿<AML>
+ <Item type="Method" id="B56E8383BCE7428B89B89A0E2277775A" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[Innovator inn = this.getInnovator();
+
+
+var list = new List<string>();
+var fileStream = new FileStream(@"d:\DocMig\Document Migration 2 with id-column_2.txt", FileMode.Open, FileAccess.Read);
+using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
+{
+    string line;
+    while ((line = streamReader.ReadLine()) != null)
+    {
+        
+       string[] myline = line.Split('\t');
+       string DocNumber = myline[0];
+       string LegacyRev = myline[1];
+       string state = myline[2];
+       string name =myline[3];
+       string docType = myline[4];
+      
+       string path = myline[5];
+       string viewable = myline[6];
+       if( File.Exists(path))
+       {}
+       else{
+           return inn.newError(path);
+       }
+
+       string fName = myline[7];
+       
+      Item nameid = newItem("SRE_DocumentType","get");
+      nameid.setProperty("sre_id",docType);
+      nameid=nameid.apply();
+      if(nameid.isError())
+      {
+          return inn.newError(docType);
+           
+      }
+       
+      string docTypeID = nameid.getID();
+     
+Item fileObj = inn.newItem("File", "add");
+fileObj.setProperty("filename", fName);
+fileObj.attachPhysicalFile(path);
+fileObj = fileObj.apply();
+if(fileObj.isError())
+      {
+          return inn.newError(fName);
+           
+      }
+string fid = fileObj.getID();
+if(state=="Released")
+{
+Item newDoc = newItem("Document","add");
+newDoc.setProperty("item_number",DocNumber);
+newDoc.setProperty("sre_legacyrev",LegacyRev);
+newDoc.setProperty("name",name);
+newDoc.setProperty("sre_doctyperef",docTypeID);
+newDoc.setProperty("sre_sourcefile",fid);
+newDoc=newDoc.apply();
+if(newDoc.isError())
+      {
+          return inn.newError(DocNumber);
+           
+      }
+string doc = newDoc.getID();
+string mysql = "UPDATE DOCUMENT SET CURRENT_STATE='8EDE39438A7E4A56A1B4A9D07EF4A2FF',STATE='"+state+"' WHERE ID='"+doc+"'";
+Item mysqlRes = inn.applySQL(mysql);
+
+// Item docFile = newItem("Document File","add");
+// docFile.setProperty("source_id",newDoc.getID());
+// docFile.setProperty("related_id",fileObj.getID());
+// docFile = docFile.apply();
+
+}
+
+else{
+    Item newDoc = newItem("Document","add");
+newDoc.setProperty("item_number",DocNumber);
+newDoc.setProperty("sre_legacyrev",LegacyRev);
+newDoc.setProperty("current_state","7E2824158A364D83B137117911BA87B3");
+newDoc.setProperty("state",state);
+newDoc.setProperty("name",name);
+newDoc.setProperty("sre_doctyperef",docTypeID);
+newDoc.setProperty("sre_sourcefile",fid);
+newDoc=newDoc.apply();
+if(newDoc.isError())
+      {
+          return inn.newError(DocNumber);
+           
+      }
+string doc2 = newDoc.getID();
+string mysqls = "UPDATE DOCUMENT SET CURRENT_STATE='7E2824158A364D83B137117911BA87B3',STATE='"+state+"' WHERE ID='"+doc2+"'";
+Item mysqlRess = inn.applySQL(mysqls);
+
+// Item docFile = newItem("Document File","add");
+// docFile.setProperty("source_id",newDoc.getID());
+// docFile.setProperty("related_id",fileObj.getID());
+// docFile = docFile.apply();
+}
+}
+}
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_DocumentFileMigration</name>
+ </Item>
+</AML>

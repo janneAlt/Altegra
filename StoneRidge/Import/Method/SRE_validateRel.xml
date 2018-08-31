@@ -1,0 +1,79 @@
+﻿<AML>
+ <Item type="Method" id="96284A163E734AC9AA52250FF2FE5D5C" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[Innovator inn = this.getInnovator();
+Item prodRel = newItem("SRE_CustomerVariant","get");
+prodRel.setProperty("source_id",this.getID());
+prodRel = prodRel.apply();
+int relcnt = prodRel.getItemCount();
+string platformID = this.getProperty("sre_platform","");
+
+for(int i=0; i<relcnt; i++)
+{
+    string relID = prodRel.getItemByIndex(i).getProperty("related_id");
+    Item cls= newItem("Part","get");
+    cls.setProperty("id",relID);
+    cls = cls.apply();
+    if (cls.getProperty("classification")!="Customer Variant")
+    {
+        
+        return inn.newError("You can only attach a Part classified as customer variant to a product, Please Remove the attached entry");
+    }
+    
+    
+    if(this.getProperty("state")=="Released" && (cls.getProperty("classification")=="Customer Variant"))
+    {
+        var BOM = new List<string>();
+        var PlatfromList = new List<string>();
+Item callProc1 = newItem("SQL","SQL PROCESS");
+callProc1.setProperty("name","MultiBom_GetCompleteBom1");
+callProc1.setProperty("PROCESS","CALL");
+callProc1.setProperty("ARG1",cls.getID());
+callProc1 = callProc1.apply();
+if(callProc1.getItemCount()==0)
+{
+    
+}
+else{
+for(int j =0; j<callProc1.getItemCount();j++)
+{
+    // if(callProc1.getItemByIndex(j).getProperty("level") =="0")
+    // {
+       
+        string identity =callProc1.getItemByIndex(j).getProperty("related_id");
+
+        BOM.Add(identity);
+        
+    // }
+    
+}
+}
+
+
+Item getPlatformParts = newItem("SRE_PlatformPart","get");
+getPlatformParts.setProperty("source_id",platformID);
+getPlatformParts=getPlatformParts.apply();
+
+for(int p=0; p<getPlatformParts.getItemCount();p++)
+{
+    
+    PlatfromList.Add(getPlatformParts.getItemByIndex(p).getProperty("related_id"));
+}
+
+       var difference = BOM.Except(PlatfromList).ToList(); 
+       
+       foreach(string id in difference)
+       {
+           Item prt = inn.getItemById("Part",id);
+           
+           return inn.newError("Part "+prt.getProperty("keyed_name")+" does not belong to Product's Valid Part List");
+           
+       }
+    }
+}
+
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_validateRel</name>
+ </Item>
+</AML>

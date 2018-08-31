@@ -1,0 +1,49 @@
+﻿<AML>
+ <Item type="Method" id="E3D949FAB91C4586B44296859C5EF325" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[Innovator inn = this.getInnovator(); 
+ 
+ 
+              var docItems = new List < string > ();
+             string docConfig = this.getProperty("config_id");
+             
+             Item allDocs = newItem("Document","get");
+             allDocs.setProperty("config_id",docConfig);
+             allDocs=allDocs.apply();
+             for(int j=0; j<allDocs.getItemCount();j++)
+             {
+                 
+                Item partDocRel = newItem("Part Document","get");
+                partDocRel.setProperty("related_id",allDocs.getItemByIndex(j).getID());
+                partDocRel.setProperty("sre_type","Referencing");
+                partDocRel=partDocRel.apply();
+                
+                if(partDocRel.getItemCount()!=0)
+                {
+                   for(int k =0; k<partDocRel.getItemCount(); k++)
+                   {
+               docItems.Add(partDocRel.getItemByIndex(k).getID());
+                   }
+                }
+                
+                
+                 
+             }
+             
+             foreach(string docs in docItems)
+             {
+                 Item getRelItem =newItem("Part Document","get");
+                 getRelItem.setProperty("id",docs);
+                 getRelItem=getRelItem.apply();
+                 
+                 getRelItem.setAction("edit");
+                 getRelItem.setProperty("related_id",this.getID());
+                 getRelItem=getRelItem.apply();
+                 
+             }
+          
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_RefOnRelease</name>
+ </Item>
+</AML>

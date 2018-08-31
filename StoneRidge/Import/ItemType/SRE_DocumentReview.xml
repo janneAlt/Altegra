@@ -1,0 +1,113 @@
+﻿<AML>
+ <Item type="ItemType" id="A6DDEB3A977845CEA8BE3F56FB048503" action="add">
+  <allow_private_permission>1</allow_private_permission>
+  <auto_search>0</auto_search>
+  <enforce_discovery>1</enforce_discovery>
+  <hide_where_used>0</hide_where_used>
+  <implementation_type>table</implementation_type>
+  <instance_data>SRE_DOCUMENTREVIEW</instance_data>
+  <is_dependent>0</is_dependent>
+  <is_relationship>0</is_relationship>
+  <is_versionable>0</is_versionable>
+  <label xml:lang="en">Tasks</label>
+  <label_plural xml:lang="en">Tasks</label_plural>
+  <revisions keyed_name="Default" type="Revision">7FE395DD8B9F4E1090756A34B733D75E</revisions>
+  <show_parameters_tab>1</show_parameters_tab>
+  <structure_view>tabs on</structure_view>
+  <unlock_on_logout>0</unlock_on_logout>
+  <use_src_access>0</use_src_access>
+  <name>SRE_DocumentReview</name>
+  <Relationships>
+   <Item type="Property" id="CE0AFD6BAF5144A08A01B20DEA5F517E" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>text</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">Item</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>3328</sort_order>
+    <source_id keyed_name="SRE_DocumentReview" type="ItemType" name="SRE_DocumentReview">A6DDEB3A977845CEA8BE3F56FB048503</source_id>
+    <track_history>0</track_history>
+    <name>sre_sendtoitem</name>
+   </Item>
+   <Item type="Property" id="337A3902AB144B60B1AE221D239CE994" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>text</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <keyed_name_order>2</keyed_name_order>
+    <label xml:lang="en">Task Description</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>3072</sort_order>
+    <source_id keyed_name="SRE_DocumentReview" type="ItemType" name="SRE_DocumentReview">A6DDEB3A977845CEA8BE3F56FB048503</source_id>
+    <track_history>0</track_history>
+    <name>sre_task_description</name>
+   </Item>
+   <Item type="Property" id="8B7843EEB6D94D1FA45F721FAD47FDBA" action="add">
+    <column_alignment>left</column_alignment>
+    <data_source keyed_name="Identity" type="ItemType" name="Identity">E582AB17663F4EF28460015B2BE9E094</data_source>
+    <data_type>item</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <item_behavior>float</item_behavior>
+    <keyed_name_order>1</keyed_name_order>
+    <label xml:lang="en">Asignee</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>3200</sort_order>
+    <source_id keyed_name="SRE_DocumentReview" type="ItemType" name="SRE_DocumentReview">A6DDEB3A977845CEA8BE3F56FB048503</source_id>
+    <track_history>0</track_history>
+    <name>sre_touser</name>
+   </Item>
+   <Item type="View" id="91C24FF365E148A3A01A8DDAAC2CD17A" action="add">
+    <client>js</client>
+    <related_id keyed_name="SRE_DocumentReview" type="Form">63932CBCA23D4D92866BF4E0798F06D3</related_id>
+    <role keyed_name="World" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>World</name>
+     </Item>
+    </role>
+    <show_ssvc>0</show_ssvc>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_DocumentReview" type="ItemType" name="SRE_DocumentReview">A6DDEB3A977845CEA8BE3F56FB048503</source_id>
+    <type>default</type>
+   </Item>
+   <Item type="Allowed Workflow" id="E83094967B9247D592529A50CEBB809D" action="add">
+    <is_default>1</is_default>
+    <related_id keyed_name="SRE Document Review Task" type="Workflow Map">F1B7EB3DEA9B473DB07AC317F792E1C0</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_DocumentReview" type="ItemType" name="SRE_DocumentReview">A6DDEB3A977845CEA8BE3F56FB048503</source_id>
+   </Item>
+   <Item type="Can Add" id="7AF3AFBBD3A842D699DB3BA9EDE36980" action="add">
+    <can_add>1</can_add>
+    <related_id keyed_name="World" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>World</name>
+     </Item>
+    </related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_DocumentReview" type="ItemType" name="SRE_DocumentReview">A6DDEB3A977845CEA8BE3F56FB048503</source_id>
+   </Item>
+   <Item type="Allowed Permission" id="B8FC2B37158247EF8DA11A236B6F8F89" action="add">
+    <is_default>1</is_default>
+    <related_id keyed_name="Default Access" type="Permission">9122CD065CF04141B8EFE263FC80BEA4</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_DocumentReview" type="ItemType" name="SRE_DocumentReview">A6DDEB3A977845CEA8BE3F56FB048503</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

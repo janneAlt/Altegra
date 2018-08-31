@@ -1,0 +1,12 @@
+﻿<AML>
+ <Item type="Identity" id="7A16DA3607A24B97BD1B8D7F2A7C8153" action="add">
+  <is_alias>0</is_alias>
+  <name>SE5000 Project Manager</name>
+  <Relationships />
+ </Item>
+ <Item type="Member" id="1651A936B9074D53BA2D087962C6F421" action="add">
+  <related_id keyed_name="Mikael Måhl" type="Identity">4F814642446C4FE688A916CF86707D2E</related_id>
+  <sort_order>128</sort_order>
+  <source_id keyed_name="SE5000 Project Manager" type="Identity">7A16DA3607A24B97BD1B8D7F2A7C8153</source_id>
+ </Item>
+</AML>

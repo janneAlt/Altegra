@@ -1,0 +1,196 @@
+﻿<AML>
+ <Item type="Form" id="B3C7D59A7CDC422B96A5DAE125778AAE" action="add">
+  <category_form>0</category_form>
+  <height>234</height>
+  <stylesheet><![CDATA[../styles/default.css]]></stylesheet>
+  <width>699</width>
+  <name>SRE_DocumentType</name>
+  <Relationships>
+   <Item type="Body" id="FEC75418BA634B13B7760850138B0D05" action="add">
+    <bg_color>#FFFFFF</bg_color>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_DocumentType" type="Form">B3C7D59A7CDC422B96A5DAE125778AAE</source_id>
+    <Relationships>
+     <Item type="Field" id="51C4F25492C449338FFD51FD450FE781" action="add">
+      <border_width>0</border_width>
+      <display_length>256</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>class structure</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">Classification</label>
+      <label_position>left</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>1024</sort_order>
+      <source_id keyed_name="FEC75418BA634B13B7760850138B0D05" type="Body">FEC75418BA634B13B7760850138B0D05</source_id>
+      <tab_index>128</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>145</x>
+      <y>131</y>
+      <name>classification</name>
+     </Item>
+     <Item type="Field" id="1BF280AEE50B481DB8B3C0BB53725D74" action="add">
+      <display_length_unit>px</display_length_unit>
+      <field_type>html</field_type>
+      <html_code><![CDATA[<span id='ITEM_INFO_INTERNAL_SPAN'/>
+<script>
+  populate_ITEM_INFO_INTERNAL_SPAN = function()
+  {
+    document.getElementById('ITEM_INFO_INTERNAL_SPAN').innerHTML = aras.uiGetItemInfoTable(document.itemType);
+  }
+  window.addEventListener('load', populate_ITEM_INFO_INTERNAL_SPAN);
+</script>]]></html_code>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>384</sort_order>
+      <source_id keyed_name="FEC75418BA634B13B7760850138B0D05" type="Body">FEC75418BA634B13B7760850138B0D05</source_id>
+      <tab_stop>0</tab_stop>
+      <x>0</x>
+      <y>0</y>
+      <name>item_info</name>
+     </Item>
+     <Item type="Field" id="F952229A6CF54B74922DE926F53E82B3" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>textarea</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">Description</label>
+      <label_position>left</label_position>
+      <list_no_blank>0</list_no_blank>
+      <propertytype_id keyed_name="sre_description" type="Property">704A3CBA4BFF46F9813AE6748C343153</propertytype_id>
+      <sort_order>640</sort_order>
+      <source_id keyed_name="FEC75418BA634B13B7760850138B0D05" type="Body">FEC75418BA634B13B7760850138B0D05</source_id>
+      <tab_index>30</tab_index>
+      <tab_stop>1</tab_stop>
+      <textarea_cols>256</textarea_cols>
+      <textarea_rows>30</textarea_rows>
+      <x>157</x>
+      <y>71</y>
+      <name>sre_description</name>
+     </Item>
+     <Item type="Field" id="E41E9144BD1A4FF7B035D670C7658F5F" action="add">
+      <border_width>0</border_width>
+      <display_length>256</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">ID</label>
+      <label_position>left</label_position>
+      <list_no_blank>0</list_no_blank>
+      <propertytype_id keyed_name="sre_id" type="Property">AC04B8D300FE4DD79DEDC200ADD532E3</propertytype_id>
+      <sort_order>512</sort_order>
+      <source_id keyed_name="FEC75418BA634B13B7760850138B0D05" type="Body">FEC75418BA634B13B7760850138B0D05</source_id>
+      <tab_index>10</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>206</x>
+      <y>10</y>
+      <name>sre_id</name>
+     </Item>
+     <Item type="Field" id="6CD64BB2A50544019FC39552FF912A88" action="add">
+      <border_width>0</border_width>
+      <display_length>256</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">Name</label>
+      <label_position>left</label_position>
+      <list_no_blank>0</list_no_blank>
+      <propertytype_id keyed_name="sre_name" type="Property">6785033D72894F8A939240DE12CA4803</propertytype_id>
+      <sort_order>128</sort_order>
+      <source_id keyed_name="FEC75418BA634B13B7760850138B0D05" type="Body">FEC75418BA634B13B7760850138B0D05</source_id>
+      <tab_index>20</tab_index>
+      <tab_stop>1</tab_stop>
+      <textarea_cols>250</textarea_cols>
+      <textarea_rows>20</textarea_rows>
+      <x>188</x>
+      <y>31</y>
+      <name>sre_name</name>
+     </Item>
+     <Item type="Field" id="A981D0E2D4A24B22A7E18DADE8F10BD9" action="add">
+      <border_width>0</border_width>
+      <display_length>350</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">Template Name</label>
+      <label_position>left</label_position>
+      <list_no_blank>0</list_no_blank>
+      <propertytype_id keyed_name="sre_templatename" type="Property">B3530F8DEB9D4796A5DEE0B3E03C243D</propertytype_id>
+      <sort_order>896</sort_order>
+      <source_id keyed_name="FEC75418BA634B13B7760850138B0D05" type="Body">FEC75418BA634B13B7760850138B0D05</source_id>
+      <tab_index>3840</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>134</x>
+      <y>51</y>
+      <name>sre_templatename</name>
+     </Item>
+     <Item type="Field" id="1A8FF3FF829849F6BC52B569D8173D1A" action="add">
+      <border_width>0</border_width>
+      <display_length>256</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>item</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">Team</label>
+      <label_position>left</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>768</sort_order>
+      <source_id keyed_name="FEC75418BA634B13B7760850138B0D05" type="Body">FEC75418BA634B13B7760850138B0D05</source_id>
+      <tab_index>200</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>186</x>
+      <y>109</y>
+      <name>team_id</name>
+     </Item>
+    </Relationships>
+   </Item>
+  </Relationships>
+ </Item>
+ <Item type="Field" id="51C4F25492C449338FFD51FD450FE781" action="edit">
+  <!-- Please note: this AML depends on the "SRE_DocumentType" ItemType. Please make sure it exists before running this. -->
+  <propertytype_id>
+   <Item type="Property" action="get" select="id">
+    <name>classification</name>
+    <source_id type="ItemType" keyed_name="SRE_DocumentType">33DC4A555F4348608FC5BCD40459BF40</source_id>
+   </Item>
+  </propertytype_id>
+ </Item>
+ <Item type="Field" id="1A8FF3FF829849F6BC52B569D8173D1A" action="edit">
+  <!-- Please note: this AML depends on the "SRE_DocumentType" ItemType. Please make sure it exists before running this. -->
+  <propertytype_id>
+   <Item type="Property" action="get" select="id">
+    <name>team_id</name>
+    <source_id type="ItemType" keyed_name="SRE_DocumentType">33DC4A555F4348608FC5BCD40459BF40</source_id>
+   </Item>
+  </propertytype_id>
+ </Item>
+</AML>

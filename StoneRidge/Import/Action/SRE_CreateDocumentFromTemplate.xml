@@ -1,0 +1,20 @@
+﻿<AML>
+ <Item type="Action" id="B509BF9B0068470D8A2D68E6B9EE4F5A" action="add">
+  <item_query>&lt;Item type="{@type}" id="{@id}" levels= "1" action="get" /&gt;</item_query>
+  <label xml:lang="en">Create Document</label>
+  <location>client</location>
+  <method keyed_name="SRE_CreateDocFromTemplate" type="Method">
+   <Item type="Method" action="get" select="id">
+    <name>SRE_CreateDocFromTemplate</name>
+   </Item>
+  </method>
+  <on_complete keyed_name="SRE_refresh" type="Method">
+   <Item type="Method" action="get" select="id">
+    <name>SRE_refresh</name>
+   </Item>
+  </on_complete>
+  <target>none</target>
+  <type>item</type>
+  <name>SRE_CreateDocumentFromTemplate</name>
+ </Item>
+</AML>

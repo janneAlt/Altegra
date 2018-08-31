@@ -1,0 +1,6 @@
+﻿<AML>
+ <Item type="Variable" id="8AD0A74BB0FB4770B41301392D876197" action="add">
+  <default_value>http://solaras01.se5000.local/BOMFileDelivery/</default_value>
+  <name>SRE_BOMURL</name>
+ </Item>
+</AML>

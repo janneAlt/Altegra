@@ -1,0 +1,12 @@
+﻿<AML>
+ <Item type="Identity" id="623DDCF96A4B44F9A1A5DABF776196A1" action="add">
+  <is_alias>0</is_alias>
+  <name>SE5000 Configuration Management</name>
+  <Relationships />
+ </Item>
+ <Item type="Member" id="5AE2FA3184FF49F8BFEC6F77761CA402" action="add">
+  <related_id keyed_name="Maria Eriksson" type="Identity">02B5523B78DD41BF965CAFD37AB50A12</related_id>
+  <sort_order>128</sort_order>
+  <source_id keyed_name="SE5000 Configuration Management" type="Identity">623DDCF96A4B44F9A1A5DABF776196A1</source_id>
+ </Item>
+</AML>

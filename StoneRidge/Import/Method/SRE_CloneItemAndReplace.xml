@@ -1,0 +1,51 @@
+﻿<AML>
+ <Item type="Method" id="FE08F18141774001B4F87F235787FABB" action="add">
+  <comments>Clone selected item and replace in current parent</comments>
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[// Clone selected item and replace in current parent
+//
+// 2018-02-28 LL - First version
+
+var inn = this.getInnovator();
+var thisType = this.getType();
+var thisId = this.getID();
+
+var relType = inn.newItem("RelationshipType", "get");
+relType.setProperty("name", thisType);
+relType.setAttribute("select", "source_id(name),related_id(name)");
+relType = relType.apply();
+var sourceType = relType.getPropertyItem("source_id");
+var sourceName = sourceType.getProperty("name");
+var relatedType = relType.getPropertyItem("related_id");
+var relatedName = relatedType.getProperty("name");
+
+var sourceItem = inn.getItemById(sourceName, this.getProperty("source_id"));
+var lockedByCurrentUser = sourceItem.getLockStatus() == 1;
+
+if (!lockedByCurrentUser) {
+	top.aras.AlertError("Parent item must be locked by you.");
+	return;
+}
+
+var itemToClone = inn.getItemById(relatedName, this.getProperty("related_id"));
+itemToClone.setAction("SRE_CloneItem");
+var clonedItem = itemToClone.apply();
+
+if (clonedItem.isError()) {
+	top.aras.AlertError(clonedItem.getErrorString());
+	return;
+}
+else {
+    var thisItem = inn.newItem(thisType, "edit");
+    thisItem.setID(thisId);
+    thisItem.setProperty("related_id", clonedItem.getID());
+    thisItem = thisItem.apply();
+    clonedItem.lockItem();
+    top.aras.uiReShowItemEx(sourceItem.getID(), sourceItem.node, "tab view");
+    top.aras.uiShowItemEx(clonedItem.node, undefined,true);
+    return;
+}]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>SRE_CloneItemAndReplace</name>
+ </Item>
+</AML>

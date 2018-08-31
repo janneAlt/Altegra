@@ -1,0 +1,186 @@
+﻿<AML>
+ <Item type="Workflow Map" id="F1B7EB3DEA9B473DB07AC317F792E1C0" action="add">
+  <description xml:lang="en" />
+  <node_bg_color>       </node_bg_color>
+  <node_label1_color>       </node_label1_color>
+  <node_label1_font />
+  <node_label2_color>       </node_label2_color>
+  <node_label2_font />
+  <node_name_color>       </node_name_color>
+  <node_name_font />
+  <node_size />
+  <process_owner keyed_name="Creator" type="Identity">
+   <Item type="Identity" action="get" select="id">
+    <name>Creator</name>
+   </Item>
+  </process_owner>
+  <transition_line_color>       </transition_line_color>
+  <transition_name_color>       </transition_name_color>
+  <transition_name_font />
+  <name>SRE Document Review Task</name>
+  <Relationships>
+   <Item type="Workflow Map Activity" action="add">
+    <related_id keyed_name="Closed" type="Activity Template">
+     <Item type="Activity Template" id="F3C7FE6C6EE54971B956F40FBDE108EE" action="add">
+      <can_delegate>0</can_delegate>
+      <can_refuse>0</can_refuse>
+      <consolidate_ondelegate>0</consolidate_ondelegate>
+      <expected_duration>0</expected_duration>
+      <icon>../Images/check.svg</icon>
+      <is_auto>1</is_auto>
+      <is_end>1</is_end>
+      <is_start>0</is_start>
+      <message xml:lang="en">Workflow End</message>
+      <priority>1</priority>
+      <reminder_count>0</reminder_count>
+      <reminder_interval>0</reminder_interval>
+      <timeout_duration>0</timeout_duration>
+      <wait_for_all_inputs>0</wait_for_all_inputs>
+      <wait_for_all_votes>0</wait_for_all_votes>
+      <x>366</x>
+      <y>20</y>
+      <name>Closed</name>
+     </Item>
+    </related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE Document Review Task" type="Workflow Map">F1B7EB3DEA9B473DB07AC317F792E1C0</source_id>
+   </Item>
+   <Item type="Workflow Map Activity" action="add">
+    <related_id keyed_name="Start" type="Activity Template">
+     <Item type="Activity Template" id="5F8EEA2BBDED443886F5F77374BD1627" action="add">
+      <can_delegate>0</can_delegate>
+      <can_refuse>0</can_refuse>
+      <consolidate_ondelegate>0</consolidate_ondelegate>
+      <expected_duration>0</expected_duration>
+      <icon>../images/WorkflowStart.svg</icon>
+      <is_auto>1</is_auto>
+      <is_end>0</is_end>
+      <is_start>1</is_start>
+      <message xml:lang="en">Workflow Start</message>
+      <priority>2</priority>
+      <reminder_count>0</reminder_count>
+      <reminder_interval>0</reminder_interval>
+      <timeout_duration>0</timeout_duration>
+      <wait_for_all_inputs>0</wait_for_all_inputs>
+      <wait_for_all_votes>0</wait_for_all_votes>
+      <x>20</x>
+      <y>20</y>
+      <name>Start</name>
+      <Relationships>
+       <Item type="Workflow Map Path" id="B92F2554E685460382ED650C14FD9487" action="add">
+        <authentication>none</authentication>
+        <is_default>1</is_default>
+        <is_override>0</is_override>
+        <name>Start</name>
+        <related_id>2D8DA5DCEAD34CC1ADA4A79A8E6D767F</related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="Start" type="Activity Template">5F8EEA2BBDED443886F5F77374BD1627</source_id>
+        <x>0</x>
+        <y>0</y>
+       </Item>
+      </Relationships>
+     </Item>
+    </related_id>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE Document Review Task" type="Workflow Map">F1B7EB3DEA9B473DB07AC317F792E1C0</source_id>
+   </Item>
+   <Item type="Workflow Map Activity" action="add">
+    <related_id keyed_name="Add Assignee to task " type="Activity Template">
+     <Item type="Activity Template" id="2D8DA5DCEAD34CC1ADA4A79A8E6D767F" action="add">
+      <can_delegate>1</can_delegate>
+      <can_refuse>1</can_refuse>
+      <consolidate_ondelegate>0</consolidate_ondelegate>
+      <icon>../images/WorkflowNode.svg</icon>
+      <is_auto>1</is_auto>
+      <is_end>0</is_end>
+      <is_start>0</is_start>
+      <managed_by_id keyed_name="Creator" type="Identity">8FE5430B42014D94AE83246F299D9CC4</managed_by_id>
+      <message xml:lang="en">Please Review...</message>
+      <wait_for_all_inputs>0</wait_for_all_inputs>
+      <wait_for_all_votes>0</wait_for_all_votes>
+      <x>118</x>
+      <y>20</y>
+      <name>Add Assignee to task </name>
+      <Relationships>
+       <Item type="Activity Template Assignment" id="75318DAED58E4F9687DCE39D796D9E7A" action="add">
+        <managed_by_id keyed_name="Creator" type="Identity">8FE5430B42014D94AE83246F299D9CC4</managed_by_id>
+        <related_id keyed_name="Creator" type="Identity">
+         <Item type="Identity" action="get" select="id">
+          <name>Creator</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="Add Assignee to task " type="Activity Template">2D8DA5DCEAD34CC1ADA4A79A8E6D767F</source_id>
+        <is_required>1</is_required>
+        <for_all_members>0</for_all_members>
+        <voting_weight>100</voting_weight>
+       </Item>
+       <Item type="Workflow Map Path" id="BFDDF411F6B04BB191F33AD70E39E70C" action="add">
+        <authentication>none</authentication>
+        <is_default>1</is_default>
+        <is_override>0</is_override>
+        <managed_by_id keyed_name="Creator" type="Identity">8FE5430B42014D94AE83246F299D9CC4</managed_by_id>
+        <name>Assign</name>
+        <related_id>79C6E62B4A1E4ACFA0E5E17D78F2954B</related_id>
+        <segments />
+        <sort_order>128</sort_order>
+        <source_id keyed_name="Add Assignee to task " type="Activity Template">2D8DA5DCEAD34CC1ADA4A79A8E6D767F</source_id>
+        <x>0</x>
+        <y>0</y>
+       </Item>
+      </Relationships>
+     </Item>
+    </related_id>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="SRE Document Review Task" type="Workflow Map">F1B7EB3DEA9B473DB07AC317F792E1C0</source_id>
+   </Item>
+   <Item type="Workflow Map Activity" action="add">
+    <related_id keyed_name="In-Work" type="Activity Template">
+     <Item type="Activity Template" id="79C6E62B4A1E4ACFA0E5E17D78F2954B" action="add">
+      <can_delegate>1</can_delegate>
+      <can_refuse>1</can_refuse>
+      <consolidate_ondelegate>0</consolidate_ondelegate>
+      <icon>../images/WorkflowNode.svg</icon>
+      <is_auto>0</is_auto>
+      <is_end>0</is_end>
+      <is_start>0</is_start>
+      <managed_by_id keyed_name="Creator" type="Identity">8FE5430B42014D94AE83246F299D9CC4</managed_by_id>
+      <message xml:lang="en">View Tasks in the Sign-Off forms to see the instructions...</message>
+      <wait_for_all_inputs>0</wait_for_all_inputs>
+      <wait_for_all_votes>0</wait_for_all_votes>
+      <x>235</x>
+      <y>20</y>
+      <name>In-Work</name>
+      <Relationships>
+       <Item type="Activity Template Method" id="D33729070E384C2EB53B27B7CB9A7288" action="add">
+        <event>on_activate</event>
+        <managed_by_id keyed_name="Creator" type="Identity">8FE5430B42014D94AE83246F299D9CC4</managed_by_id>
+        <related_id keyed_name="SRE_ChangeAssign" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>SRE_ChangeAssign</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="In-Work" type="Activity Template">79C6E62B4A1E4ACFA0E5E17D78F2954B</source_id>
+       </Item>
+       <Item type="Workflow Map Path" id="D00BDD8EB9724A288E6B73257D2E574D" action="add">
+        <authentication>none</authentication>
+        <is_default>0</is_default>
+        <is_override>0</is_override>
+        <managed_by_id keyed_name="Creator" type="Identity">8FE5430B42014D94AE83246F299D9CC4</managed_by_id>
+        <name>Close</name>
+        <related_id>F3C7FE6C6EE54971B956F40FBDE108EE</related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="In-Work" type="Activity Template">79C6E62B4A1E4ACFA0E5E17D78F2954B</source_id>
+        <x>0</x>
+        <y>0</y>
+       </Item>
+      </Relationships>
+     </Item>
+    </related_id>
+    <sort_order>512</sort_order>
+    <source_id keyed_name="SRE Document Review Task" type="Workflow Map">F1B7EB3DEA9B473DB07AC317F792E1C0</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

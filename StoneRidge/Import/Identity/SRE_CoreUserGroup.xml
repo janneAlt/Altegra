@@ -1,0 +1,32 @@
+﻿<AML>
+ <Item type="Identity" id="93FA7BC57D0844329494BA5F70976DA4" action="add">
+  <description>Core Users of Stoneridge business</description>
+  <is_alias>0</is_alias>
+  <name>SRE_CoreUserGroup</name>
+  <Relationships />
+ </Item>
+ <Item type="Member" id="7204E68AE2624BECAC0D4BB1F47C5A80" action="add">
+  <related_id keyed_name="Administrators" type="Identity">2618D6F5A90949BAA7E920D1B04C7EE1</related_id>
+  <sort_order>256</sort_order>
+  <source_id keyed_name="SRE_CoreUserGroup" type="Identity">93FA7BC57D0844329494BA5F70976DA4</source_id>
+ </Item>
+ <Item type="Member" id="7F2E4A35D61D4BFC8D32C8E55EA6D28C" action="add">
+  <related_id keyed_name="Super User" type="Identity">
+   <Item type="Identity" action="get" select="id">
+    <name>Super User</name>
+   </Item>
+  </related_id>
+  <sort_order>384</sort_order>
+  <source_id keyed_name="SRE_CoreUserGroup" type="Identity">93FA7BC57D0844329494BA5F70976DA4</source_id>
+ </Item>
+ <Item type="Member" id="A9181A2437EF468CB3ACF6099A8A5B41" action="add">
+  <related_id keyed_name="Maria Eriksson" type="Identity">02B5523B78DD41BF965CAFD37AB50A12</related_id>
+  <sort_order>512</sort_order>
+  <source_id keyed_name="SRE_CoreUserGroup" type="Identity">93FA7BC57D0844329494BA5F70976DA4</source_id>
+ </Item>
+ <Item type="Member" id="C61370889922450C9BD46F283615A0B8" action="add">
+  <related_id keyed_name="Anders Jerand" type="Identity">82199FA0A8C1441D8B785B0B3965ACFE</related_id>
+  <sort_order>640</sort_order>
+  <source_id keyed_name="SRE_CoreUserGroup" type="Identity">93FA7BC57D0844329494BA5F70976DA4</source_id>
+ </Item>
+</AML>

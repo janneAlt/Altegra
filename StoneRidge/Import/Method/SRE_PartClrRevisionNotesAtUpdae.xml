@@ -1,0 +1,198 @@
+﻿<AML>
+ <Item type="Method" id="80E9D8B56E4644A1865F1E79ADC576EE" action="add">
+  <comments>updated</comments>
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[Innovator inn = this.getInnovator();
+string template = this.getProperty("sre_requiretemplate");
+if(template=="0")
+{
+    return this;
+}
+Item vaultLoc = newItem("Variable", "get");
+vaultLoc.setProperty("name", "SRE_VaultLocation");
+vaultLoc = vaultLoc.apply();
+string vaultPath = vaultLoc.getProperty("value");
+//Getting License Path from a variable named SRE_VaultLocation
+Item licPath = newItem("Variable", "get");
+licPath.setProperty("name", "SRE_AsposeLic");
+licPath = licPath.apply();
+string licFileID = licPath.getProperty("value");
+if (licFileID == "") {
+    return inn.newError("Variable SRE_AsposeLic is not set");
+}
+string licfolderFirst = licFileID.Substring(0, 1);
+string licfolderFirstSub = licFileID.Substring(1, 2);
+string licfolderFirstSubSub = licFileID.Substring(3, 29);
+
+//Template File Path in the Vault
+string licFileVaultName = vaultPath + "\\" + licfolderFirst + "\\" + licfolderFirstSub + "\\" + licfolderFirstSubSub + "\\" + "Aspose.Total.lic";
+
+// return inn.newError(licFileVaultName);
+
+Item imgPath = newItem("Variable", "get");
+imgPath.setProperty("name", "SRE_SecureImagePath");
+imgPath = imgPath.apply();
+
+string BASE_PATH = imgPath.getProperty("value");
+
+if (BASE_PATH == "") {
+    return inn.newError("variable SRE_SecureImagePath is not set");
+}
+string clearFiles = (string)RequestState["clearFiles"];
+string newRevision = (string)RequestState["newRevision"];
+string revDocID = (string)RequestState["revDocId"];
+// return inn.newError("here");
+if (!string.IsNullOrEmpty(clearFiles))
+{
+    this.setProperty("sre_revsionhistory","");
+    this.setProperty("sre_viewable","");
+    
+    Item partDocument = newItem("Part Document","get");
+         partDocument.setProperty("source_id",this.getID());
+         partDocument.setProperty("sre_type","Reporting");
+         partDocument=partDocument.apply();
+         
+    for(int i=0; i<partDocument.getItemCount(); i++)
+    {
+        
+        string relatedID = partDocument.getItemByIndex(i).getProperty("related_id");
+        string docrelID = partDocument.getItemByIndex(i).getProperty("id");
+        
+         Item delpartDocument = newItem("Part Document","delete");
+         delpartDocument.setID(docrelID);
+         delpartDocument=delpartDocument.apply();
+        
+        
+    }
+         
+    
+    
+    
+    if(this.getType()=="Document" && !string.IsNullOrEmpty(this.getProperty("sre_sourcefile")))
+    {
+        
+        Item srcfl = inn.getItemById("File",this.getProperty("sre_sourcefile"));
+       
+         Item newSrcFl = srcfl;
+        //  return inn.newError(newSrcFl.ToString());
+            
+            
+
+        string baseVault = vaultLoc.getProperty("value");
+        
+        string partOne = newSrcFl.getID().Substring(0, 1);
+        string PartTwo = newSrcFl.getID().Substring(1, 2);
+        string PartThree = newSrcFl.getID().Substring(3, 29);
+        
+        string OldFile = baseVault + "\\" + partOne + "\\" + PartTwo + "\\" + PartThree + "\\" + newSrcFl.getProperty("filename");
+        
+         string ext = Path.GetExtension(OldFile);
+
+
+
+        Item foldLoc = newItem("Variable", "get");
+        foldLoc.setProperty("name", "SRE_DocTempLocation");
+        foldLoc = foldLoc.apply();
+        if (foldLoc.getProperty("value") == "") {
+            return inn.newError("Export Folder Variable not set");
+        }
+
+
+        string folder = foldLoc.getProperty("value");
+
+        string newFileName;
+        if (ext == ".dotm" || ext == ".doc" || ext == ".docx" | ext == ".dot") {
+            newFileName = folder + this.getProperty("item_number") + ".docx";
+        } else {
+            newFileName = folder + this.getProperty("item_number") + ext;
+            // return inn.newError(targetFileName);
+        }
+
+        //copy template file
+        if (File.Exists(newFileName) == true) {
+            File.Delete(newFileName);
+        }
+        // return inn.newError(templateFileNameTemplate);
+        File.Copy(OldFile, newFileName);
+       
+         if (Path.GetExtension(newFileName) == ".docx") {
+            // return inn.newError("here");
+            
+            Aspose.Words.License license = new Aspose.Words.License();
+            license.SetLicense(licFileVaultName);
+            
+            Aspose.Words.Document doc = new Aspose.Words.Document(newFileName);
+            Aspose.Words.Properties.DocumentPropertyCollection customdocProps = doc.CustomDocumentProperties;
+            // return inn.newError("hereszffs");
+             Aspose.Words.Properties.DocumentProperty state = customdocProps["SRE_State"];
+             state.Value = "Preliminary";
+             
+            Aspose.Words.Properties.DocumentProperty rev = customdocProps["sre_docRev"];
+
+           rev.Value =newRevision;
+          
+            Aspose.Words.Properties.DocumentProperty approvedby = customdocProps["sre_approvedby"];
+             approvedby.Value = "Not Approved";
+
+            Aspose.Words.Properties.DocumentProperty approveddt = customdocProps["sre_approveddt"];
+            approveddt.Value = "yyy-mm-dd";
+            Aspose.Words.Properties.DocumentProperty documentID = customdocProps["sre_document_id"];
+            documentID.Value =revDocID ;
+            doc.UpdateFields();
+            
+            doc.Save(newFileName, Aspose.Words.SaveFormat.Docx);
+         }
+         
+         else if (Path.GetExtension(newFileName) == ".xlsx")
+
+        {
+            
+            Aspose.Cells.License license = new Aspose.Cells.License();
+            license.SetLicense(licFileVaultName);
+            // Open an Excel file
+            Workbook workbook = new Workbook(newFileName);
+            workbook.CustomDocumentProperties.Add("sre_document_id",revDocID);
+            Aspose.Cells.Cells cells = workbook.Worksheets[0].Cells;
+            
+            Aspose.Cells. Cell revision = cells["M7"];
+            
+            revision.PutValue(newRevision);
+
+            Aspose.Cells.Cell state = cells["C3"];
+            state.PutValue("Preliminary");     
+            
+            //  Aspose.Cells.Cell issuedBy = cells["C5"];
+            // issuedBy.PutValue("Not Approved");
+            
+              Aspose.Cells.Cell approvedBy = cells["F7"];
+            approvedBy.PutValue(this.getProperty("approver"));
+            
+            Aspose.Cells.Cell issuedOn = cells["H7"];
+            issuedOn.PutValue("YYYY/MM/DD");
+            
+            workbook.Save(newFileName, Aspose.Cells.SaveFormat.Xlsx);
+            
+        }
+        
+        Item myfile = inn.newItem("File", "add");
+        myfile.setProperty("filename", newSrcFl.getProperty("filename"));
+        myfile.attachPhysicalFile(newFileName);
+        myfile = myfile.apply();
+        
+       
+        string fileid = myfile.getProperty("id");
+        this.setProperty("sre_sourcefile", fileid);       
+
+           if (File.Exists(newFileName)) {
+            File.Delete(newFileName);
+        }
+    
+    
+}
+}
+
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_PartClrRevisionNotesAtUpdae</name>
+ </Item>
+</AML>

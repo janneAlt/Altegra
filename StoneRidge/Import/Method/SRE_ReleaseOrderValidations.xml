@@ -1,0 +1,89 @@
+﻿<AML>
+ <Item type="Method" id="32D414B66D1141AE82A5938F122E96D0" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[Innovator inn = this.getInnovator();
+
+string sql ="delete  from SRE_RO_VALIDATIONS where SOURCE_ID='"+this.getID()+"' ";
+Item exSql = inn.applySQL(sql);
+string BASE_PATH = "..\\Solutions\\StoneRidge\\Images\\";
+string image = BASE_PATH + "Error.png";
+string Warningimage = BASE_PATH + "Warning.png";
+string okImage = BASE_PATH + "Ok.png";
+string sreState = this.getProperty("state");
+var items = new List < string > ();
+if(this.getProperty("sre_approver")== null)
+
+{
+                  Item addValidation = newItem("SRE_RO_Validations","add");
+                  addValidation.setProperty("sre_status",image);
+                  addValidation.setProperty("sre_vtype","Error");
+                  addValidation.setProperty("sre_errordetail","No Release Manager set in this release order");
+                  addValidation.setProperty("source_id",this.getID());
+                  addValidation=addValidation.apply();     
+}
+
+     Item getRelItems = newItem("SRE_RO_AffectedItems","get");
+     getRelItems.setProperty("source_id",this.getID());
+     getRelItems=getRelItems.apply();
+
+int relCount = getRelItems.getItemCount();
+if(relCount ==0)
+{
+    
+    // return inn.newError("Cannot create release Order without Affected Items");
+}
+
+for(int i = 0; i<relCount; i++)
+
+    {
+         
+    string relatedID = getRelItems.getItemByIndex(i).getProperty("related_id");
+    items.Add(relatedID);
+         Item getSpecificAffected = newItem("SRE_PolyAffected","get");
+         getSpecificAffected.setProperty("id",relatedID);
+         getSpecificAffected=getSpecificAffected.apply();
+         
+         string itemType = getSpecificAffected.getType();
+         string state =    getSpecificAffected.getProperty("state");
+         string teamID =  getSpecificAffected.getProperty("team_id");
+         string itemNumber =  getSpecificAffected.getProperty("item_number");
+   
+         if(sreState =="In Release" && state!="Approved" )
+         {
+             Item addValidation = newItem("SRE_RO_Validations","add");
+                  
+                  addValidation.setProperty("sre_itemnumber",getSpecificAffected.getProperty("id"));
+                  addValidation.setProperty("sre_itemtype",itemType);
+                  addValidation.setProperty("sre_status",image);
+                  addValidation.setProperty("sre_vtype","Error");
+                  addValidation.setProperty("sre_errordetail","Cannot Perform Release the item is not Approved");
+                  addValidation.setProperty("source_id",this.getID());
+                  addValidation=addValidation.apply();
+         }
+     
+         
+         
+         
+         
+         
+         
+             }
+var noDupes = items.Distinct().ToList();
+
+string delQRy = "DELETE FROM SRE_RO_AFFECTEDITEMS  WHERE SOURCE_ID='"+this.getID()+"'";
+Item qryRes = inn.applySQL(delQRy);
+
+foreach(string afd in noDupes)
+{
+     Item addRelItems = newItem("SRE_RO_AffectedItems","add");
+     addRelItems.setProperty("source_id",this.getID());
+     addRelItems.setProperty("related_id",afd);
+     addRelItems=addRelItems.apply();
+}
+
+
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_ReleaseOrderValidations</name>
+ </Item>
+</AML>

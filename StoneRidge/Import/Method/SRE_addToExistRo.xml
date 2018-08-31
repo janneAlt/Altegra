@@ -1,0 +1,29 @@
+﻿<AML>
+ <Item type="Method" id="5599EECFA1C244FCAA22692907C33C93" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[//add to exiting
+
+var wrapper3 = getFieldByName("roid");
+var p3 = wrapper3.getElementsByTagName("input")[0];
+// get search result
+
+// confirm fields were correctly retrieved
+if (!p1){
+	alert("Can't find field param1");
+	return;
+}
+if (!p2){
+	alert("Can't find field param2");
+	return;
+}
+
+// return entered values
+var retVal = {};
+retVal["sre_roid"] = p3.value;
+parent.returnValue = retVal; 
+parent.close();
+]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>SRE_addToExistRo</name>
+ </Item>
+</AML>

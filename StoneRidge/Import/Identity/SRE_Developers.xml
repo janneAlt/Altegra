@@ -1,0 +1,17 @@
+﻿<AML>
+ <Item type="Identity" id="6AF797D1C1D04AC79848DDC8A4C2AF95" action="add">
+  <description>Stoneridge PLM System Developers group</description>
+  <is_alias>0</is_alias>
+  <name>SRE_Developers</name>
+  <Relationships />
+ </Item>
+ <Item type="Member" id="5B2929F51DB34C839F5DAEF4E1E48A62" action="add">
+  <related_id keyed_name="Super User" type="Identity">
+   <Item type="Identity" action="get" select="id">
+    <name>Super User</name>
+   </Item>
+  </related_id>
+  <sort_order>128</sort_order>
+  <source_id keyed_name="SRE_Developers" type="Identity">6AF797D1C1D04AC79848DDC8A4C2AF95</source_id>
+ </Item>
+</AML>

@@ -1,0 +1,140 @@
+﻿<AML>
+ <Item type="Life Cycle Map" id="4C024D9D3BCB468CB7E4A97C0087447C" action="add">
+  <description />
+  <start_state keyed_name="Preliminary" type="Life Cycle State">A6EF33EC9E9A4055B7389F13CD74C3EC</start_state>
+  <name>SRE_DocNeedsReview</name>
+  <Relationships>
+   <Item type="Life Cycle State" id="B79502BA90D94F258B840799519772A7" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <item_behavior>fixed</item_behavior>
+    <label xml:lang="en">Approved</label>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>1</set_not_lockable>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="SRE_DocNeedsReview" type="Life Cycle Map">4C024D9D3BCB468CB7E4A97C0087447C</source_id>
+    <state_permission_id keyed_name="SRE_reviewDocument" type="Permission">50B301D6F1094C7ABADE5476BD0EEEBC</state_permission_id>
+    <x>328</x>
+    <y>65</y>
+    <name>Approved</name>
+   </Item>
+   <Item type="Life Cycle State" id="F364F64FA22143C6913BD869482196A3" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <label xml:lang="en">In Review</label>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_DocNeedsReview" type="Life Cycle Map">4C024D9D3BCB468CB7E4A97C0087447C</source_id>
+    <state_permission_id keyed_name="SRE_reviewDocument" type="Permission">50B301D6F1094C7ABADE5476BD0EEEBC</state_permission_id>
+    <workflow keyed_name="SRE_documentPartReviewProcess" type="Workflow Map">F8800EE4A046482B95E931651F8853ED</workflow>
+    <x>184</x>
+    <y>68</y>
+    <name>In Review</name>
+   </Item>
+   <Item type="Life Cycle State" id="A6EF33EC9E9A4055B7389F13CD74C3EC" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <label xml:lang="en">Preliminary</label>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_DocNeedsReview" type="Life Cycle Map">4C024D9D3BCB468CB7E4A97C0087447C</source_id>
+    <state_permission_id keyed_name="SRE_newDocument" type="Permission">14F1337D41C04B9892F13C0C6A402512</state_permission_id>
+    <x>44</x>
+    <y>66</y>
+    <name>Preliminary</name>
+   </Item>
+   <Item type="Life Cycle State" id="F622E2A50D8C47E1A4876B50FD457953" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <item_behavior>fixed</item_behavior>
+    <set_is_released>1</set_is_released>
+    <set_not_lockable>1</set_not_lockable>
+    <sort_order>512</sort_order>
+    <source_id keyed_name="SRE_DocNeedsReview" type="Life Cycle Map">4C024D9D3BCB468CB7E4A97C0087447C</source_id>
+    <state_permission_id keyed_name="SRE_releasedDocument" type="Permission">3A862F37C9824D20AE6D82E3B93C0182</state_permission_id>
+    <x>473</x>
+    <y>63</y>
+    <name>Released</name>
+   </Item>
+   <Item type="Life Cycle Transition" id="2F858B87B97E46C3928B4D4AB495F410" action="add">
+    <from_state keyed_name="Preliminary" type="Life Cycle State">A6EF33EC9E9A4055B7389F13CD74C3EC</from_state>
+    <get_comment>0</get_comment>
+    <post_action keyed_name="SRE_RenderPDFProm" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>SRE_RenderPDFProm</name>
+     </Item>
+    </post_action>
+    <role keyed_name="Editor" type="Identity">8F78DAAD4DE346AC86878E16720A63A0</role>
+    <segments />
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_DocNeedsReview" type="Life Cycle Map">4C024D9D3BCB468CB7E4A97C0087447C</source_id>
+    <to_state keyed_name="In Review" type="Life Cycle State">F364F64FA22143C6913BD869482196A3</to_state>
+    <x>23</x>
+    <y>-24</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="CAD3DEDA992E41DB80C7A0374F039DA1" action="add">
+    <from_state keyed_name="Approved" type="Life Cycle State">B79502BA90D94F258B840799519772A7</from_state>
+    <get_comment>0</get_comment>
+    <post_action keyed_name="SRE_UpdatePropPrel" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>SRE_UpdatePropPrel</name>
+     </Item>
+    </post_action>
+    <role keyed_name="Editor" type="Identity">8F78DAAD4DE346AC86878E16720A63A0</role>
+    <segments>274,175</segments>
+    <sort_order>1024</sort_order>
+    <source_id keyed_name="SRE_DocNeedsReview" type="Life Cycle Map">4C024D9D3BCB468CB7E4A97C0087447C</source_id>
+    <to_state keyed_name="Preliminary" type="Life Cycle State">A6EF33EC9E9A4055B7389F13CD74C3EC</to_state>
+    <x>-79</x>
+    <y>119</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="DB951B89C0844CF18C5985FD6ADBC94C" action="add">
+    <from_state keyed_name="Approved" type="Life Cycle State">B79502BA90D94F258B840799519772A7</from_state>
+    <get_comment>0</get_comment>
+    <post_action keyed_name="SRE_StampReleaseLC" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>SRE_StampReleaseLC</name>
+     </Item>
+    </post_action>
+    <role keyed_name="Aras PLM" type="Identity">56A96DA9E981481688563E2D14D5D878</role>
+    <segments />
+    <sort_order>384</sort_order>
+    <source_id keyed_name="SRE_DocNeedsReview" type="Life Cycle Map">4C024D9D3BCB468CB7E4A97C0087447C</source_id>
+    <to_state keyed_name="Released" type="Life Cycle State">F622E2A50D8C47E1A4876B50FD457953</to_state>
+    <x>0</x>
+    <y>0</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="B72EF6702B944E0C9782DD582576AEFB" action="add">
+    <from_state keyed_name="In Review" type="Life Cycle State">F364F64FA22143C6913BD869482196A3</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="SRE_CoreUserGroup" type="Identity">93FA7BC57D0844329494BA5F70976DA4</role>
+    <segments />
+    <sort_order>1152</sort_order>
+    <source_id keyed_name="SRE_DocNeedsReview" type="Life Cycle Map">4C024D9D3BCB468CB7E4A97C0087447C</source_id>
+    <to_state keyed_name="Preliminary" type="Life Cycle State">A6EF33EC9E9A4055B7389F13CD74C3EC</to_state>
+    <x>-97</x>
+    <y>15</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="E4FEF4E57F434C739B58BB53B2E0170E" action="add">
+    <from_state keyed_name="In Review" type="Life Cycle State">F364F64FA22143C6913BD869482196A3</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="Aras PLM" type="Identity">56A96DA9E981481688563E2D14D5D878</role>
+    <segments />
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_DocNeedsReview" type="Life Cycle Map">4C024D9D3BCB468CB7E4A97C0087447C</source_id>
+    <to_state keyed_name="Approved" type="Life Cycle State">B79502BA90D94F258B840799519772A7</to_state>
+    <x>48</x>
+    <y>15</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="6EA6EB88C76D43A9B1A50AD8E6873A3D" action="add">
+    <from_state keyed_name="Released" type="Life Cycle State">F622E2A50D8C47E1A4876B50FD457953</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="Maria Eriksson" type="Identity">02B5523B78DD41BF965CAFD37AB50A12</role>
+    <segments>227,30</segments>
+    <sort_order>1280</sort_order>
+    <source_id keyed_name="SRE_DocNeedsReview" type="Life Cycle Map">4C024D9D3BCB468CB7E4A97C0087447C</source_id>
+    <to_state keyed_name="Preliminary" type="Life Cycle State">A6EF33EC9E9A4055B7389F13CD74C3EC</to_state>
+    <x>-175</x>
+    <y>-44</y>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

@@ -1,0 +1,364 @@
+﻿<AML>
+ <Item type="ItemType" id="33DC4A555F4348608FC5BCD40459BF40" action="add">
+  <allow_private_permission>1</allow_private_permission>
+  <auto_search>0</auto_search>
+  <class_structure><![CDATA[<class id="33DC4A555F4348608FC5BCD40459BF40"><class id="97EF727D7AF5422B9DF8BF6288A6CF59" name="Standard Word" /><class id="45CCF5EA4D014B47956F1EB1F81C3097" name="Standard Excel" /><class id="611F170F9ABF4907A6474121904A28D0" name="Master" /><class id="67D9CCBDECFE4D7E8BC484BA6FF28ED8" name="Standard PDF" /><class id="C0001175CDEF43C0985A3AB4B7571404" name="Regular" /></class>]]></class_structure>
+  <enforce_discovery>1</enforce_discovery>
+  <hide_where_used>0</hide_where_used>
+  <history_template keyed_name="Default" type="History Template">3BC16EF9E52B4F9792AB76BCE0492F29</history_template>
+  <implementation_type>table</implementation_type>
+  <instance_data>SRE_DOCUMENTTYPE</instance_data>
+  <is_dependent>0</is_dependent>
+  <is_relationship>0</is_relationship>
+  <is_versionable>1</is_versionable>
+  <label xml:lang="en">Document Type</label>
+  <label_plural xml:lang="en">Document Types</label_plural>
+  <large_icon>../Images/Change.svg</large_icon>
+  <manual_versioning>1</manual_versioning>
+  <open_icon>../Images/Change.svg</open_icon>
+  <revisions keyed_name="Default" type="Revision">7FE395DD8B9F4E1090756A34B733D75E</revisions>
+  <show_parameters_tab>1</show_parameters_tab>
+  <structure_view>tabs on</structure_view>
+  <unlock_on_logout>0</unlock_on_logout>
+  <use_src_access>0</use_src_access>
+  <name>SRE_DocumentType</name>
+  <Relationships>
+   <Item type="Property" id="704A3CBA4BFF46F9813AE6748C343153" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>300</column_width>
+    <data_type>text</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">Description</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>4</sort_order>
+    <source_id keyed_name="SRE_DocumentType" type="ItemType" name="SRE_DocumentType">33DC4A555F4348608FC5BCD40459BF40</source_id>
+    <track_history>0</track_history>
+    <name>sre_description</name>
+   </Item>
+   <Item type="Property" id="AC04B8D300FE4DD79DEDC200ADD532E3" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>100</column_width>
+    <data_type>string</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">ID</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>130</sort_order>
+    <source_id keyed_name="SRE_DocumentType" type="ItemType" name="SRE_DocumentType">33DC4A555F4348608FC5BCD40459BF40</source_id>
+    <stored_length>32</stored_length>
+    <track_history>0</track_history>
+    <name>sre_id</name>
+   </Item>
+   <Item type="Property" id="6785033D72894F8A939240DE12CA4803" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>300</column_width>
+    <data_type>string</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <keyed_name_order>1</keyed_name_order>
+    <label xml:lang="en">Name</label>
+    <order_by>1</order_by>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>2</sort_order>
+    <source_id keyed_name="SRE_DocumentType" type="ItemType" name="SRE_DocumentType">33DC4A555F4348608FC5BCD40459BF40</source_id>
+    <stored_length>128</stored_length>
+    <track_history>0</track_history>
+    <name>sre_name</name>
+   </Item>
+   <Item type="Property" id="B3530F8DEB9D4796A5DEE0B3E03C243D" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>text</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">Template Name</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>3</sort_order>
+    <source_id keyed_name="SRE_DocumentType" type="ItemType" name="SRE_DocumentType">33DC4A555F4348608FC5BCD40459BF40</source_id>
+    <track_history>0</track_history>
+    <name>sre_templatename</name>
+   </Item>
+   <Item type="View" id="CA642DD3AABD48CFA5509F28CC19E28E" action="add">
+    <client>js</client>
+    <related_id keyed_name="SRE_DocumentType" type="Form">B3C7D59A7CDC422B96A5DAE125778AAE</related_id>
+    <role keyed_name="World" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>World</name>
+     </Item>
+    </role>
+    <show_ssvc>0</show_ssvc>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_DocumentType" type="ItemType" name="SRE_DocumentType">33DC4A555F4348608FC5BCD40459BF40</source_id>
+    <type>default</type>
+   </Item>
+   <Item type="Server Event" id="76F6FF7C42D348A4AE4216D19D955D2C" action="add">
+    <event_version>version_1</event_version>
+    <is_required>0</is_required>
+    <related_id keyed_name="SRE_StandardTemplates" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>SRE_StandardTemplates</name>
+     </Item>
+    </related_id>
+    <server_event>onAfterAdd</server_event>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_DocumentType" type="ItemType" name="SRE_DocumentType">33DC4A555F4348608FC5BCD40459BF40</source_id>
+   </Item>
+   <Item type="Server Event" id="325A5DF261F240F8B9CA798AC026EBAD" action="add">
+    <event_version>version_1</event_version>
+    <is_required>0</is_required>
+    <related_id keyed_name="SRE_updateTemplateFiles" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>SRE_updateTemplateFiles</name>
+     </Item>
+    </related_id>
+    <server_event>onAfterUpdate</server_event>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_DocumentType" type="ItemType" name="SRE_DocumentType">33DC4A555F4348608FC5BCD40459BF40</source_id>
+   </Item>
+   <Item type="ItemType Life Cycle" id="5E481E8AE55F4569A20901770AD842A2" action="add">
+    <related_id keyed_name="SRE_DocTypes" type="Life Cycle Map">21F7ED4DA1024CC6A3D9A261A4DBCABD</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_DocumentType" type="ItemType" name="SRE_DocumentType">33DC4A555F4348608FC5BCD40459BF40</source_id>
+   </Item>
+   <Item type="Allowed Workflow" id="81A9A5418B7A4B30B975D11566E68723" action="add">
+    <is_default>0</is_default>
+    <related_id keyed_name="SRE_documentPartReviewProcess" type="Workflow Map">F8800EE4A046482B95E931651F8853ED</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_DocumentType" type="ItemType" name="SRE_DocumentType">33DC4A555F4348608FC5BCD40459BF40</source_id>
+   </Item>
+   <Item type="TOC Access" id="009D716E6A06440EA285BBF525E1C65C" action="add">
+    <related_id keyed_name="SE5000 All Users" type="Identity">10FAC37B5B9541B88119DB67CEAFB1E7</related_id>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_DocumentType" type="ItemType" name="SRE_DocumentType">33DC4A555F4348608FC5BCD40459BF40</source_id>
+   </Item>
+   <Item type="Can Add" id="733C46674C3241C0B919E418B27F7B77" action="add">
+    <can_add>1</can_add>
+    <related_id keyed_name="SE5000 All Users" type="Identity">10FAC37B5B9541B88119DB67CEAFB1E7</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_DocumentType" type="ItemType" name="SRE_DocumentType">33DC4A555F4348608FC5BCD40459BF40</source_id>
+   </Item>
+   <Item type="Allowed Permission" id="B8365CBFE4004A4EA853C8DC63BE9433" action="add">
+    <is_default>1</is_default>
+    <related_id keyed_name="SRE DocType Proposed" type="Permission">EAA40A402A854B848D327BD65DAA2AAE</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_DocumentType" type="ItemType" name="SRE_DocumentType">33DC4A555F4348608FC5BCD40459BF40</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+ <Item type="ItemType" id="33DC4A555F4348608FC5BCD40459BF40" action="edit">
+  <Relationships>
+   <Item type="Property" action="edit" where="source_id='33DC4A555F4348608FC5BCD40459BF40' and name='classification'">
+    <column_alignment>left</column_alignment>
+    <data_type>string</data_type>
+    <default_value xml:lang="en">Regular</default_value>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">Classification</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_DocumentType" type="ItemType" name="SRE_DocumentType">33DC4A555F4348608FC5BCD40459BF40</source_id>
+    <stored_length>512</stored_length>
+    <track_history>0</track_history>
+    <name>classification</name>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='33DC4A555F4348608FC5BCD40459BF40' and name='created_by_id'">
+    <column_alignment>left</column_alignment>
+    <column_width>130</column_width>
+    <data_source keyed_name="User" type="ItemType" name="User">45E899CD2859442982EB22BB2DF683E5</data_source>
+    <data_type>item</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>1</is_required>
+    <item_behavior>float</item_behavior>
+    <label xml:lang="en">Created by</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>640</sort_order>
+    <source_id keyed_name="SRE_DocumentType" type="ItemType" name="SRE_DocumentType">33DC4A555F4348608FC5BCD40459BF40</source_id>
+    <track_history>0</track_history>
+    <name>created_by_id</name>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='33DC4A555F4348608FC5BCD40459BF40' and name='created_on'">
+    <column_alignment>left</column_alignment>
+    <column_width>160</column_width>
+    <data_type>date</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>1</is_required>
+    <label xml:lang="en">Created on</label>
+    <pattern>short_date_time</pattern>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>240</sort_order>
+    <source_id keyed_name="SRE_DocumentType" type="ItemType" name="SRE_DocumentType">33DC4A555F4348608FC5BCD40459BF40</source_id>
+    <track_history>0</track_history>
+    <name>created_on</name>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='33DC4A555F4348608FC5BCD40459BF40' and name='locked_by_id'">
+    <column_alignment>left</column_alignment>
+    <column_width>130</column_width>
+    <data_source keyed_name="User" type="ItemType" name="User">45E899CD2859442982EB22BB2DF683E5</data_source>
+    <data_type>item</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <item_behavior>float</item_behavior>
+    <label xml:lang="en">Locked by</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>220</sort_order>
+    <source_id keyed_name="SRE_DocumentType" type="ItemType" name="SRE_DocumentType">33DC4A555F4348608FC5BCD40459BF40</source_id>
+    <track_history>0</track_history>
+    <name>locked_by_id</name>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='33DC4A555F4348608FC5BCD40459BF40' and name='modified_by_id'">
+    <column_alignment>left</column_alignment>
+    <column_width>130</column_width>
+    <data_source keyed_name="User" type="ItemType" name="User">45E899CD2859442982EB22BB2DF683E5</data_source>
+    <data_type>item</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <item_behavior>float</item_behavior>
+    <label xml:lang="en">Modified by</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>250</sort_order>
+    <source_id keyed_name="SRE_DocumentType" type="ItemType" name="SRE_DocumentType">33DC4A555F4348608FC5BCD40459BF40</source_id>
+    <track_history>0</track_history>
+    <name>modified_by_id</name>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='33DC4A555F4348608FC5BCD40459BF40' and name='modified_on'">
+    <column_alignment>left</column_alignment>
+    <column_width>160</column_width>
+    <data_type>date</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">Modified on</label>
+    <pattern>short_date_time</pattern>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>260</sort_order>
+    <source_id keyed_name="SRE_DocumentType" type="ItemType" name="SRE_DocumentType">33DC4A555F4348608FC5BCD40459BF40</source_id>
+    <track_history>0</track_history>
+    <name>modified_on</name>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='33DC4A555F4348608FC5BCD40459BF40' and name='release_date'">
+    <column_alignment>left</column_alignment>
+    <column_width>160</column_width>
+    <data_type>date</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">Release Date</label>
+    <pattern>short_date_time</pattern>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>210</sort_order>
+    <source_id keyed_name="SRE_DocumentType" type="ItemType" name="SRE_DocumentType">33DC4A555F4348608FC5BCD40459BF40</source_id>
+    <track_history>0</track_history>
+    <name>release_date</name>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='33DC4A555F4348608FC5BCD40459BF40' and name='state'">
+    <column_alignment>left</column_alignment>
+    <data_type>string</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>1408</sort_order>
+    <source_id keyed_name="SRE_DocumentType" type="ItemType" name="SRE_DocumentType">33DC4A555F4348608FC5BCD40459BF40</source_id>
+    <stored_length>32</stored_length>
+    <track_history>0</track_history>
+    <name>state</name>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='33DC4A555F4348608FC5BCD40459BF40' and name='superseded_date'">
+    <column_alignment>left</column_alignment>
+    <data_type>date</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">Superseded Date</label>
+    <pattern>short_date_time</pattern>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>3712</sort_order>
+    <source_id keyed_name="SRE_DocumentType" type="ItemType" name="SRE_DocumentType">33DC4A555F4348608FC5BCD40459BF40</source_id>
+    <track_history>0</track_history>
+    <name>superseded_date</name>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='33DC4A555F4348608FC5BCD40459BF40' and name='team_id'">
+    <column_alignment>left</column_alignment>
+    <column_width>190</column_width>
+    <data_source keyed_name="Team" type="ItemType" name="Team">CC23F9130F574E7D99DF9659F27590A6</data_source>
+    <data_type>item</data_type>
+    <default_value xml:lang="en">E98D4C1AE26D43E1A9724323AF48F56D</default_value>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <item_behavior>float</item_behavior>
+    <label xml:lang="en">Team</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>200</sort_order>
+    <source_id keyed_name="SRE_DocumentType" type="ItemType" name="SRE_DocumentType">33DC4A555F4348608FC5BCD40459BF40</source_id>
+    <track_history>0</track_history>
+    <name>team_id</name>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

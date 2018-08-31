@@ -1,0 +1,22 @@
+﻿<AML>
+ <Item type="User" id="B86E66A9A5E54463873290AA84AE0279" action="add">
+  <default_vault keyed_name="Default" type="Vault">67BBB9204FE84A8981ED8313049BA06C</default_vault>
+  <email>mba@se5000.local</email>
+  <last_login_date>2018-07-09T13:19:42</last_login_date>
+  <login_name>MBA</login_name>
+  <logon_enabled>1</logon_enabled>
+  <owned_by_id>906EC14AB1B74BE5BFB5E8A8A65850F1</owned_by_id>
+  <pwd_is_set_on>2018-01-03T17:25:10</pwd_is_set_on>
+  <starting_page>InBasket Task</starting_page>
+  <first_name>Magnus</first_name>
+  <last_name>Barfvestam</last_name>
+  <Relationships>
+   <Item type="Alias" id="E183BD5D1F9D4B60B2B509ECC04ADFBD" action="add">
+    <from_date>2018-02-20T14:18:49</from_date>
+    <related_id keyed_name="Magnus Barfvestam" type="Identity">287F3F730829469AAC4B91920E192FF9</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="Magnus Barfvestam" type="User">B86E66A9A5E54463873290AA84AE0279</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

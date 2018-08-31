@@ -1,0 +1,68 @@
+﻿<AML>
+ <Item type="Life Cycle Map" id="8AC22D27CD3A43D38B95B8BADC5CFFF7" action="add">
+  <start_state keyed_name="In Work" type="Life Cycle State">0929975E3D6E4A73B1D86CEC328B16ED</start_state>
+  <name>SRE_ReleaseOrderLC</name>
+  <Relationships>
+   <Item type="Life Cycle State" id="0F82335A94024CA28540E8464ECD6015" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <item_behavior>fixed</item_behavior>
+    <label xml:lang="en">Closed</label>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrderLC" type="Life Cycle Map">8AC22D27CD3A43D38B95B8BADC5CFFF7</source_id>
+    <x>305</x>
+    <y>61</y>
+    <name>Closed</name>
+   </Item>
+   <Item type="Life Cycle State" id="908387F38DDE4397A4677A2EA8D57899" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <label xml:lang="en">In Release</label>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrderLC" type="Life Cycle Map">8AC22D27CD3A43D38B95B8BADC5CFFF7</source_id>
+    <x>183</x>
+    <y>62</y>
+    <name>In Release</name>
+   </Item>
+   <Item type="Life Cycle State" id="0929975E3D6E4A73B1D86CEC328B16ED" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrderLC" type="Life Cycle Map">8AC22D27CD3A43D38B95B8BADC5CFFF7</source_id>
+    <x>58</x>
+    <y>63</y>
+    <name>In Work</name>
+   </Item>
+   <Item type="Life Cycle Transition" id="7C257AE3300A449FB16BC49FBE27DE4D" action="add">
+    <from_state keyed_name="In Work" type="Life Cycle State">0929975E3D6E4A73B1D86CEC328B16ED</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="Aras PLM" type="Identity">56A96DA9E981481688563E2D14D5D878</role>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrderLC" type="Life Cycle Map">8AC22D27CD3A43D38B95B8BADC5CFFF7</source_id>
+    <to_state keyed_name="In Release" type="Life Cycle State">908387F38DDE4397A4677A2EA8D57899</to_state>
+   </Item>
+   <Item type="Life Cycle Transition" id="B3BC6DC97696411ABAD0E6C076F834B0" action="add">
+    <from_state keyed_name="In Release" type="Life Cycle State">908387F38DDE4397A4677A2EA8D57899</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="Aras PLM" type="Identity">56A96DA9E981481688563E2D14D5D878</role>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrderLC" type="Life Cycle Map">8AC22D27CD3A43D38B95B8BADC5CFFF7</source_id>
+    <to_state keyed_name="Closed" type="Life Cycle State">0F82335A94024CA28540E8464ECD6015</to_state>
+   </Item>
+   <Item type="Life Cycle Transition" id="D53B81FEBB164C00B0D69099AB3F1CCF" action="add">
+    <from_state keyed_name="In Release" type="Life Cycle State">908387F38DDE4397A4677A2EA8D57899</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="Aras PLM" type="Identity">56A96DA9E981481688563E2D14D5D878</role>
+    <segments>126,107</segments>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrderLC" type="Life Cycle Map">8AC22D27CD3A43D38B95B8BADC5CFFF7</source_id>
+    <to_state keyed_name="In Work" type="Life Cycle State">0929975E3D6E4A73B1D86CEC328B16ED</to_state>
+    <x>-90</x>
+    <y>48</y>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

@@ -1,0 +1,38 @@
+﻿<AML>
+ <Item type="Method" id="0F2CB89C247E4123B333CBB6A27E96A8" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[Innovator inn = this.getInnovator();
+
+Aras.Server.Security.Identity plmIdentity;
+bool permissionWasSet;
+string itemNumber = this.getProperty("sre_changeordernumber");
+string teamId = this.getProperty("team_id");
+string itemTypeUnique = this.getType(); 
+
+Item team = newItem("Team","get");
+team.setID(teamId);
+team=team.apply();
+
+string creator = this.getProperty("created_by_id");
+
+//Setting security
+plmIdentity = Aras.Server.Security.Identity.GetByName("Super User");
+permissionWasSet = Aras.Server.Security.Permissions.GrantIdentity(plmIdentity);
+
+team.setAction("update");
+team.setProperty("name", itemNumber + " " + itemTypeUnique + " Team");
+team.setProperty("created_by_id", creator);
+team = team.apply();
+
+var lockStatus = team.getLockStatus();
+if (lockStatus != 0) {team.unlockItem();}
+
+//Revoking the temp security
+if (permissionWasSet) 
+    Aras.Server.Security.Permissions.RevokeIdentity(plmIdentity);
+
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_updateTeam</name>
+ </Item>
+</AML>

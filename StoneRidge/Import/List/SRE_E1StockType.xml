@@ -1,0 +1,32 @@
+﻿<AML>
+ <Item type="List" id="5B124339BE3E4566AE7BBFBDDF1285D7" action="add">
+  <description>Stocktype for stoneridge</description>
+  <name>SRE_E1StockType</name>
+  <Relationships>
+   <Item type="Value" id="28466BE8777F42128DDD0A2C5BD0C109" action="add">
+    <label xml:lang="en">M</label>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_E1StockType" type="List">5B124339BE3E4566AE7BBFBDDF1285D7</source_id>
+    <value>M</value>
+   </Item>
+   <Item type="Value" id="FCECCEB9F84C4F8C9E801CF645C6AB13" action="add">
+    <label xml:lang="en">P</label>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_E1StockType" type="List">5B124339BE3E4566AE7BBFBDDF1285D7</source_id>
+    <value>P</value>
+   </Item>
+   <Item type="Value" id="247D76ACCE4F43B990E0041E5AB2BACC" action="add">
+    <label xml:lang="en">Q</label>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="SRE_E1StockType" type="List">5B124339BE3E4566AE7BBFBDDF1285D7</source_id>
+    <value>Q</value>
+   </Item>
+   <Item type="Value" id="FA99CB6D6BCE47579E553F6B42F49AE8" action="add">
+    <label xml:lang="en">S</label>
+    <sort_order>512</sort_order>
+    <source_id keyed_name="SRE_E1StockType" type="List">5B124339BE3E4566AE7BBFBDDF1285D7</source_id>
+    <value>S</value>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

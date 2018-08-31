@@ -1,0 +1,47 @@
+﻿<AML>
+ <Item type="Method" id="5F3684B869EB463BBA9D16FB63E32C16" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[Innovator inn = this.getInnovator();
+string docnumber = this.getProperty("item_number");
+string sequential=this.getProperty("sre_sequential");
+string classfication = this.getProperty("classification");  
+string rev = this.getProperty("sre_reviewlevel");
+string sql = "UPDATE DOCUMENT SET SRE_DOCUMENTNUMBER='"+docnumber+sequential+classfication+"' where ID='"+this.getID()+"'";
+    string on = inn.getUserID();
+    Item getUser = newItem("Alias","get");
+    getUser.setProperty("source_id",on);
+    getUser=getUser.apply();
+Item sqlres = inn.applySQL(sql);
+if(rev=="No Review")
+{
+    
+
+    
+    string id = getUser.getProperty("related_id");
+    string sql2 = "UPDATE DOCUMENT SET OWNED_BY_ID='"+id+"' where ID='"+this.getID()+"'";
+
+Item sqlres2 = inn.applySQL(sql2);
+    
+}
+else{
+   string id = getUser.getProperty("related_id");
+    string sql2 = "UPDATE DOCUMENT SET OWNED_BY_ID=' ' where ID='"+this.getID()+"'";
+ Item sqlres2 = inn.applySQL(sql2);
+}
+string BASE_PATH = "..\\Solutions\\SRE\\images\\";
+string image = BASE_PATH + "Error.png";
+string Warningimage = BASE_PATH + "Warning.png";
+string okImage = BASE_PATH + "Ok.png";
+string sreState = this.getProperty("sre_secure");
+
+if(sreState=="1")
+{
+    string sql1 = "UPDATE DOCUMENT SET THUMBNAIL='"+Warningimage+"' where ID='"+this.getID()+"'";
+    Item sqlres1= inn.applySQL(sql1);
+}
+
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_GenerateDocumentNumber</name>
+ </Item>
+</AML>

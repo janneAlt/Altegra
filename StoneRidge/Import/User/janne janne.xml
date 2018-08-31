@@ -1,0 +1,20 @@
+﻿<AML>
+ <Item type="User" id="39E32A2C5AA1436DADA110D5E40D11AE" action="add">
+  <default_vault keyed_name="Default" type="Vault">67BBB9204FE84A8981ED8313049BA06C</default_vault>
+  <last_login_date>2018-04-05T14:02:26</last_login_date>
+  <login_name>janne</login_name>
+  <logon_enabled>1</logon_enabled>
+  <owned_by_id>B539172499B64C3893FEA2000338FADC</owned_by_id>
+  <pwd_is_set_on>2018-02-20T16:10:10</pwd_is_set_on>
+  <first_name>janne</first_name>
+  <last_name>janne</last_name>
+  <Relationships>
+   <Item type="Alias" id="C531B9E2EEB744D1B9CA136C77D18E43" action="add">
+    <from_date>2018-02-20T14:18:49</from_date>
+    <related_id keyed_name="janne janne" type="Identity">05422BBF30CE46EC92410A5EF573DC1A</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="janne janne" type="User">39E32A2C5AA1436DADA110D5E40D11AE</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

@@ -1,0 +1,29 @@
+﻿<AML>
+ <Item type="SQL" id="5FDBA9D3BF3F4DEABA9EA5E2FE9AEAB8" action="add">
+  <execution_count>25</execution_count>
+  <execution_flag>immediate</execution_flag>
+  <old_name>MultiBom_GetCompleteBom1</old_name>
+  <sqlserver_body><![CDATA[CREATE PROCEDURE MultiBom_GetCompleteBom1 (@partId CHAR(32))
+AS
+BEGIN
+  SELECT *
+  INTO #completeBom
+  FROM MultiBom_GetCompleteBom2(@partId);
+
+  SELECT cb.level level, sp.id source_id,
+         pb.quantity quantity, pb.sort_order sort_order,
+         pb.reference_designator bom_ref_desg, pb.id bom_id,
+         rp.id related_id, rp.name related_name, rp.locked_by_id related_locked_by_id, rp.item_number related_item_number, rp.major_rev related_revision, rp.description related_description, rp.state related_state, rp.CLASSIFICATION related_classification, rp.GENERATION related_generation, rp.MAKE_BUY related_make_buy, rp.SRE_IDENTITY sre_identity , rp.SRE_PARTSTATE sre_partstate, rp.UNIT uom
+		 FROM #completeBom cb INNER JOIN PART sp ON cb.source_id=sp.id
+       INNER JOIN PART_BOM pb ON cb.id=pb.id
+       INNER JOIN PART rp ON cb.related_id=rp.id
+  ORDER BY cb.level, pb.sort_order
+
+  DROP TABLE #completeBom;
+END]]></sqlserver_body>
+  <stale>0</stale>
+  <transform_first>0</transform_first>
+  <type>procedure</type>
+  <name>MultiBom_GetCompleteBom1</name>
+ </Item>
+</AML>

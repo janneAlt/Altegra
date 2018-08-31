@@ -1,0 +1,67 @@
+﻿<AML>
+ <Item type="Form" id="7A94863A7BA54C51A693B1EFAEF6CB3D" action="add">
+  <category_form>0</category_form>
+  <height>234</height>
+  <stylesheet><![CDATA[../styles/default.css]]></stylesheet>
+  <width>699</width>
+  <name>SRE_Customer</name>
+  <Relationships>
+   <Item type="Body" id="8B7DBB32D43448EF8EF834DF92BED835" action="add">
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_Customer" type="Form">7A94863A7BA54C51A693B1EFAEF6CB3D</source_id>
+    <Relationships>
+     <Item type="Field" id="07706C1DEA3C4FD6A86F8FFBDA89802D" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>html</field_type>
+      <font_color>#000000</font_color>
+      <font_family />
+      <font_size />
+      <font_weight>bold</font_weight>
+      <html_code><![CDATA[<span id='ITEM_INFO_INTERNAL_SPAN'/>
+<script>
+  populate_ITEM_INFO_INTERNAL_SPAN = function()
+  {
+    document.getElementById('ITEM_INFO_INTERNAL_SPAN').innerHTML = aras.uiGetItemInfoTable(document.itemType);
+  }
+  window.addEventListener('load', populate_ITEM_INFO_INTERNAL_SPAN);
+</script>]]></html_code>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>358</sort_order>
+      <source_id keyed_name="8B7DBB32D43448EF8EF834DF92BED835" type="Body">8B7DBB32D43448EF8EF834DF92BED835</source_id>
+      <tab_stop>0</tab_stop>
+      <x>0</x>
+      <y>0</y>
+      <name>item_info</name>
+     </Item>
+     <Item type="Field" id="41B8EAFD047843A1973BF996AC7542B9" action="add">
+      <bg_color>beige  </bg_color>
+      <border_width>0</border_width>
+      <display_length>200</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">Name</label>
+      <label_position>left</label_position>
+      <list_no_blank>0</list_no_blank>
+      <propertytype_id keyed_name="name" type="Property">00747D265C064624B52A627570B2EBD2</propertytype_id>
+      <sort_order>128</sort_order>
+      <source_id keyed_name="8B7DBB32D43448EF8EF834DF92BED835" type="Body">8B7DBB32D43448EF8EF834DF92BED835</source_id>
+      <tab_index>10</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>189</x>
+      <y>10</y>
+      <name>name</name>
+     </Item>
+    </Relationships>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

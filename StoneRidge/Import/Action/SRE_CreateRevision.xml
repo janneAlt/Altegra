@@ -1,0 +1,15 @@
+﻿<AML>
+ <Item type="Action" id="02881B8D333445998B002A8C2FDB4D61" action="add">
+  <item_query>&lt;Item type="{@type}" action="get"&gt;&lt;id&gt;&lt;xsl:value-of select="@id" /&gt;&lt;/id&gt;&lt;/Item&gt;</item_query>
+  <label xml:lang="en">Revise</label>
+  <location>server</location>
+  <method keyed_name="SRE_ReviseItem" type="Method">
+   <Item type="Method" action="get" select="id">
+    <name>SRE_ReviseItem</name>
+   </Item>
+  </method>
+  <target>none</target>
+  <type>item</type>
+  <name>SRE_CreateRevision</name>
+ </Item>
+</AML>

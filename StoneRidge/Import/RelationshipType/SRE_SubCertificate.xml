@@ -1,0 +1,62 @@
+﻿<AML>
+ <Item type="RelationshipType" id="70D4C79532F942F2820548D2CAB05031" action="add" dependencyLevel="0">
+  <auto_search>1</auto_search>
+  <behavior>float</behavior>
+  <copy_permissions>0</copy_permissions>
+  <create_related>0</create_related>
+  <hide_in_all>0</hide_in_all>
+  <inc_rel_key_name>1</inc_rel_key_name>
+  <inc_related_key_name>1</inc_related_key_name>
+  <is_list_type>0</is_list_type>
+  <label xml:lang="en">Certificate</label>
+  <new_show_related>1</new_show_related>
+  <related_id keyed_name="SRE_Certificate" type="ItemType" name="SRE_Certificate">94354B694EB34056A75F2CE9393CFBFE</related_id>
+  <related_notnull>1</related_notnull>
+  <related_option>2</related_option>
+  <relationship_id keyed_name="SRE_SubCertificate" type="ItemType" name="SRE_SubCertificate">
+   <Item type="ItemType" id="B6FBA804DCE1400F8946BF6C747C4FA8" action="add">
+    <allow_private_permission>1</allow_private_permission>
+    <auto_search>0</auto_search>
+    <enforce_discovery>0</enforce_discovery>
+    <hide_where_used>0</hide_where_used>
+    <implementation_type>table</implementation_type>
+    <instance_data>SRE_SUBCERTIFICATE</instance_data>
+    <is_dependent>0</is_dependent>
+    <is_relationship>1</is_relationship>
+    <is_versionable>0</is_versionable>
+    <revisions keyed_name="Default" type="Revision">7FE395DD8B9F4E1090756A34B733D75E</revisions>
+    <show_parameters_tab>1</show_parameters_tab>
+    <structure_view>tabs off</structure_view>
+    <unlock_on_logout>0</unlock_on_logout>
+    <use_src_access>1</use_src_access>
+    <name>SRE_SubCertificate</name>
+    <Relationships>
+     <Item type="Property" id="5461E7D61E694CF4B8D45FFC191F6DA5" action="add">
+      <column_alignment>left</column_alignment>
+      <data_source keyed_name="SRE_CertificateType">EA0D648DE75442D4BFC6D8FEA66CB16F</data_source>
+      <data_type>list</data_type>
+      <is_hidden>0</is_hidden>
+      <is_hidden2>0</is_hidden2>
+      <is_indexed>0</is_indexed>
+      <is_keyed>0</is_keyed>
+      <is_multi_valued>0</is_multi_valued>
+      <is_required>0</is_required>
+      <label xml:lang="en">Additional Type</label>
+      <range_inclusive>0</range_inclusive>
+      <readonly>0</readonly>
+      <sort_order>3584</sort_order>
+      <source_id keyed_name="SRE_SubCertificate" type="ItemType" name="SRE_SubCertificate">B6FBA804DCE1400F8946BF6C747C4FA8</source_id>
+      <stored_length>256</stored_length>
+      <track_history>0</track_history>
+      <name>sre_certtype</name>
+     </Item>
+    </Relationships>
+   </Item>
+  </relationship_id>
+  <sort_order>128</sort_order>
+  <source_id keyed_name="SRE_Certificate" type="ItemType" name="SRE_Certificate">94354B694EB34056A75F2CE9393CFBFE</source_id>
+  <name>SRE_SubCertificate</name>
+ </Item>
+ <Item type="View" action="delete" where="source_id='B6FBA804DCE1400F8946BF6C747C4FA8'" />
+ <Item type="Form" action="delete" where="name='SRE_SubCertificate'" />
+</AML>

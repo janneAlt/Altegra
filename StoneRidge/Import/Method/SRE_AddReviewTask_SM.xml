@@ -1,0 +1,76 @@
+﻿<AML>
+ <Item type="Method" id="5F1BA95349DF4FE9905750B1446F44AA" action="add">
+  <comments>Interface that creates send To Task</comments>
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[// <copyright Method="SRE_AddReviewTask_SM" company="Stonerdige Electronics">
+// Copyright (c) 2018 All Rights Reserved
+// </copyright>
+// <author>Sudarshan Srinath</author>
+// <date>2/20/2018</date>
+// <summary>Interface that creates send To Task</summary>
+
+Innovator inn = this.getInnovator();
+Aras.Server.Security.Identity plmIdentity;
+bool permissionWasSet;
+plmIdentity = Aras.Server.Security.Identity.GetByName("Aras PLM");
+permissionWasSet = Aras.Server.Security.Permissions.GrantIdentity(plmIdentity);
+/********Step 1 Collect all variables from the javascript required to create a SendTo Task***********/
+   string msg = this.getProperty("message");
+   string docID = this.getProperty("doc");
+   string usr = this.getProperty("user");
+   string type = this.getProperty("type");
+/********End of Step 1***********/
+        
+         //Get Items like document, parts, product and validpartlist
+        Item getItemInfo = inn.getItemById(type,docID);
+        
+/********Step 2 Creating as send to task using above varibales from JS***********/        
+        Item createDocTask = newItem("SRE_DocumentReview","add");
+        createDocTask.setProperty("sre_task_description",msg);
+        createDocTask.setProperty("sre_touser",usr);
+        createDocTask.setProperty("sre_sendtoitem",getItemInfo.getProperty("keyed_name")+" of type "+type);
+        createDocTask =createDocTask.apply();
+/********End of Step 2***********/
+        
+
+/********Step 3 Create relations with applicable items as mentioned in the switch case, add case for any new Item***********/  
+        switch (type)
+        {
+        case "Document":
+        Item createDocTaskRel = newItem("SRE_Doc_RevRel","add");    
+        createDocTaskRel.setProperty("source_id",docID);
+        createDocTaskRel.setProperty("related_id",createDocTask.getID());
+        createDocTaskRel = createDocTaskRel.apply(); 
+        break;
+        
+        case "Part":
+        Item createPartTaskRel = newItem("SRE_Part_SendTo","add");    
+        createPartTaskRel.setProperty("source_id",docID);
+        createPartTaskRel.setProperty("related_id",createDocTask.getID());
+        createPartTaskRel = createPartTaskRel.apply(); 
+        break;
+        
+        case "SRE_Product":
+        Item createProductTaskRel = newItem("SRE_Product_SendTo","add");    
+        createProductTaskRel.setProperty("source_id",docID);
+        createProductTaskRel.setProperty("related_id",createDocTask.getID());
+        createProductTaskRel = createProductTaskRel.apply(); 
+        break;   
+        
+        case "SRE_Platform":
+        Item createPlatformTaskRel = newItem("SRE_Platform_SendTo","add");    
+        createPlatformTaskRel.setProperty("source_id",docID);
+        createPlatformTaskRel.setProperty("related_id",createDocTask.getID());
+        createPlatformTaskRel = createPlatformTaskRel.apply(); 
+        break; 
+        
+        }
+        
+/********End of Step 3***********/
+        if (permissionWasSet)
+    Aras.Server.Security.Permissions.RevokeIdentity(plmIdentity);
+return createDocTask;]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_AddReviewTask_SM</name>
+ </Item>
+</AML>

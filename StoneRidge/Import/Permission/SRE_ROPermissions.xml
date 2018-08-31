@@ -1,0 +1,41 @@
+﻿<AML>
+ <Item type="Permission" id="D03EB1365ABA485CA5A735DA1BACC56F" action="add">
+  <is_private>0</is_private>
+  <name>SRE_ROPermissions</name>
+  <Relationships>
+   <Item type="Access" id="4D4D6970E0144109BFB01CFF9BA9813D" action="add">
+    <can_change_access>1</can_change_access>
+    <can_delete>1</can_delete>
+    <can_discover>1</can_discover>
+    <can_get>1</can_get>
+    <can_update>1</can_update>
+    <related_id keyed_name="SRE_CoreUserGroup" type="Identity">93FA7BC57D0844329494BA5F70976DA4</related_id>
+    <show_permissions_warning>1</show_permissions_warning>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="SRE_ROPermissions" type="Permission">D03EB1365ABA485CA5A735DA1BACC56F</source_id>
+   </Item>
+   <Item type="Access" id="940A185D650249FBBA40C0346C89A707" action="add">
+    <can_change_access>0</can_change_access>
+    <can_delete>0</can_delete>
+    <can_discover>1</can_discover>
+    <can_get>1</can_get>
+    <can_update>1</can_update>
+    <related_id keyed_name="SE5000 All Users" type="Identity">10FAC37B5B9541B88119DB67CEAFB1E7</related_id>
+    <show_permissions_warning>0</show_permissions_warning>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_ROPermissions" type="Permission">D03EB1365ABA485CA5A735DA1BACC56F</source_id>
+   </Item>
+   <Item type="Access" id="ED65247281B049D3A763F8F7D3262656" action="add">
+    <can_change_access>1</can_change_access>
+    <can_delete>1</can_delete>
+    <can_discover>1</can_discover>
+    <can_get>1</can_get>
+    <can_update>1</can_update>
+    <related_id keyed_name="Administrators" type="Identity">2618D6F5A90949BAA7E920D1B04C7EE1</related_id>
+    <show_permissions_warning>1</show_permissions_warning>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_ROPermissions" type="Permission">D03EB1365ABA485CA5A735DA1BACC56F</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

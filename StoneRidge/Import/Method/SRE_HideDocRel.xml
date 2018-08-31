@@ -1,0 +1,26 @@
+﻿<AML>
+ <Item type="Method" id="5883EA3F7D364910953E594AFDD22B11" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[window.setDocTabVisilbe = function(isvisible)
+{
+  if(!parent.relationships || parent.relationships.relTabbar.GetTabOrder("|") === "")
+	{
+	  setTimeout("window.setDocTabVisilbe(" + isvisible + ")", 100);
+		return;
+	}
+	
+	var relshipId = top.aras.getRelationshipTypeId("SRE_ReviewAttach");
+	parent.relationships.relTabbar.SetTabVisible(relshipId , isvisible);
+}
+
+if (document.thisItem.getProperty("state","") != "In Review")
+		{
+			window.setDocTabVisilbe(false);
+			return;
+		}
+		
+	]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>SRE_HideDocRel</name>
+ </Item>
+</AML>

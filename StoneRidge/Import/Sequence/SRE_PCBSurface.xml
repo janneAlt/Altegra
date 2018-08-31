@@ -1,0 +1,10 @@
+﻿<AML>
+ <Item type="Sequence" id="0A01D1F414374A2BB6E3B52B823544F0" action="add">
+  <initial_value>0</initial_value>
+  <pad_to>6</pad_to>
+  <pad_with>0</pad_with>
+  <prefix>50</prefix>
+  <step>1</step>
+  <name>SRE_PCBSurface</name>
+ </Item>
+</AML>

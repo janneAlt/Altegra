@@ -1,0 +1,71 @@
+﻿<AML>
+ <Item type="Life Cycle Map" id="885378B115BD40FBB30361991E8DC1B8" action="add">
+  <start_state keyed_name="Review" type="Life Cycle State">2E8E34410B5B4A6CA2DC55E5C8B9030C</start_state>
+  <name>SRE_TaskReview</name>
+  <Relationships>
+   <Item type="Life Cycle State" id="BCB2CD62A709447AB0E90EFA3EB774B2" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <label xml:lang="en">Approved</label>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="SRE_TaskReview" type="Life Cycle Map">885378B115BD40FBB30361991E8DC1B8</source_id>
+    <x>149</x>
+    <y>82</y>
+    <name>Approved</name>
+   </Item>
+   <Item type="Life Cycle State" id="4CBEF96302B849F5BCF542A60EC3F837" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <label xml:lang="en">Rejected</label>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_TaskReview" type="Life Cycle Map">885378B115BD40FBB30361991E8DC1B8</source_id>
+    <x>112</x>
+    <y>156</y>
+    <name>Rejected</name>
+   </Item>
+   <Item type="Life Cycle State" id="2E8E34410B5B4A6CA2DC55E5C8B9030C" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <label xml:lang="en">Review</label>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_TaskReview" type="Life Cycle Map">885378B115BD40FBB30361991E8DC1B8</source_id>
+    <x>39</x>
+    <y>83</y>
+    <name>Review</name>
+   </Item>
+   <Item type="Life Cycle Transition" id="4BE857CE609E4B00A3E9FB85F305C7B9" action="add">
+    <from_state keyed_name="Review" type="Life Cycle State">2E8E34410B5B4A6CA2DC55E5C8B9030C</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="World" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>World</name>
+     </Item>
+    </role>
+    <segments />
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_TaskReview" type="Life Cycle Map">885378B115BD40FBB30361991E8DC1B8</source_id>
+    <to_state keyed_name="Approved" type="Life Cycle State">BCB2CD62A709447AB0E90EFA3EB774B2</to_state>
+    <x>39</x>
+    <y>-11</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="AA1EA3310A9F4B129BB1817951959D93" action="add">
+    <from_state keyed_name="Review" type="Life Cycle State">2E8E34410B5B4A6CA2DC55E5C8B9030C</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="World" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>World</name>
+     </Item>
+    </role>
+    <segments />
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_TaskReview" type="Life Cycle Map">885378B115BD40FBB30361991E8DC1B8</source_id>
+    <to_state keyed_name="Rejected" type="Life Cycle State">4CBEF96302B849F5BCF542A60EC3F837</to_state>
+    <x>15</x>
+    <y>56</y>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

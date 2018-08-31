@@ -1,0 +1,22 @@
+﻿<AML>
+ <Item type="User" id="68170DDE3B4E4033B87E0E8FFD9940D3" action="add">
+  <default_vault keyed_name="Default" type="Vault">67BBB9204FE84A8981ED8313049BA06C</default_vault>
+  <email>mml@se5000.local</email>
+  <last_login_date>2018-08-28T09:25:48</last_login_date>
+  <login_name>MML</login_name>
+  <logon_enabled>1</logon_enabled>
+  <owned_by_id>46E8F916225E4C4AB7D3808A5418B46D</owned_by_id>
+  <pwd_is_set_on>2018-01-03T17:26:40</pwd_is_set_on>
+  <starting_page>InBasket Task</starting_page>
+  <first_name>Mikael</first_name>
+  <last_name>Måhl</last_name>
+  <Relationships>
+   <Item type="Alias" id="F6FCF8C7872B4D64B1308071CC15EE18" action="add">
+    <from_date>2018-02-20T14:18:49</from_date>
+    <related_id keyed_name="Mikael Måhl" type="Identity">4F814642446C4FE688A916CF86707D2E</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="Mikael Måhl" type="User">68170DDE3B4E4033B87E0E8FFD9940D3</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

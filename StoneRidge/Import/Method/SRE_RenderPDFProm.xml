@@ -1,0 +1,25 @@
+﻿<AML>
+ <Item type="Method" id="DC9CEE60DBB64249B3710AAA4D5BEBA2" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[Innovator inn = this.getInnovator();
+
+
+    string srcFileName = this.getProperty("sre_sourcefile");
+    string viewableFl = this.getProperty("sre_viewable");
+    if(!string.IsNullOrEmpty(srcFileName) && string.IsNullOrEmpty(viewableFl) )
+    {
+        // return inn.newError("here"+srcFileName);
+   Item myItem = inn.applyMethod("SRE_GeneratePDFInReview","<src>"+srcFileName+"</src><itmnr>"+this.getProperty("item_number")+"</itmnr>");     
+    }
+    
+  
+    
+   
+
+
+
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_RenderPDFProm</name>
+ </Item>
+</AML>

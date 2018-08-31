@@ -1,0 +1,6 @@
+﻿<AML>
+ <Item type="Variable" id="1FDA91CAC97346A88C508A5CAFC54A8E" action="add">
+  <default_value>E:\BOM Export</default_value>
+  <name>SRE_BOMPATH</name>
+ </Item>
+</AML>

@@ -1,0 +1,12 @@
+﻿<AML>
+ <Item type="Identity" id="4F67AB19F7F84D72B6F173F9C46FDB89" action="add">
+  <is_alias>0</is_alias>
+  <name>SE5000 Software</name>
+  <Relationships />
+ </Item>
+ <Item type="Member" id="71877FF0B7A249788FC417D4DE18F600" action="add">
+  <related_id keyed_name="Clas Jönsson" type="Identity">742090B09ADB4E02B2176A262A3448C2</related_id>
+  <sort_order>128</sort_order>
+  <source_id keyed_name="SE5000 Software" type="Identity">4F67AB19F7F84D72B6F173F9C46FDB89</source_id>
+ </Item>
+</AML>

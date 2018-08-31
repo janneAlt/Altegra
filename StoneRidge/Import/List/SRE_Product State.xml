@@ -1,0 +1,20 @@
+﻿<AML>
+ <Item type="List" id="BE3308DAAE604A00B5E3D54F2A5C9B81" action="add">
+  <description>Product States</description>
+  <name>SRE_Product State</name>
+  <Relationships>
+   <Item type="Value" id="248F25686D444C46AA1CAC361C114099" action="add">
+    <label xml:lang="en">Design Phase</label>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_Product State" type="List">BE3308DAAE604A00B5E3D54F2A5C9B81</source_id>
+    <value>Design Phase</value>
+   </Item>
+   <Item type="Value" id="0801249C530049419E79E7E922DBE79D" action="add">
+    <label xml:lang="en">Production Phase</label>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_Product State" type="List">BE3308DAAE604A00B5E3D54F2A5C9B81</source_id>
+    <value>Production Phase</value>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

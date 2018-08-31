@@ -1,0 +1,106 @@
+﻿<AML>
+ <Item type="Method" id="AB4AABA044EA4036909B34743DA428CC" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[//System.Diagnostics.Debugger.Launch();
+
+// Get innovator
+Innovator inn = this.getInnovator();
+
+	
+// Get workflow process activity through id
+// then workflow process paths and activity assignments
+	
+String Aml = @"<AML>
+                  <Item type=""Workflow Process"" action=""get"">
+                    <Relationships>
+                      <Item type=""Workflow Process Activity"" action=""get"">
+                        <related_id>
+                          <Item type=""Activity"" id=""{0}"" action=""get"" />
+                        </related_id>
+                      </Item>
+                      <Item type=""Workflow Process Activity"" action=""get"">
+                        <related_id>
+                          <Item type=""Activity"" action=""get"">
+                            <Relationships>
+                              <Item type=""Workflow Process Path""></Item>
+                              <Item type=""Activity Assignment""></Item>
+                            </Relationships>
+                          </Item>
+                        </related_id>
+                      </Item>
+                    </Relationships>
+                  </Item>
+                </AML>";
+Aml = String.Format(Aml, this.getID());
+Item WorkflowProcess = inn.applyAML(Aml);
+
+// Get the Controlled Item 
+Item WItem = inn.newItem("Workflow", "get");
+WItem.setAttribute("where", String.Format("[Workflow].related_id = '{0}'", WorkflowProcess.getID()));
+WItem = WItem.apply();
+if (WItem.isError()) 
+{
+    return WItem;
+}
+
+// Get the poly Affected Items
+Item poly = inn.newItem(WItem.getPropertyAttribute("source_type", "name"), "get");
+poly.setID(WItem.getProperty("source_id"));
+poly = poly.apply();
+string pid = poly.getID();
+
+
+string itmId = poly.getProperty("sre_item","");
+// return inn.newError(itmId);
+
+
+
+string Path_one = "Quick Release";
+string Path_two = "Review";
+
+    // return inn.newError("here"+docID+partID+"document");
+         Item getSpecificAffected = newItem("SRE_PolyAffected","get");
+         getSpecificAffected.setProperty("id",itmId);
+         getSpecificAffected=getSpecificAffected.apply();
+         string itmReview = getSpecificAffected.getProperty("sre_reviewlevel");
+        //  return inn.newError(itmReview);
+switch(itmReview)
+{
+    case "No Review":
+
+Item qry1 = this.newItem("Workflow Process Path", "get");
+qry1.setProperty("source_id", this.getID());
+qry1.setProperty("name", Path_one);
+Item path1 = qry1.apply();
+path1.setAction("edit");
+path1.setProperty("is_default", "1");
+path1 = path1.apply();
+
+
+break;
+
+   case "Review":
+//  return inn.newError(docReviewType+"true");
+Item qry2 = this.newItem("Workflow Process Path", "get");
+qry2.setProperty("source_id", this.getID());
+qry2.setProperty("name", Path_two);
+Item path2 = qry2.apply();
+path2.setAction("edit");
+path2.setProperty("is_default", "1");
+path2 = path2.apply();
+
+
+break;
+
+    
+}
+
+
+
+
+
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_AutoNode_Document</name>
+ </Item>
+</AML>

@@ -1,0 +1,276 @@
+﻿<AML>
+ <Item type="Workflow Map" id="9D43761A6B954582BEF58830A55E80C5" action="add">
+  <description xml:lang="en" />
+  <node_bg_color>       </node_bg_color>
+  <node_label1_color>       </node_label1_color>
+  <node_label1_font />
+  <node_label2_color>       </node_label2_color>
+  <node_label2_font />
+  <node_name_color>       </node_name_color>
+  <node_name_font />
+  <node_size />
+  <process_owner keyed_name="Creator" type="Identity">
+   <Item type="Identity" action="get" select="id">
+    <name>Creator</name>
+   </Item>
+  </process_owner>
+  <transition_line_color>       </transition_line_color>
+  <transition_name_color>       </transition_name_color>
+  <transition_name_font />
+  <name>SRE_ReleaseOrder_new</name>
+  <Relationships>
+   <Item type="Workflow Map Activity" action="add">
+    <related_id keyed_name="Cancelled" type="Activity Template">
+     <Item type="Activity Template" id="D93744D653F447F093346647369FB129" action="add">
+      <can_delegate>0</can_delegate>
+      <can_refuse>0</can_refuse>
+      <consolidate_ondelegate>0</consolidate_ondelegate>
+      <expected_duration>0</expected_duration>
+      <icon>../images/Delete.svg</icon>
+      <is_auto>1</is_auto>
+      <is_end>0</is_end>
+      <is_start>0</is_start>
+      <message xml:lang="en">Workflow End</message>
+      <priority>1</priority>
+      <reminder_count>0</reminder_count>
+      <reminder_interval>0</reminder_interval>
+      <timeout_duration>0</timeout_duration>
+      <wait_for_all_inputs>0</wait_for_all_inputs>
+      <wait_for_all_votes>0</wait_for_all_votes>
+      <x>522</x>
+      <y>117</y>
+      <name>Cancelled</name>
+      <Relationships>
+       <Item type="Activity Template Transition" id="81A4BDE53A4E477E837DA65D70A1FB35" action="add">
+        <controlled_itemtype keyed_name="SRE_ReleaseOrder" type="ItemType" name="SRE_ReleaseOrder">DE163354405F43C7848493ECB595F6CE</controlled_itemtype>
+        <event>on_activate</event>
+        <related_id keyed_name="D53B81FEBB164C00B0D69099AB3F1CCF" type="Life Cycle Transition">D53B81FEBB164C00B0D69099AB3F1CCF</related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="Cancelled" type="Activity Template">D93744D653F447F093346647369FB129</source_id>
+       </Item>
+       <Item type="Workflow Map Path" id="CE774F85713C4A899C0AA51591F3978F" action="add">
+        <authentication>none</authentication>
+        <is_default>1</is_default>
+        <is_override>0</is_override>
+        <name>To In Work</name>
+        <related_id>A28A3D40F726457592D30E993BF53A6B</related_id>
+        <segments>346,124</segments>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="Cancelled" type="Activity Template">D93744D653F447F093346647369FB129</source_id>
+        <x>-139</x>
+        <y>11</y>
+       </Item>
+      </Relationships>
+     </Item>
+    </related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder_new" type="Workflow Map">9D43761A6B954582BEF58830A55E80C5</source_id>
+   </Item>
+   <Item type="Workflow Map Activity" action="add">
+    <related_id keyed_name="Start" type="Activity Template">
+     <Item type="Activity Template" id="EB744AD26A3A41F7A41F619CDBC6EE00" action="add">
+      <can_delegate>0</can_delegate>
+      <can_refuse>0</can_refuse>
+      <consolidate_ondelegate>0</consolidate_ondelegate>
+      <expected_duration>0</expected_duration>
+      <icon>../images/WorkflowStart.svg</icon>
+      <is_auto>1</is_auto>
+      <is_end>0</is_end>
+      <is_start>1</is_start>
+      <message xml:lang="en">Workflow Start</message>
+      <priority>2</priority>
+      <reminder_count>0</reminder_count>
+      <reminder_interval>0</reminder_interval>
+      <timeout_duration>0</timeout_duration>
+      <wait_for_all_inputs>0</wait_for_all_inputs>
+      <wait_for_all_votes>0</wait_for_all_votes>
+      <x>117</x>
+      <y>57</y>
+      <name>Start</name>
+      <Relationships>
+       <Item type="Workflow Map Path" id="9BE974DE1EC8421C84C2CCCEA7559B89" action="add">
+        <authentication>none</authentication>
+        <is_default>1</is_default>
+        <is_override>0</is_override>
+        <name>Auto</name>
+        <related_id>A28A3D40F726457592D30E993BF53A6B</related_id>
+        <segments />
+        <sort_order>128</sort_order>
+        <source_id keyed_name="Start" type="Activity Template">EB744AD26A3A41F7A41F619CDBC6EE00</source_id>
+        <x>0</x>
+        <y>0</y>
+       </Item>
+      </Relationships>
+     </Item>
+    </related_id>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder_new" type="Workflow Map">9D43761A6B954582BEF58830A55E80C5</source_id>
+   </Item>
+   <Item type="Workflow Map Activity" action="add">
+    <related_id keyed_name="In Work" type="Activity Template">
+     <Item type="Activity Template" id="A28A3D40F726457592D30E993BF53A6B" action="add">
+      <can_delegate>1</can_delegate>
+      <can_refuse>1</can_refuse>
+      <consolidate_ondelegate>0</consolidate_ondelegate>
+      <icon>../images/WorkflowNode.svg</icon>
+      <is_auto>0</is_auto>
+      <is_end>0</is_end>
+      <is_start>0</is_start>
+      <message xml:lang="en">Please Review...</message>
+      <wait_for_all_inputs>0</wait_for_all_inputs>
+      <wait_for_all_votes>0</wait_for_all_votes>
+      <x>257</x>
+      <y>57</y>
+      <name>In Work</name>
+      <Relationships>
+       <Item type="Activity Template Assignment" id="FA096D60B6FA4F0C8738956E1E482C33" action="add">
+        <related_id keyed_name="Creator" type="Identity">
+         <Item type="Identity" action="get" select="id">
+          <name>Creator</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="In Work" type="Activity Template">A28A3D40F726457592D30E993BF53A6B</source_id>
+        <is_required>0</is_required>
+        <for_all_members>0</for_all_members>
+        <voting_weight>100</voting_weight>
+       </Item>
+       <Item type="Activity Template EMail" id="017DBA453C5546599BAC728810579484" action="add">
+        <event>on_activate</event>
+        <related_id keyed_name="SRE_Notification_RO" type="EMail Message">F6B615E5CFD1415581E96C1FA49F6F6B</related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="In Work" type="Activity Template">A28A3D40F726457592D30E993BF53A6B</source_id>
+        <target>all_assignments</target>
+       </Item>
+       <Item type="Workflow Map Path" id="F654B11C513A44B7A6A6E493F008E1A4" action="add">
+        <authentication>none</authentication>
+        <is_default>0</is_default>
+        <is_override>0</is_override>
+        <name>To In Release</name>
+        <related_id>E53FC8131F7E4A48A2D0D94432FC7A59</related_id>
+        <segments />
+        <sort_order>128</sort_order>
+        <source_id keyed_name="In Work" type="Activity Template">A28A3D40F726457592D30E993BF53A6B</source_id>
+        <x>22</x>
+        <y>13</y>
+       </Item>
+      </Relationships>
+     </Item>
+    </related_id>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder_new" type="Workflow Map">9D43761A6B954582BEF58830A55E80C5</source_id>
+   </Item>
+   <Item type="Workflow Map Activity" action="add">
+    <related_id keyed_name="In Release" type="Activity Template">
+     <Item type="Activity Template" id="E53FC8131F7E4A48A2D0D94432FC7A59" action="add">
+      <can_delegate>1</can_delegate>
+      <can_refuse>1</can_refuse>
+      <consolidate_ondelegate>0</consolidate_ondelegate>
+      <icon>../images/WorkflowNode.svg</icon>
+      <is_auto>0</is_auto>
+      <is_end>0</is_end>
+      <is_start>0</is_start>
+      <message xml:lang="en">Release Preview</message>
+      <wait_for_all_inputs>0</wait_for_all_inputs>
+      <wait_for_all_votes>0</wait_for_all_votes>
+      <x>392</x>
+      <y>59</y>
+      <name>In Release</name>
+      <Relationships>
+       <Item type="Activity Template EMail" id="3D921536B8804247B5918C8A5D14CB56" action="add">
+        <event>on_activate</event>
+        <related_id keyed_name="SRE_Notification_RO" type="EMail Message">F6B615E5CFD1415581E96C1FA49F6F6B</related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="In Release" type="Activity Template">E53FC8131F7E4A48A2D0D94432FC7A59</source_id>
+        <target>all_assignments</target>
+       </Item>
+       <Item type="Activity Template Method" id="00934269E6054108859F2CA6B254C9E7" action="add">
+        <event>on_activate</event>
+        <related_id keyed_name="SRE_ChangeAssign" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>SRE_ChangeAssign</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="In Release" type="Activity Template">E53FC8131F7E4A48A2D0D94432FC7A59</source_id>
+       </Item>
+       <Item type="Activity Template Transition" id="2F8EC3D30B65414D92C2A567DBCB7731" action="add">
+        <controlled_itemtype keyed_name="SRE_ReleaseOrder" type="ItemType" name="SRE_ReleaseOrder">DE163354405F43C7848493ECB595F6CE</controlled_itemtype>
+        <event>on_activate</event>
+        <related_id keyed_name="7C257AE3300A449FB16BC49FBE27DE4D" type="Life Cycle Transition">7C257AE3300A449FB16BC49FBE27DE4D</related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="In Release" type="Activity Template">E53FC8131F7E4A48A2D0D94432FC7A59</source_id>
+       </Item>
+       <Item type="Workflow Map Path" id="F1B5506BD7F948198B48AF272308D9E8" action="add">
+        <authentication>none</authentication>
+        <is_default>0</is_default>
+        <is_override>0</is_override>
+        <name>Release</name>
+        <related_id>34F18840B1AE413B9EDE07BB79AC1324</related_id>
+        <segments />
+        <sort_order>128</sort_order>
+        <source_id keyed_name="In Release" type="Activity Template">E53FC8131F7E4A48A2D0D94432FC7A59</source_id>
+        <x>35</x>
+        <y>-29</y>
+       </Item>
+       <Item type="Workflow Map Path" id="7D22C44FCC674F6895890CD453EBC1F6" action="add">
+        <authentication>none</authentication>
+        <is_default>0</is_default>
+        <is_override>0</is_override>
+        <name>Reject</name>
+        <related_id>D93744D653F447F093346647369FB129</related_id>
+        <segments />
+        <sort_order>256</sort_order>
+        <source_id keyed_name="In Release" type="Activity Template">E53FC8131F7E4A48A2D0D94432FC7A59</source_id>
+        <x>80</x>
+        <y>25</y>
+       </Item>
+      </Relationships>
+     </Item>
+    </related_id>
+    <sort_order>512</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder_new" type="Workflow Map">9D43761A6B954582BEF58830A55E80C5</source_id>
+   </Item>
+   <Item type="Workflow Map Activity" action="add">
+    <related_id keyed_name="Closed" type="Activity Template">
+     <Item type="Activity Template" id="34F18840B1AE413B9EDE07BB79AC1324" action="add">
+      <can_delegate>0</can_delegate>
+      <can_refuse>0</can_refuse>
+      <consolidate_ondelegate>0</consolidate_ondelegate>
+      <icon>../Images/Checkmark.svg</icon>
+      <is_auto>1</is_auto>
+      <is_end>1</is_end>
+      <is_start>0</is_start>
+      <message xml:lang="en">Please Review...</message>
+      <wait_for_all_inputs>0</wait_for_all_inputs>
+      <wait_for_all_votes>0</wait_for_all_votes>
+      <x>519</x>
+      <y>18</y>
+      <name>Closed</name>
+      <Relationships>
+       <Item type="Activity Template Method" id="B4666ED9B0104BD2A162ADAF7003CA67" action="add">
+        <event>on_activate</event>
+        <related_id keyed_name="SRE_ChangeAssign" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>SRE_ChangeAssign</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="Closed" type="Activity Template">34F18840B1AE413B9EDE07BB79AC1324</source_id>
+       </Item>
+       <Item type="Activity Template Transition" id="6D11F1FC2E654239A7F95C7F85E85EAB" action="add">
+        <controlled_itemtype keyed_name="SRE_ReleaseOrder" type="ItemType" name="SRE_ReleaseOrder">DE163354405F43C7848493ECB595F6CE</controlled_itemtype>
+        <event>on_activate</event>
+        <related_id keyed_name="B3BC6DC97696411ABAD0E6C076F834B0" type="Life Cycle Transition">B3BC6DC97696411ABAD0E6C076F834B0</related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="Closed" type="Activity Template">34F18840B1AE413B9EDE07BB79AC1324</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+    </related_id>
+    <sort_order>640</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder_new" type="Workflow Map">9D43761A6B954582BEF58830A55E80C5</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

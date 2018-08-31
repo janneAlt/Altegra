@@ -1,0 +1,19 @@
+﻿<AML>
+ <Item type="Team" id="1B293801EC0D4FDBBBB44DD3B1565200" action="add">
+  <name>SRE_TemplateTeam</name>
+  <Relationships>
+   <Item type="Team Identity" id="82DB01379F1541AF83CEE03E62921B8E" action="add">
+    <related_id keyed_name="SE5000 All Users" type="Identity">10FAC37B5B9541B88119DB67CEAFB1E7</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_TemplateTeam" type="Team">1B293801EC0D4FDBBBB44DD3B1565200</source_id>
+    <team_role keyed_name="Reader" type="Identity">0F12B7716FE44CDF8192509B8C67A41F</team_role>
+   </Item>
+   <Item type="Team Identity" id="5620B280A1364FA2AAE500961D4A5307" action="add">
+    <related_id keyed_name="SE5000 All Users" type="Identity">10FAC37B5B9541B88119DB67CEAFB1E7</related_id>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_TemplateTeam" type="Team">1B293801EC0D4FDBBBB44DD3B1565200</source_id>
+    <team_role keyed_name="Editor" type="Identity">8F78DAAD4DE346AC86878E16720A63A0</team_role>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

@@ -1,0 +1,149 @@
+﻿<AML>
+ <Item type="Method" id="F4439C8A4A56476F8E2CAEB0F194E829" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[
+   Innovator inn = this.getInnovator();
+     string template = this.getProperty("sre_requiretemplate");
+     
+     if(template=="1")
+     {
+        var list = new List<string>();
+ string doctempid = this.getProperty("sre_doctyperef");
+ Item ur = inn.getItemById("User", inn.getUserID());
+
+// return inn.newError( ur.getProperty("last_name")+","+ur.getProperty("last_name"));
+
+   Item document = inn.newItem("SRE_DocumentType", "get");
+   document.setProperty("id", doctempid);
+   document = document.apply();
+
+   Item getDocFile = newItem("SRE_DocTypeTemplate", "get");
+   getDocFile.setProperty("source_id", document.getID());
+   getDocFile = getDocFile.apply();
+//   string documentnumber = inn.getNextSequence("SRE_DocumentNumbering");
+   int fCount = getDocFile.getItemCount();
+   for (int i = 0; i < fCount; i++)
+
+   {
+       string fID = getDocFile.getItemByIndex(i).getProperty("related_id");
+       Item getFilename = newItem("File", "get");
+       getFilename.setProperty("id", fID);
+       getFilename = getFilename.apply();
+       if(getFilename.getItemCount()<=0)
+       {
+           return inn.newError("Missing template in Document Type");
+       }
+
+       string TemplateFileName = getFilename.getProperty("filename");
+       
+
+
+
+       string partOne = fID.Substring(0, 1);
+       string PartTwo = fID.Substring(1, 2);
+       string PartThree = fID.Substring(3, 29);
+       // return inn.newError(PartThree);
+              Item vaultLoc = newItem("Variable","get");
+       vaultLoc.setProperty("name","SRE_VaultLocation");
+       vaultLoc = vaultLoc.apply();
+       string baseVault = vaultLoc.getProperty("value");
+       string templateFileNameTemplate = baseVault + @"\"+partOne+@"\"+PartTwo+@"\"+PartThree+@"\"+TemplateFileName;
+       Item foldLoc = newItem("Variable","get");
+       foldLoc.setProperty("name","SRE_DocTempLocation");
+       foldLoc = foldLoc.apply();
+       if(foldLoc.getProperty("value")=="")
+       {
+           return inn.newError("Export Folder Variable not set");
+       }
+       
+
+       string folder =foldLoc.getProperty("value");
+       
+
+       string targetFileName = folder +this.getProperty("item_number")+".docx";
+    //   return inn.newError(targetFileName);
+       //   string templateFileNameTemplate = folder + @"Standard template.docx";
+
+       //copy template file
+       if (File.Exists(targetFileName) == true) {
+           File.Delete(targetFileName);
+       }
+// return inn.newError(templateFileNameTemplate);
+       File.Copy(templateFileNameTemplate, targetFileName);
+
+       //open file
+       using(var file = WordprocessingDocument.Open(targetFileName, true)) {
+           //find the Date field within the header stream and replace it
+           string content = null;
+
+           using(StreamReader reader = new StreamReader(
+               file.MainDocumentPart.HeaderParts.First().GetStream())) {
+               content = reader.ReadToEnd();
+           }
+
+           Regex title = new Regex("SRE_DOCNUM");
+           Regex usernm = new Regex("SRE_USERNM");
+           Regex ver = new Regex("SRE_R");
+
+// try{
+           content = title.Replace(content, this.getProperty("item_number"));
+           content = ver.Replace(content, "01");
+           
+            // content = usernm.Replace(content, ur.getProperty("last_name")+","+ur.getProperty("last_name"));
+           
+// }
+// catch(Exception ex)
+// {
+    // return inn.newError("Template not qualified"+ex);
+    
+// }
+
+           using(StreamWriter writer = new StreamWriter(
+               file.MainDocumentPart.HeaderParts.First().GetStream(FileMode.Create))) {
+               writer.Write(content);
+           }
+
+           //save                
+           file.MainDocumentPart.Document.Save();
+        
+       }
+ 
+      Item myfile = inn.newItem("File", "add");
+      myfile.setProperty("filename", this.getProperty("item_number")+".docx");
+      myfile.attachPhysicalFile(targetFileName);
+      myfile = myfile.apply();
+     
+      string docid = document.getID();
+      string fileid = myfile.getProperty("id");
+      list.Add(fileid);
+    //   Item docfile = inn.newItem("Document File", "add");
+    //   docfile.setProperty("source_id", newDocument.getID());
+    //   docfile.setProperty("related_id", fileid);
+    //   docfile = docfile.apply();
+    
+    
+      
+      if(File.Exists(targetFileName))
+{
+    File.Delete(targetFileName);
+}
+
+   }
+
+
+   foreach(string fid in list)
+   {
+    
+    this.setProperty("sre_sourcefile",fid);
+    
+   }
+     }
+     else{
+         
+     }
+
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_generateFromTemplate</name>
+ </Item>
+</AML>

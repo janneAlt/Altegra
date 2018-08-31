@@ -1,0 +1,334 @@
+﻿<AML>
+ <Item type="Method" id="700B0964802B4C1B9B8CCB0CDCF2233A" action="add">
+  <comments>Method Generates a Template on creation of a document-Updated</comments>
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[// <copyright Method="SRE_genTempDoc" company="Stonerdige Electronics">
+// Copyright (c) 2018 All Rights Reserved
+// </copyright>
+// <author>Sudarshan Srinath</author>
+// <date>2/20/2018</date>
+// <summary>Method Generates a Template on creation of a document if sre_requiretemplate=1 and document type is selected</summary>
+
+Innovator inn = this.getInnovator();
+
+
+//Checking on creation of document if sre_requiretemplate=1 that is if user has chosen to generate a document based on a template in ARAS
+string template = this.getProperty("sre_requiretemplate");
+var docID = this.getID();
+//Global Item1  user to get the loggedin users last,first name
+Item user = inn.getItemById("User", inn.getUserID());
+string template = this.getProperty("sre_requiretemplate");
+ 
+ if(template=="0")
+ {
+     return this;
+ }
+
+// return inn.newError(this.getProperty("sre_doctyperef"));
+/********************Core Logic Begins Here***************************/                
+if (template == "1") 
+{
+                       
+               /********************Step 1 Fetch the template Item and access the template file ***************************/   
+                /*Fetching DocumentType Item to fetch secific document template, file associated and also to popluate word/excel document template with document type name*/
+                Item documentType = inn.getItemById("SRE_DocumentType", this.getProperty("sre_doctyperef"));
+                
+                /*Fetching Template File*/
+                Item getDocFile = newItem("SRE_DocTypeTemplate", "get");
+                getDocFile.setProperty("source_id", documentType.getID());
+                getDocFile = getDocFile.apply();
+                
+                //Fetching the template File ID
+                string templateFileID = getDocFile.getProperty("related_id");
+                
+                //Fetching the template File    
+                Item getFilename = newItem("File", "get");
+                getFilename.setProperty("id", templateFileID);
+                getFilename = getFilename.apply();
+                
+                //Checking if Document has a template File  
+                    if (getFilename.getItemCount() <= 0) 
+                    {
+                        return inn.newError("Missing template in Document Type");
+                    }
+                 //Getting the vault Path from a variable named SRE_VaultLocation
+                    Item vaultLoc = newItem("Variable", "get");
+                    vaultLoc.setProperty("name", "SRE_VaultLocation");
+                    vaultLoc = vaultLoc.apply();
+                     string vaultPath = vaultLoc.getProperty("value");
+                    //Getting License Path from a variable named SRE_VaultLocation
+                    Item licPath = newItem("Variable", "get");
+                    licPath.setProperty("name", "SRE_AsposeLic");
+                    licPath = licPath.apply();
+                    string licFileID = licPath.getProperty("value");
+                    if(licFileID=="")
+                    {return inn.newError("Variable SRE_AsposeLic is not set");}
+                     string licfolderFirst = licFileID.Substring(0, 1);
+                    string licfolderFirstSub = licFileID.Substring(1, 2);
+                    string licfolderFirstSubSub =licFileID.Substring(3, 29);     
+                    
+                    //Template File Path in the Vault
+                    string licFileVaultName = vaultPath + "\\" + licfolderFirst + "\\" + licfolderFirstSub + "\\" + licfolderFirstSubSub + "\\" + "Aspose.Total.lic";
+                    
+                    // return inn.newError(licFileVaultName);
+                    
+                    Item imgPath = newItem("Variable", "get");
+                    imgPath.setProperty("name", "SRE_SecureImagePath");
+                    imgPath = imgPath.apply();
+                    
+                    string BASE_PATH = imgPath.getProperty("value");
+                    
+                    if(BASE_PATH=="")
+                    {return inn.newError("variable SRE_SecureImagePath is not set");}
+                    
+                    
+                    
+                   
+                 //Generating the vault path location   
+                    string folderFirst = templateFileID.Substring(0, 1);
+                    string folderFirstSub = templateFileID.Substring(1, 2);
+                    string folderFirstSubSub =templateFileID.Substring(3, 29);     
+                    
+                    //Template File Path in the Vault
+                    string templateFileVaultName = vaultPath + "\\" + folderFirst + "\\" + folderFirstSub + "\\" + folderFirstSubSub + "\\" + getFilename.getProperty("filename");
+                    // Getting the file extension of the template
+                    string ext = Path.GetExtension(templateFileVaultName);
+             /********************End of Step 1 ***************************/   
+            
+             /********************Intermediary step for processing documents outside vault ***************************/    
+             
+            
+            //Getting path where a word/excel document will be processed outside the vault, operations live copy and delete can be perfomed outside vault
+            Item foldLoc = newItem("Variable", "get");
+            foldLoc.setProperty("name", "SRE_DocTempLocation");
+            foldLoc = foldLoc.apply();
+            //Check if the variable exists        
+            if (foldLoc.getProperty("value") == "") 
+            {
+                return inn.newError("Export Folder Variable not set");
+            }
+            //complete path of the document processing location
+            string folder = foldLoc.getProperty("value");
+    
+             /********************Intermediary step Ends Here ***************************/   
+             
+            /*********************** Step 2 Defining the output file: a Document may be in different formats like .dotm, doc(Legacy Document) and .dot to docx ***************************/
+                    //Setting new file name with full path for word document in variable targetFileName
+                    string targetFileName;
+                    if (ext == ".dotm" || ext == ".doc" || ext == ".docx" | ext == ".dot") 
+                    {
+                        targetFileName = folder + this.getProperty("item_number") + ".docx";
+                    } 
+                    //Setting new file name with full path for excel Documents
+                    
+                    else 
+                    {
+                        targetFileName = folder + this.getProperty("item_number") + ext;
+                        
+                    }
+            
+                    /*Checking if file with same name exists in the Document processing folder if it exists we delete so that we do not consume the wrong file; ensure if you have write permissions in the server folder*/
+                    if (File.Exists(targetFileName) == true) 
+                    {
+                        File.Delete(targetFileName);
+                    }
+                    //Create copy of the template file in the Document processing folder for checkin as a new document in ARAS
+                    File.Copy(templateFileVaultName, targetFileName);
+            /*********************** End of Step 2 ***************************/   
+            
+            
+                    /***************************Step 3A If the document is a word document with extension docx, update custom properties in the document. Aspose is used to update custom properties in the document
+                    Following are the Custom Properties in a Document and its corresponding aras property mapping
+                    1. sre_docType=documentType.getProperty("sre_name");
+                    2. sre_docNum= this.getProperty("item_number");
+                    3. sre_issuedBy = user.getProperty("last_name") + "," + user.getProperty("first_name"); refer Global Item 1 in the begning of the method
+                    4. sre_title = this.getProperty("name")/if name is blank adds a default value as "No Name defined in the Document"
+                    5. sre_docRev = "01" on before add will not have access to the documents revision as the revision is set after add is executed
+                    6. SRE_State(case is different here developers mistake)="preliminary" on before add will not have access to the documents state as the state is set after add is executed
+                    
+                    *To learn more about Aspose custom properties visit https://apireference.aspose.com/net/words/aspose.words.properties/
+                    *********************/
+                    
+                    
+                    if (Path.GetExtension(targetFileName) == ".docx") 
+                    
+        {
+                        /* Setting Aspose for word License before processing a document globally */
+                        Aspose.Words.License license = new Aspose.Words.License();
+                        license.SetLicense(licFileVaultName);
+                        /* License is Set */
+                        
+                        
+                        // Opening document in Aspose
+                        var asposeWordDocument = new Aspose.Words.Document(templateFileVaultName);
+                        asposeWordDocument.RemoveMacros();
+                        asposeWordDocument.Save(targetFileName, Aspose.Words.SaveFormat.Docx);
+            
+                        /**** updating custom properties***/
+                        Aspose.Words.Document doc = new Aspose.Words.Document(targetFileName);
+                        Aspose.Words.Properties.DocumentPropertyCollection customdocProps = doc.CustomDocumentProperties;
+            
+                        Aspose.Words.Properties.DocumentProperty type = customdocProps["sre_docType"];
+                        type.Value = documentType.getProperty("sre_name");
+            
+                        Aspose.Words.Properties.DocumentProperty number = customdocProps["sre_docNum"];
+                        number.Value = this.getProperty("item_number");
+            
+                        Aspose.Words.Properties.DocumentProperty issuedby = customdocProps["sre_issueBy"];
+                        issuedby.Value = user.getProperty("login_name");
+                        
+                        Aspose.Words.Properties.DocumentProperty title = customdocProps["sre_title"];
+                        title.Value = this.getProperty("name");
+                        
+                        Aspose.Words.Properties.DocumentProperty rev = customdocProps["sre_docRev"];
+                        rev.Value = "01";
+                        
+                        Aspose.Words.Properties.DocumentProperty state = customdocProps["SRE_State"];
+                        state.Value = "Preliminary";
+                        
+                        Aspose.Words.Properties.DocumentProperty configID = customdocProps["sre_config_id"];
+                        configID.Value = docID;
+                        
+                        Aspose.Words.Properties.DocumentProperty documentID = customdocProps["sre_document_id"];
+                        documentID.Value = docID;
+                      
+                       
+                        /****Stamp header with security classified image if sre_secure = 1****/
+                        
+                        //Setting the image path 
+                        
+                        string imgpth = BASE_PATH + "secure.png";
+                        
+                        //Accessing the header area of the document
+                        DocumentBuilder bldr = new DocumentBuilder(doc);
+                        bldr.MoveToHeaderFooter(HeaderFooterType.HeaderPrimary);
+                        
+                                 // checking condition if the document is secure upon creation
+                                 if(this.getProperty("sre_secure")=="1")
+                                 {           // Streaming Image to memory
+                                             byte[] imgbyt = File.ReadAllBytes(imgpth);
+                                             MemoryStream ms = new MemoryStream();
+                                             ms.Write(imgbyt, 0, imgbyt.Length);
+                                             
+                                             // Insert secure stamp in header 100,50 is the relative header position you can toggle these values to change location of stamp in header context.
+                                             Aspose.Words.Drawing.Shape shape = bldr.InsertImage(ms,RelativeHorizontalPosition.RightMargin, 100,RelativeVerticalPosition.BottomMargin,10 , -1, -1, WrapType.None);
+                                             shape.WrapType = WrapType.None;
+                                             shape.BehindText = false;
+                                            //  shape.AnchorLocked=true;
+                                            //  shape.RelativeHorizontalPosition = RelativeHorizontalPosition.LeftMargin;
+                                            //  shape.HorizontalAlignment = Aspose.Words.Drawing.HorizontalAlignment.Center;
+                                            //  shape.VerticalAlignment = Aspose.Words.Drawing.VerticalAlignment.Center;
+                                            //  shape.RelativeVerticalPosition = RelativeVerticalPosition.LeftMargin;
+                                 }
+                      
+                        /****Stamping Completed****/
+                        
+                        doc.UpdateFields();
+                         /**** End updating custom properties***/
+                         
+                        doc.Save(targetFileName, Aspose.Words.SaveFormat.Docx);
+                    
+        } 
+         /**** End of Step 3A***/  
+         
+         
+                    /***************************Step 3B If the document is a word document with extension xlsx, update Cells document. Aspose is used to update cells in the document
+                       Following are the Cell reference an excel document and its corresponding template sheet name DocInfo
+                    1. cell C3 = this.getProperty("sre_name");
+                    2. Cell C7 = user.getProperty("last_name") + "," + user.getProperty("first_name"); refer Global Item 1 in the begning of the method
+                    3. Cell J7 = this.getProperty("item_number"); 
+                    4. Cell M7 = "01" on before add will not have access to the documents revision as the revision is set after add is executed
+                    5. Cell C5 = "preliminary" on before add will not have access to the documents state as the state is set after add is executed
+                    6. Cell M3 = documentType.getProperty("sre_name");
+                    
+                    *To learn more about Aspose cells visit https://apireference.aspose.com/net/cells/aspose.cells/cells
+                    *********************/
+                    
+                    
+                    else if (Path.GetExtension(targetFileName) == ".xlsx")
+            
+                    {
+                         /* Setting Aspose for Cells License before processing a document globally */
+                        Aspose.Cells.License license = new Aspose.Cells.License();
+                        license.SetLicense(licFileVaultName);
+                        /* License Set */
+                        
+                        // Open the Excel file
+                        Workbook workbook = new Workbook(targetFileName);
+                        Aspose.Cells.Cells cells = workbook.Worksheets[0].Cells;
+                       
+                        Aspose.Cells.Cell title = cells["C5"];
+                        title.PutValue(this.getProperty("name"));
+      
+                        Aspose.Cells.Cell issuedBy = cells["C7"];
+                        issuedBy.PutValue(user.getProperty("login_name"));
+            
+                        Aspose.Cells.Cell docNo = cells["J7"];
+                        docNo.PutValue(this.getProperty("item_number"));
+            
+                        Aspose.Cells.Cell revision = cells["M7"];
+                        revision.PutValue("01");
+                        
+                        Aspose.Cells.Cell state = cells["C3"];
+                        state.PutValue("Preliminary");
+                        
+                         Aspose.Cells.Cell dctyp = cells["M3"];
+                        dctyp.PutValue(documentType.getProperty("sre_name"));
+                        
+                        //Setting the image path 
+                       
+                        string imgpth = BASE_PATH + "secure.png";
+                                    
+                                    if(this.getProperty("sre_secure")=="1")
+                                     {
+                                     //Streaming image to Memory     
+                                      byte[] imgBytes = File.ReadAllBytes(imgpth);
+                                      MemoryStream ms = new MemoryStream();
+                                      ms.Write(imgBytes, 0, imgBytes.Length);
+                                      int len = workbook.Worksheets.Count;
+                                      for(int bg=0; bg<len; bg++)
+                                      {
+                                      //Stamping document with secure stamp
+                                      workbook.Worksheets[bg].Pictures.Add(0, 5, ms);
+                                      }
+                                     }
+                        // workbook.Worksheets[0].Protect(Aspose.Cells.ProtectionType.All, "aspose", null);
+               
+            
+                        //Updating the excel Document
+                        workbook.CustomDocumentProperties.Add("sre_config_id",docID);
+                         workbook.CustomDocumentProperties.Add("sre_document_id",docID);
+                        workbook.Save(targetFileName, Aspose.Cells.SaveFormat.Xlsx);
+            
+                    }
+            
+            /**** End of Step 3B***/  
+            
+            
+            /**** Step 4 Cheking file To Aras ***/  
+                    
+                    //Creating newFile in ARAS
+                    Item myfile = inn.newItem("File", "add");
+                    myfile.setProperty("filename", this.getProperty("item_number") + Path.GetExtension(targetFileName));
+                    myfile.attachPhysicalFile(targetFileName);
+                    myfile = myfile.apply();
+                    
+                    //adding file reference to document property sre_sourcefile
+                    this.setProperty("sre_sourcefile", myfile.getProperty("id"));
+                    
+                    // Deleting the file from the document processing folder
+                    if (File.Exists(targetFileName)) 
+                    {
+                        File.Delete(targetFileName);
+                    }
+             /**** End of Step 4 ***/  
+            
+          
+} 
+
+
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_genTempDoc</name>
+ </Item>
+</AML>

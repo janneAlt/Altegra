@@ -1,0 +1,314 @@
+﻿<AML>
+ <Item type="ItemType" id="DE163354405F43C7848493ECB595F6CE" action="add">
+  <allow_private_permission>1</allow_private_permission>
+  <auto_search>0</auto_search>
+  <enforce_discovery>1</enforce_discovery>
+  <hide_where_used>0</hide_where_used>
+  <implementation_type>table</implementation_type>
+  <instance_data>SRE_RELEASEORDER</instance_data>
+  <is_dependent>0</is_dependent>
+  <is_relationship>0</is_relationship>
+  <is_versionable>0</is_versionable>
+  <label xml:lang="en">Release Order</label>
+  <label_plural xml:lang="en">Release Order</label_plural>
+  <large_icon>../Images/Attributes.svg</large_icon>
+  <open_icon>../Images/Attributes.svg</open_icon>
+  <revisions keyed_name="Default" type="Revision">7FE395DD8B9F4E1090756A34B733D75E</revisions>
+  <show_parameters_tab>1</show_parameters_tab>
+  <structure_view>tabs on</structure_view>
+  <unlock_on_logout>0</unlock_on_logout>
+  <use_src_access>0</use_src_access>
+  <name>SRE_ReleaseOrder</name>
+  <Relationships>
+   <Item type="Property" id="E0E00041DB954B64A409B2B9D208E6D7" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>130</column_width>
+    <data_source keyed_name="Identity" type="ItemType" name="Identity">E582AB17663F4EF28460015B2BE9E094</data_source>
+    <data_type>item</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <item_behavior>float</item_behavior>
+    <label xml:lang="en">Approver</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>180</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="ItemType" name="SRE_ReleaseOrder">DE163354405F43C7848493ECB595F6CE</source_id>
+    <track_history>0</track_history>
+    <name>sre_approver</name>
+   </Item>
+   <Item type="Property" id="9770BB0BBF894ED8B071EC0FA9F9747E" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>250</column_width>
+    <data_type>text</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">Descripton</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>160</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="ItemType" name="SRE_ReleaseOrder">DE163354405F43C7848493ECB595F6CE</source_id>
+    <track_history>0</track_history>
+    <name>sre_description</name>
+   </Item>
+   <Item type="Property" id="F0A79F0852FB4F719E92781692121976" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>70</column_width>
+    <data_source keyed_name="SRE_DocumentNumbering">105140142EE14B639D3CF5CF860653D2</data_source>
+    <data_type>sequence</data_type>
+    <default_value xml:lang="en" />
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <keyed_name_order>1</keyed_name_order>
+    <label xml:lang="en">ID</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>130</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="ItemType" name="SRE_ReleaseOrder">DE163354405F43C7848493ECB595F6CE</source_id>
+    <track_history>0</track_history>
+    <name>sre_id</name>
+   </Item>
+   <Item type="Property" id="0AF3C046698E478BA4EAE0C4E6491852" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>130</column_width>
+    <data_source keyed_name="Identity" type="ItemType" name="Identity">E582AB17663F4EF28460015B2BE9E094</data_source>
+    <data_type>item</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <item_behavior>float</item_behavior>
+    <label xml:lang="en">Reviewer</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>170</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="ItemType" name="SRE_ReleaseOrder">DE163354405F43C7848493ECB595F6CE</source_id>
+    <track_history>0</track_history>
+    <name>sre_reviewer</name>
+   </Item>
+   <Item type="View" id="E1554D9E64654BB09D90318103510D51" action="add">
+    <client>js</client>
+    <related_id keyed_name="SRE_ReleaseOrder" type="Form">DE995BC9C7134C638E709B0EA1B38D82</related_id>
+    <role keyed_name="World" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>World</name>
+     </Item>
+    </role>
+    <show_ssvc>0</show_ssvc>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="ItemType" name="SRE_ReleaseOrder">DE163354405F43C7848493ECB595F6CE</source_id>
+    <type>default</type>
+   </Item>
+   <Item type="Server Event" id="63008D2D0BCF4BC99F93A23561FBD4F2" action="add">
+    <event_version>version_1</event_version>
+    <is_required>0</is_required>
+    <related_id keyed_name="SRE_ReleaseOrderValidations" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>SRE_ReleaseOrderValidations</name>
+     </Item>
+    </related_id>
+    <server_event>onAfterAdd</server_event>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="ItemType" name="SRE_ReleaseOrder">DE163354405F43C7848493ECB595F6CE</source_id>
+   </Item>
+   <Item type="Server Event" id="DC28F0721A0A4530B5A74AB952D0830D" action="add">
+    <event_version>version_1</event_version>
+    <is_required>0</is_required>
+    <related_id keyed_name="SRE_ReleaseOrderValidations" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>SRE_ReleaseOrderValidations</name>
+     </Item>
+    </related_id>
+    <server_event>onAfterUpdate</server_event>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="ItemType" name="SRE_ReleaseOrder">DE163354405F43C7848493ECB595F6CE</source_id>
+   </Item>
+   <Item type="Server Event" id="EE3F9445A5324EA6925A082D6432DB77" action="add">
+    <event_version>version_1</event_version>
+    <is_required>0</is_required>
+    <related_id keyed_name="SRE_createChangeRel" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>SRE_createChangeRel</name>
+     </Item>
+    </related_id>
+    <server_event>onAfterUpdate</server_event>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="ItemType" name="SRE_ReleaseOrder">DE163354405F43C7848493ECB595F6CE</source_id>
+   </Item>
+   <Item type="Server Event" id="AAD8F5C3969C4CE1BC2FF3B3E95336CC" action="add">
+    <event_version>version_1</event_version>
+    <is_required>0</is_required>
+    <related_id keyed_name="SRE_createChangeRel" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>SRE_createChangeRel</name>
+     </Item>
+    </related_id>
+    <server_event>onBeforeAdd</server_event>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="ItemType" name="SRE_ReleaseOrder">DE163354405F43C7848493ECB595F6CE</source_id>
+   </Item>
+   <Item type="ItemType Life Cycle" id="77929A76231E4E8DB40FA6F3FF9883C2" action="add">
+    <related_id keyed_name="SRE_ReleaseOrderLC" type="Life Cycle Map">8AC22D27CD3A43D38B95B8BADC5CFFF7</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="ItemType" name="SRE_ReleaseOrder">DE163354405F43C7848493ECB595F6CE</source_id>
+   </Item>
+   <Item type="Allowed Workflow" id="B4DF7B66E1CF4DB088877EAC334A2DEB" action="add">
+    <is_default>1</is_default>
+    <related_id keyed_name="SRE_ReleaseOrder_new" type="Workflow Map">9D43761A6B954582BEF58830A55E80C5</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="ItemType" name="SRE_ReleaseOrder">DE163354405F43C7848493ECB595F6CE</source_id>
+   </Item>
+   <Item type="TOC Access" id="323566BF89C34EA38F22F0B9D5CD353D" action="add">
+    <related_id keyed_name="SE5000 All Users" type="Identity">10FAC37B5B9541B88119DB67CEAFB1E7</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="ItemType" name="SRE_ReleaseOrder">DE163354405F43C7848493ECB595F6CE</source_id>
+   </Item>
+   <Item type="Can Add" id="20D0B7DC4F914B63B771758296B1AF31" action="add">
+    <can_add>1</can_add>
+    <related_id keyed_name="SE5000 All Users" type="Identity">10FAC37B5B9541B88119DB67CEAFB1E7</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="ItemType" name="SRE_ReleaseOrder">DE163354405F43C7848493ECB595F6CE</source_id>
+   </Item>
+   <Item type="Allowed Permission" id="8622AC6467D843AEAE45E571EC7C6D93" action="add">
+    <is_default>1</is_default>
+    <related_id keyed_name="SRE_ROPermissions" type="Permission">D03EB1365ABA485CA5A735DA1BACC56F</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="ItemType" name="SRE_ReleaseOrder">DE163354405F43C7848493ECB595F6CE</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+ <Item type="ItemType" id="DE163354405F43C7848493ECB595F6CE" action="edit">
+  <Relationships>
+   <Item type="Property" action="edit" where="source_id='DE163354405F43C7848493ECB595F6CE' and name='created_by_id'">
+    <column_alignment>left</column_alignment>
+    <column_width>130</column_width>
+    <data_source keyed_name="User" type="ItemType" name="User">45E899CD2859442982EB22BB2DF683E5</data_source>
+    <data_type>item</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>1</is_required>
+    <item_behavior>float</item_behavior>
+    <label xml:lang="en">Created by</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>230</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="ItemType" name="SRE_ReleaseOrder">DE163354405F43C7848493ECB595F6CE</source_id>
+    <track_history>0</track_history>
+    <name>created_by_id</name>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='DE163354405F43C7848493ECB595F6CE' and name='created_on'">
+    <column_alignment>left</column_alignment>
+    <column_width>160</column_width>
+    <data_type>date</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>1</is_required>
+    <label xml:lang="en">Created on</label>
+    <pattern>short_date_time</pattern>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>240</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="ItemType" name="SRE_ReleaseOrder">DE163354405F43C7848493ECB595F6CE</source_id>
+    <track_history>0</track_history>
+    <name>created_on</name>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='DE163354405F43C7848493ECB595F6CE' and name='locked_by_id'">
+    <column_alignment>left</column_alignment>
+    <column_width>130</column_width>
+    <data_source keyed_name="User" type="ItemType" name="User">45E899CD2859442982EB22BB2DF683E5</data_source>
+    <data_type>item</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <item_behavior>float</item_behavior>
+    <label xml:lang="en">Locked by</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>220</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="ItemType" name="SRE_ReleaseOrder">DE163354405F43C7848493ECB595F6CE</source_id>
+    <track_history>0</track_history>
+    <name>locked_by_id</name>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='DE163354405F43C7848493ECB595F6CE' and name='modified_by_id'">
+    <column_alignment>left</column_alignment>
+    <column_width>130</column_width>
+    <data_source keyed_name="User" type="ItemType" name="User">45E899CD2859442982EB22BB2DF683E5</data_source>
+    <data_type>item</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <item_behavior>float</item_behavior>
+    <label xml:lang="en">Modified by</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>250</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="ItemType" name="SRE_ReleaseOrder">DE163354405F43C7848493ECB595F6CE</source_id>
+    <track_history>0</track_history>
+    <name>modified_by_id</name>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='DE163354405F43C7848493ECB595F6CE' and name='modified_on'">
+    <column_alignment>left</column_alignment>
+    <column_width>160</column_width>
+    <data_type>date</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">Modified on</label>
+    <pattern>short_date_time</pattern>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>260</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="ItemType" name="SRE_ReleaseOrder">DE163354405F43C7848493ECB595F6CE</source_id>
+    <track_history>0</track_history>
+    <name>modified_on</name>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='DE163354405F43C7848493ECB595F6CE' and name='state'">
+    <column_alignment>left</column_alignment>
+    <column_width>70</column_width>
+    <data_type>string</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">State</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>110</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="ItemType" name="SRE_ReleaseOrder">DE163354405F43C7848493ECB595F6CE</source_id>
+    <stored_length>32</stored_length>
+    <track_history>0</track_history>
+    <name>state</name>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

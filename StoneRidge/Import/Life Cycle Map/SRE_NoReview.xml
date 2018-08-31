@@ -1,0 +1,120 @@
+﻿<AML>
+ <Item type="Life Cycle Map" id="D946E3279C9E4BC29732AA8C9063ACB3" action="add">
+  <start_state keyed_name="Preliminary" type="Life Cycle State">DCA0DA9FB5E44EE89FB7CFA81C234F29</start_state>
+  <name>SRE_NoReview</name>
+  <Relationships>
+   <Item type="Life Cycle State" id="0598952C11754A61B08D5B3DBBAAEC6A" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <item_behavior>fixed</item_behavior>
+    <label xml:lang="en">Approved</label>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>1</set_not_lockable>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_NoReview" type="Life Cycle Map">D946E3279C9E4BC29732AA8C9063ACB3</source_id>
+    <state_permission_id keyed_name="SRE_reviewDocument" type="Permission">50B301D6F1094C7ABADE5476BD0EEEBC</state_permission_id>
+    <x>218</x>
+    <y>50</y>
+    <name>Approved</name>
+   </Item>
+   <Item type="Life Cycle State" id="DCA0DA9FB5E44EE89FB7CFA81C234F29" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_NoReview" type="Life Cycle Map">D946E3279C9E4BC29732AA8C9063ACB3</source_id>
+    <state_permission_id keyed_name="SRE_newDocument" type="Permission">14F1337D41C04B9892F13C0C6A402512</state_permission_id>
+    <x>68</x>
+    <y>51</y>
+    <name>Preliminary</name>
+   </Item>
+   <Item type="Life Cycle State" id="D305AB403E02453C8FC85919069EA504" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <item_behavior>fixed</item_behavior>
+    <label xml:lang="en">Released</label>
+    <set_is_released>1</set_is_released>
+    <set_not_lockable>1</set_not_lockable>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="SRE_NoReview" type="Life Cycle Map">D946E3279C9E4BC29732AA8C9063ACB3</source_id>
+    <state_permission_id keyed_name="SRE_releasedDocument" type="Permission">3A862F37C9824D20AE6D82E3B93C0182</state_permission_id>
+    <x>345</x>
+    <y>52</y>
+    <name>Released</name>
+   </Item>
+   <Item type="Life Cycle Transition" id="A239316E4D6C408DB0A29E1B1EDAA04C" action="add">
+    <from_state keyed_name="Approved" type="Life Cycle State">0598952C11754A61B08D5B3DBBAAEC6A</from_state>
+    <get_comment>0</get_comment>
+    <post_action keyed_name="SRE_UpdatePropPrel" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>SRE_UpdatePropPrel</name>
+     </Item>
+    </post_action>
+    <role keyed_name="SE5000 All Users" type="Identity">10FAC37B5B9541B88119DB67CEAFB1E7</role>
+    <segments>146,27</segments>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="SRE_NoReview" type="Life Cycle Map">D946E3279C9E4BC29732AA8C9063ACB3</source_id>
+    <to_state keyed_name="Preliminary" type="Life Cycle State">DCA0DA9FB5E44EE89FB7CFA81C234F29</to_state>
+    <x>-93</x>
+    <y>-39</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="C23FF505B5E743E3ABC6B122286C67F8" action="add">
+    <from_state keyed_name="Approved" type="Life Cycle State">0598952C11754A61B08D5B3DBBAAEC6A</from_state>
+    <get_comment>0</get_comment>
+    <post_action keyed_name="SRE_StampReleaseLC" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>SRE_StampReleaseLC</name>
+     </Item>
+    </post_action>
+    <role keyed_name="SE5000 All Users" type="Identity">10FAC37B5B9541B88119DB67CEAFB1E7</role>
+    <segments />
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_NoReview" type="Life Cycle Map">D946E3279C9E4BC29732AA8C9063ACB3</source_id>
+    <to_state keyed_name="Released" type="Life Cycle State">D305AB403E02453C8FC85919069EA504</to_state>
+    <x>29</x>
+    <y>10</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="C45BE9F3D0FC425B993AA7FADEEA67D7" action="add">
+    <from_state keyed_name="Approved" type="Life Cycle State">0598952C11754A61B08D5B3DBBAAEC6A</from_state>
+    <get_comment>0</get_comment>
+    <post_action keyed_name="SRE_StampReleaseLC" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>SRE_StampReleaseLC</name>
+     </Item>
+    </post_action>
+    <role keyed_name="Aras PLM" type="Identity">56A96DA9E981481688563E2D14D5D878</role>
+    <segments>295,18</segments>
+    <sort_order>512</sort_order>
+    <source_id keyed_name="SRE_NoReview" type="Life Cycle Map">D946E3279C9E4BC29732AA8C9063ACB3</source_id>
+    <to_state keyed_name="Released" type="Life Cycle State">D305AB403E02453C8FC85919069EA504</to_state>
+    <x>37</x>
+    <y>-14</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="DB0F76CA08D44A0484B911F5C160E9A3" action="add">
+    <from_state keyed_name="Released" type="Life Cycle State">D305AB403E02453C8FC85919069EA504</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="Maria Eriksson" type="Identity">02B5523B78DD41BF965CAFD37AB50A12</role>
+    <segments>225,140</segments>
+    <sort_order>640</sort_order>
+    <source_id keyed_name="SRE_NoReview" type="Life Cycle Map">D946E3279C9E4BC29732AA8C9063ACB3</source_id>
+    <to_state keyed_name="Preliminary" type="Life Cycle State">DCA0DA9FB5E44EE89FB7CFA81C234F29</to_state>
+    <x>-81</x>
+    <y>106</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="C0E36894EB8241729C61F9BD549165D8" action="add">
+    <from_state keyed_name="Preliminary" type="Life Cycle State">DCA0DA9FB5E44EE89FB7CFA81C234F29</from_state>
+    <get_comment>0</get_comment>
+    <post_action keyed_name="SRE_UpdatePropOnApprove" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>SRE_UpdatePropOnApprove</name>
+     </Item>
+    </post_action>
+    <role keyed_name="SE5000 All Users" type="Identity">10FAC37B5B9541B88119DB67CEAFB1E7</role>
+    <segments />
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_NoReview" type="Life Cycle Map">D946E3279C9E4BC29732AA8C9063ACB3</source_id>
+    <to_state keyed_name="Approved" type="Life Cycle State">0598952C11754A61B08D5B3DBBAAEC6A</to_state>
+    <x>30</x>
+    <y>11</y>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

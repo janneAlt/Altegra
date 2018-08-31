@@ -1,0 +1,301 @@
+﻿<AML>
+ <Item type="Form" id="EA372FB52F764FCEBB5344CE9C478D0B" action="add">
+  <category_form>0</category_form>
+  <description />
+  <height>234</height>
+  <stylesheet><![CDATA[../styles/default.css]]></stylesheet>
+  <width>699</width>
+  <name>SRE_DocumentStart</name>
+  <Relationships>
+   <Item type="Body" id="AC38EAB599B94DB083D7A263F8D869FA" action="add">
+    <bg_color>#FFFFFF</bg_color>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_DocumentStart" type="Form">EA372FB52F764FCEBB5344CE9C478D0B</source_id>
+    <Relationships>
+     <Item type="Field" id="B77B03D3659F482B855EFF934F8FAC3D" action="add">
+      <border_width>0</border_width>
+      <display_length>257</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>class structure</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">Review Level</label>
+      <label_position>left</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>1408</sort_order>
+      <source_id keyed_name="AC38EAB599B94DB083D7A263F8D869FA" type="Body">AC38EAB599B94DB083D7A263F8D869FA</source_id>
+      <tab_index>3798</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>192</x>
+      <y>92</y>
+      <name>classification</name>
+     </Item>
+     <Item type="Field" id="FDB08622C67545C388BC56D8F5187F79" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">generation</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>1792</sort_order>
+      <source_id keyed_name="AC38EAB599B94DB083D7A263F8D869FA" type="Body">AC38EAB599B94DB083D7A263F8D869FA</source_id>
+      <tab_index>2432</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>5</x>
+      <y>84</y>
+      <name>generation</name>
+     </Item>
+     <Item type="Field" id="6812010059EB41A6BDF613F770EB937F" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>html</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <html_code><![CDATA[<script>
+function getNumber() 
+{
+
+		if (document.forms[0].major_rev.value=="")
+		{
+			  
+				var newNum="";
+				newNum=top.aras.getNextSequence('','SRE_DocumentNumbering');
+				handleItemChange("item_number", newNum);
+			
+			
+
+		
+	}	
+
+}
+	
+</script>
+<a href="javascript:getNumber();"><img src="../images/Sequence.svg"  height="20" width="25" border="0" >
+</a>]]></html_code>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>512</sort_order>
+      <source_id keyed_name="AC38EAB599B94DB083D7A263F8D869FA" type="Body">AC38EAB599B94DB083D7A263F8D869FA</source_id>
+      <tab_stop>1</tab_stop>
+      <x>534</x>
+      <y>7</y>
+      <name>html0</name>
+     </Item>
+     <Item type="Field" id="4D51E0B89F384182B772209D45A330D3" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>html</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <html_code><![CDATA[<span id='ITEM_INFO_INTERNAL_SPAN'/>
+<script>
+  populate_ITEM_INFO_INTERNAL_SPAN = function()
+  {
+    document.getElementById('ITEM_INFO_INTERNAL_SPAN').innerHTML = aras.uiGetItemInfoTable(document.itemType);
+  }
+  window.addEventListener('load', populate_ITEM_INFO_INTERNAL_SPAN);
+</script>]]></html_code>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>1152</sort_order>
+      <source_id keyed_name="AC38EAB599B94DB083D7A263F8D869FA" type="Body">AC38EAB599B94DB083D7A263F8D869FA</source_id>
+      <tab_stop>1</tab_stop>
+      <x>0</x>
+      <y>0</y>
+      <name>html1</name>
+     </Item>
+     <Item type="Field" id="5007D25E79BA48048160AF9960C31072" action="add">
+      <bg_color>beige  </bg_color>
+      <border_width>0</border_width>
+      <display_length>256</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">ID</label>
+      <label_position>left</label_position>
+      <list_no_blank>0</list_no_blank>
+      <propertytype_id keyed_name="item_number" type="Property">2A0700C4954641F7A36B026F9134A0EC</propertytype_id>
+      <sort_order>256</sort_order>
+      <source_id keyed_name="AC38EAB599B94DB083D7A263F8D869FA" type="Body">AC38EAB599B94DB083D7A263F8D869FA</source_id>
+      <tab_index>128</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>251</x>
+      <y>7</y>
+      <name>item_number</name>
+     </Item>
+     <Item type="Field" id="478369FB55584D9389256CA5B0669BA3" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label xml:lang="en">Revision</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>640</sort_order>
+      <source_id keyed_name="AC38EAB599B94DB083D7A263F8D869FA" type="Body">AC38EAB599B94DB083D7A263F8D869FA</source_id>
+      <tab_index>256</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>746</x>
+      <y>64</y>
+      <name>major_rev</name>
+     </Item>
+     <Item type="Field" id="9CF8E96E6ABF4B96A89EB546A802FB54" action="add">
+      <border_width>0</border_width>
+      <display_length>256</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">Name</label>
+      <label_position>left</label_position>
+      <list_no_blank>0</list_no_blank>
+      <propertytype_id keyed_name="name" type="Property">364519C1348C4A57B88D142C3B1F538E</propertytype_id>
+      <sort_order>1536</sort_order>
+      <source_id keyed_name="AC38EAB599B94DB083D7A263F8D869FA" type="Body">AC38EAB599B94DB083D7A263F8D869FA</source_id>
+      <tab_index>150</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>232</x>
+      <y>26</y>
+      <name>name</name>
+     </Item>
+     <Item type="Field" id="479D3BD9876942209D497E9A04D63950" action="add">
+      <border_width>0</border_width>
+      <display_length>256</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>item</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">Document Template</label>
+      <label_position>left</label_position>
+      <list_no_blank>0</list_no_blank>
+      <propertytype_id keyed_name="sre_doctyperef" type="Property">A4DF5DAFC1BA4CDEA335BEEFB320E5E3</propertytype_id>
+      <sort_order>896</sort_order>
+      <source_id keyed_name="AC38EAB599B94DB083D7A263F8D869FA" type="Body">AC38EAB599B94DB083D7A263F8D869FA</source_id>
+      <tab_index>104864</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>153</x>
+      <y>45</y>
+      <name>sre_doctyperef</name>
+     </Item>
+     <Item type="Field" id="58D368DA280F4E5D8F35C3C122945B5A" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>checkbox</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">Generate From Template</label>
+      <label_position>left</label_position>
+      <list_no_blank>0</list_no_blank>
+      <propertytype_id keyed_name="sre_requiretemplate" type="Property">653B092AF4434FBCB2700E97D32B1A0A</propertytype_id>
+      <sort_order>1280</sort_order>
+      <source_id keyed_name="AC38EAB599B94DB083D7A263F8D869FA" type="Body">AC38EAB599B94DB083D7A263F8D869FA</source_id>
+      <tab_index>9900</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>133</x>
+      <y>72</y>
+      <name>sre_requiretemplate</name>
+     </Item>
+     <Item type="Field" id="158B235F687446A5A54435F51C80F25D" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>dropdown</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">Security Classified</label>
+      <label_position>left</label_position>
+      <list_no_blank>1</list_no_blank>
+      <propertytype_id keyed_name="sre_secure" type="Property">CDA6A46CC2B442F7BC8D2B833277AB9A</propertytype_id>
+      <sort_order>1664</sort_order>
+      <source_id keyed_name="AC38EAB599B94DB083D7A263F8D869FA" type="Body">AC38EAB599B94DB083D7A263F8D869FA</source_id>
+      <tab_index>180</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>289</x>
+      <y>70</y>
+      <name>sre_secure</name>
+     </Item>
+    </Relationships>
+   </Item>
+   <Item type="Form Event" id="2C1C709DD8DC48F7A183F9756B7121C2" action="add">
+    <form_event>onload</form_event>
+    <related_id keyed_name="SRE_HideDocRel" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>SRE_HideDocRel</name>
+     </Item>
+    </related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_DocumentStart" type="Form">EA372FB52F764FCEBB5344CE9C478D0B</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+ <Item type="Field" id="B77B03D3659F482B855EFF934F8FAC3D" action="edit">
+  <!-- Please note: this AML depends on the "Document" ItemType. Please make sure it exists before running this. -->
+  <propertytype_id>
+   <Item type="Property" action="get" select="id">
+    <name>classification</name>
+    <source_id type="ItemType" keyed_name="Document">B88C14B99EF449828C5D926E39EE8B89</source_id>
+   </Item>
+  </propertytype_id>
+ </Item>
+ <Item type="Field" id="FDB08622C67545C388BC56D8F5187F79" action="edit">
+  <!-- Please note: this AML depends on the "Document" ItemType. Please make sure it exists before running this. -->
+  <propertytype_id>
+   <Item type="Property" action="get" select="id">
+    <name>generation</name>
+    <source_id type="ItemType" keyed_name="Document">B88C14B99EF449828C5D926E39EE8B89</source_id>
+   </Item>
+  </propertytype_id>
+ </Item>
+ <Item type="Field" id="478369FB55584D9389256CA5B0669BA3" action="edit">
+  <!-- Please note: this AML depends on the "Document" ItemType. Please make sure it exists before running this. -->
+  <propertytype_id>
+   <Item type="Property" action="get" select="id">
+    <name>major_rev</name>
+    <source_id type="ItemType" keyed_name="Document">B88C14B99EF449828C5D926E39EE8B89</source_id>
+   </Item>
+  </propertytype_id>
+ </Item>
+</AML>

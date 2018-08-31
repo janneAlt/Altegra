@@ -1,0 +1,141 @@
+﻿<AML>
+ <Item type="Form" id="B18C440705C84640893EDB7FFB5D69B9" action="add">
+  <category_form>0</category_form>
+  <height>234</height>
+  <stylesheet><![CDATA[../styles/default.css]]></stylesheet>
+  <width>699</width>
+  <name>SRE_SendTOtask</name>
+  <Relationships>
+   <Item type="Body" id="49C376A9446F4B30AACFAD42D7E12CC4" action="add">
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_SendTOtask" type="Form">B18C440705C84640893EDB7FFB5D69B9</source_id>
+    <Relationships>
+     <Item type="Field" id="242A4394FFDE400884CBA533399D649D" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>textarea</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">Message</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>384</sort_order>
+      <source_id keyed_name="49C376A9446F4B30AACFAD42D7E12CC4" type="Body">49C376A9446F4B30AACFAD42D7E12CC4</source_id>
+      <tab_stop>1</tab_stop>
+      <textarea_cols>200</textarea_cols>
+      <textarea_rows>200</textarea_rows>
+      <x>211</x>
+      <y>103</y>
+      <name>sre_message</name>
+     </Item>
+     <Item type="Field" id="1145FB79D4334EEF96086A59EF8C29B1" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>button</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">Search User</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>128</sort_order>
+      <source_id keyed_name="49C376A9446F4B30AACFAD42D7E12CC4" type="Body">49C376A9446F4B30AACFAD42D7E12CC4</source_id>
+      <tab_stop>1</tab_stop>
+      <x>206</x>
+      <y>49</y>
+      <name>SRE_SearchID</name>
+      <Relationships>
+       <Item type="Field Event" id="40011A272C024D8C8E3D66581C7A43B4" action="add">
+        <field_event>onclick</field_event>
+        <related_id keyed_name="sre_searchUser" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>sre_searchUser</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="SRE_SearchID" type="Field">1145FB79D4334EEF96086A59EF8C29B1</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="6B258FA7F94247FEBF36884AC99D2A11" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>button</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">Send</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>512</sort_order>
+      <source_id keyed_name="49C376A9446F4B30AACFAD42D7E12CC4" type="Body">49C376A9446F4B30AACFAD42D7E12CC4</source_id>
+      <tab_stop>1</tab_stop>
+      <x>460</x>
+      <y>205</y>
+      <name>sre_send</name>
+      <Relationships>
+       <Item type="Field Event" id="578002BA08704268A1DC18F15ED00983" action="add">
+        <field_event>onclick</field_event>
+        <related_id keyed_name="sre_sendMethod_CM" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>sre_sendMethod_CM</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="sre_send" type="Field">6B258FA7F94247FEBF36884AC99D2A11</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+     <Item type="Field" id="95A03385559F48BDA214B1DD30DF955E" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>1</is_disabled>
+      <is_visible>1</is_visible>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>256</sort_order>
+      <source_id keyed_name="49C376A9446F4B30AACFAD42D7E12CC4" type="Body">49C376A9446F4B30AACFAD42D7E12CC4</source_id>
+      <tab_stop>1</tab_stop>
+      <x>304</x>
+      <y>50</y>
+      <name>sre_user</name>
+     </Item>
+     <Item type="Field" id="D5EA29A555B940E9B92363525886DA54" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>0</is_visible>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>640</sort_order>
+      <source_id keyed_name="49C376A9446F4B30AACFAD42D7E12CC4" type="Body">49C376A9446F4B30AACFAD42D7E12CC4</source_id>
+      <tab_stop>1</tab_stop>
+      <x>433</x>
+      <y>48</y>
+      <name>sre_userid</name>
+     </Item>
+    </Relationships>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

@@ -1,0 +1,57 @@
+﻿<AML>
+ <Item type="Method" id="E3A9611A2EB94677B0D9EDB8A2E8EB1C" action="add">
+  <comments>Adds a Reporting document to a Released Part</comments>
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[// <copyright Method="SRE_AddReportingDoc" company="Stonerdige Electronics">
+// Copyright (c) 2018 All Rights Reserved
+// </copyright>
+// <author>Sudarshan Srinath</author>
+// <date>2/20/2018</date>
+// <summary>Adds a Reporting document to a Released Part Javascript</summary>
+// Used in action SRE_AddReportingDocToPart
+
+var params = {};
+//Get State of the cuuret item and check it it is released, if not do not allow the user to perform the action
+var state = this.getProperty("state");
+if(state!=="Released")
+{
+    
+    return alert("this action can only be performed on a released Part");
+}
+// Set parameters for search dialog box with all documents in the system
+params.aras = top.aras;
+params.itemtypeName = 'Document';
+params.multiselect = false;
+params.partId = this.getID();
+params.type = 'SearchDialog';
+var aWindow = top.aras.getMainWindow() == window.top ? top.aras.getMainWindow() : window;
+//show the dialog box
+aWindow.ArasModules.MaximazableDialog.show('iframe', params).promise.then(function(dlgRes) {
+	if (!dlgRes) {
+		return;
+	}
+	relatePlaceholder(dlgRes, params);
+	window.res = dlgRes;
+});
+/******Core Logic******/
+// Process part and documents id in interface method called SRE_AddReportingDoc_SM
+function relatePlaceholder(res, params) {
+    var innovator = top.aras.newIOMInnovator();
+	var r = innovator.applyMethod("SRE_AddReportingDoc_SM",
+	    "<partId>" + params.partId + "</partId><placeholderId>" + res.itemID + "</placeholderId>");
+	if (r.isError()) {
+        top.aras.AlertError(r.getErrorString());
+        return;
+    }
+/******Logic ends here******/    
+// Alert User on Completion
+    alert("Document Added To Part");
+    
+ 	if (top.aras.uiFindWindowEx(res_id)) {
+ 		top.aras.uiReShowItemEx(res_id, r.node, 'tab view');
+ 	}
+}]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>SRE_AddReportingDoc</name>
+ </Item>
+</AML>

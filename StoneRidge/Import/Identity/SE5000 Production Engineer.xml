@@ -1,0 +1,12 @@
+﻿<AML>
+ <Item type="Identity" id="6B8AB153B8E0475A863E5CAAA480C470" action="add">
+  <is_alias>0</is_alias>
+  <name>SE5000 Production Engineer</name>
+  <Relationships />
+ </Item>
+ <Item type="Member" id="E24E5CD41BE549D4A2392FA4B8CB0816" action="add">
+  <related_id keyed_name="Anders Klingståhl" type="Identity">91C6F2B0CC824E1EB0945BCFAFEB6186</related_id>
+  <sort_order>128</sort_order>
+  <source_id keyed_name="SE5000 Production Engineer" type="Identity">6B8AB153B8E0475A863E5CAAA480C470</source_id>
+ </Item>
+</AML>

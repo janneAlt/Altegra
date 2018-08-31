@@ -1,0 +1,19 @@
+﻿<AML>
+ <Item type="List" id="3F569A83FBDA4718A377A9CAB0F48912" action="add">
+  <name>SRE_ReviewDec</name>
+  <Relationships>
+   <Item type="Value" id="7FC24E8DEB494F6C8D775A33DFD898E5" action="add">
+    <label xml:lang="en">No Review</label>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_ReviewDec" type="List">3F569A83FBDA4718A377A9CAB0F48912</source_id>
+    <value>No Review</value>
+   </Item>
+   <Item type="Value" id="6BC4D787AC26449B88BCDDB940B64113" action="add">
+    <label xml:lang="en">Review</label>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_ReviewDec" type="List">3F569A83FBDA4718A377A9CAB0F48912</source_id>
+    <value>Review</value>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

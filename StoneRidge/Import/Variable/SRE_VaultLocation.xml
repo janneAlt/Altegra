@@ -1,0 +1,6 @@
+﻿<AML>
+ <Item type="Variable" id="90AEC3913F0E43378844F8BD93A7F308" action="add">
+  <default_value>E:\Aras\Vault\SE5000Prod</default_value>
+  <name>SRE_VaultLocation</name>
+ </Item>
+</AML>

@@ -1,0 +1,8 @@
+﻿<AML>
+ <Item type="Identity" id="0F12B7716FE44CDF8192509B8C67A41F" action="add">
+  <classification>Team</classification>
+  <description>Reader</description>
+  <is_alias>0</is_alias>
+  <name>Reader</name>
+ </Item>
+</AML>

@@ -1,0 +1,172 @@
+﻿<AML>
+ <Item type="RelationshipType" id="65756BD26CB749ACAAE2893408CE016D" action="add" dependencyLevel="0">
+  <auto_search>1</auto_search>
+  <behavior>float</behavior>
+  <copy_permissions>0</copy_permissions>
+  <create_related>0</create_related>
+  <grid_view>right</grid_view>
+  <hide_in_all>0</hide_in_all>
+  <inc_rel_key_name>1</inc_rel_key_name>
+  <inc_related_key_name>1</inc_related_key_name>
+  <is_list_type>0</is_list_type>
+  <label xml:lang="en">Templates</label>
+  <max_occurs>1</max_occurs>
+  <new_show_related>0</new_show_related>
+  <related_id keyed_name="File" type="ItemType" name="File">8052A558B9084D41B9F11805E464F443</related_id>
+  <related_notnull>1</related_notnull>
+  <related_option>1</related_option>
+  <relationship_id keyed_name="SRE_DocTypeTemplate" type="ItemType" name="SRE_DocTypeTemplate">
+   <Item type="ItemType" id="9AEB574E23604EE2A4E4586F79DE6998" action="add">
+    <allow_private_permission>1</allow_private_permission>
+    <auto_search>0</auto_search>
+    <enforce_discovery>0</enforce_discovery>
+    <hide_where_used>0</hide_where_used>
+    <implementation_type>table</implementation_type>
+    <instance_data>SRE_DOCTYPETEMPLATE</instance_data>
+    <is_dependent>0</is_dependent>
+    <is_relationship>1</is_relationship>
+    <is_versionable>0</is_versionable>
+    <revisions keyed_name="Default" type="Revision">7FE395DD8B9F4E1090756A34B733D75E</revisions>
+    <show_parameters_tab>1</show_parameters_tab>
+    <structure_view>tabs off</structure_view>
+    <unlock_on_logout>0</unlock_on_logout>
+    <use_src_access>1</use_src_access>
+    <name>SRE_DocTypeTemplate</name>
+    <Relationships>
+     <Item type="Property" id="E083CDD53CF84F05BE9D9C84B105F306" action="add">
+      <column_alignment>left</column_alignment>
+      <data_source keyed_name="SRE_DocumentType" type="ItemType" name="SRE_DocumentType">33DC4A555F4348608FC5BCD40459BF40</data_source>
+      <data_type>item</data_type>
+      <is_hidden>1</is_hidden>
+      <is_hidden2>1</is_hidden2>
+      <is_indexed>0</is_indexed>
+      <is_keyed>0</is_keyed>
+      <is_multi_valued>0</is_multi_valued>
+      <is_required>0</is_required>
+      <label xml:lang="en">BasedOn</label>
+      <range_inclusive>0</range_inclusive>
+      <readonly>0</readonly>
+      <sort_order>3712</sort_order>
+      <source_id keyed_name="SRE_DocTypeTemplate" type="ItemType" name="SRE_DocTypeTemplate">9AEB574E23604EE2A4E4586F79DE6998</source_id>
+      <track_history>0</track_history>
+      <name>sre_basedon</name>
+     </Item>
+     <Item type="Property" id="20115EFC89934B7A80FA98F645E1B716" action="add">
+      <column_alignment>left</column_alignment>
+      <data_source>
+       <Item type="Property" action="get" select="id">
+        <name>sre_basedon</name>
+        <source_id>9AEB574E23604EE2A4E4586F79DE6998</source_id>
+       </Item>
+      </data_source>
+      <data_type>foreign</data_type>
+      <foreign_property>
+       <Item type="Property" action="get" select="id">
+        <keyed_name>config_id</keyed_name>
+        <source_id>
+         <Item type="ItemType" action="get" select="id">
+          <name>SRE_DocumentType</name>
+         </Item>
+        </source_id>
+       </Item>
+      </foreign_property>
+      <is_hidden>0</is_hidden>
+      <is_hidden2>0</is_hidden2>
+      <is_indexed>0</is_indexed>
+      <is_keyed>0</is_keyed>
+      <is_multi_valued>0</is_multi_valued>
+      <is_required>0</is_required>
+      <label xml:lang="en">Based On Template</label>
+      <range_inclusive>0</range_inclusive>
+      <readonly>1</readonly>
+      <sort_order>3840</sort_order>
+      <source_id keyed_name="SRE_DocTypeTemplate" type="ItemType" name="SRE_DocTypeTemplate">9AEB574E23604EE2A4E4586F79DE6998</source_id>
+      <track_history>0</track_history>
+      <name>sre_bci</name>
+     </Item>
+     <Item type="Property" id="3B286E1E5570485C88571AC02BFA08D3" action="add">
+      <column_alignment>left</column_alignment>
+      <data_source>
+       <Item type="Property" action="get" select="id">
+        <name>related_id</name>
+        <source_id>9AEB574E23604EE2A4E4586F79DE6998</source_id>
+       </Item>
+      </data_source>
+      <data_type>foreign</data_type>
+      <foreign_property>
+       <Item type="Property" action="get" select="id">
+        <keyed_name>keyed_name</keyed_name>
+        <source_id>
+         <Item type="ItemType" action="get" select="id">
+          <name>File</name>
+         </Item>
+        </source_id>
+       </Item>
+      </foreign_property>
+      <is_hidden>0</is_hidden>
+      <is_hidden2>0</is_hidden2>
+      <is_indexed>0</is_indexed>
+      <is_keyed>0</is_keyed>
+      <is_multi_valued>0</is_multi_valued>
+      <is_required>0</is_required>
+      <label xml:lang="en">File Name</label>
+      <range_inclusive>0</range_inclusive>
+      <readonly>0</readonly>
+      <sort_order>1</sort_order>
+      <source_id keyed_name="SRE_DocTypeTemplate" type="ItemType" name="SRE_DocTypeTemplate">9AEB574E23604EE2A4E4586F79DE6998</source_id>
+      <track_history>0</track_history>
+      <name>sre_filename</name>
+     </Item>
+     <Item type="Property" id="19E83F8BF58C49F9A87FFFBBDB55362E" action="add">
+      <column_alignment>left</column_alignment>
+      <data_source>
+       <Item type="Property" action="get" select="id">
+        <name>related_id</name>
+        <source_id>9AEB574E23604EE2A4E4586F79DE6998</source_id>
+       </Item>
+      </data_source>
+      <data_type>foreign</data_type>
+      <foreign_property>
+       <Item type="Property" action="get" select="id">
+        <keyed_name>file_type</keyed_name>
+        <source_id>
+         <Item type="ItemType" action="get" select="id">
+          <name>File</name>
+         </Item>
+        </source_id>
+       </Item>
+      </foreign_property>
+      <is_hidden>0</is_hidden>
+      <is_hidden2>0</is_hidden2>
+      <is_indexed>0</is_indexed>
+      <is_keyed>0</is_keyed>
+      <is_multi_valued>0</is_multi_valued>
+      <is_required>0</is_required>
+      <label xml:lang="en">File Type</label>
+      <range_inclusive>0</range_inclusive>
+      <readonly>0</readonly>
+      <sort_order>3584</sort_order>
+      <source_id keyed_name="SRE_DocTypeTemplate" type="ItemType" name="SRE_DocTypeTemplate">9AEB574E23604EE2A4E4586F79DE6998</source_id>
+      <track_history>0</track_history>
+      <name>sre_filetype</name>
+     </Item>
+     <Item type="TOC Access" id="02B70E4F14644670A1C73B1CC63D3204" action="add">
+      <related_id keyed_name="Super User" type="Identity">
+       <Item type="Identity" action="get" select="id">
+        <name>Super User</name>
+       </Item>
+      </related_id>
+      <sort_order>128</sort_order>
+      <source_id keyed_name="SRE_DocTypeTemplate" type="ItemType" name="SRE_DocTypeTemplate">9AEB574E23604EE2A4E4586F79DE6998</source_id>
+      <category>Administration</category>
+     </Item>
+    </Relationships>
+   </Item>
+  </relationship_id>
+  <sort_order>128</sort_order>
+  <source_id keyed_name="SRE_DocumentType" type="ItemType" name="SRE_DocumentType">33DC4A555F4348608FC5BCD40459BF40</source_id>
+  <name>SRE_DocTypeTemplate</name>
+ </Item>
+ <Item type="View" action="delete" where="source_id='9AEB574E23604EE2A4E4586F79DE6998'" />
+ <Item type="Form" action="delete" where="name='SRE_DocTypeTemplate'" />
+</AML>

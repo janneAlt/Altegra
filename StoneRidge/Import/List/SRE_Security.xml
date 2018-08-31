@@ -1,0 +1,19 @@
+﻿<AML>
+ <Item type="List" id="DDBE806064914465A790ACFBA3D1AEB4" action="add">
+  <name>SRE_Security</name>
+  <Relationships>
+   <Item type="Value" id="AC4584751E2046BA8B93732CA05980DA" action="add">
+    <label xml:lang="en">Security Classified</label>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_Security" type="List">DDBE806064914465A790ACFBA3D1AEB4</source_id>
+    <value>1</value>
+   </Item>
+   <Item type="Value" id="6E42960AC8A14A6EB1E791D88E6E3279" action="add">
+    <label xml:lang="en">Not Security Classified</label>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_Security" type="List">DDBE806064914465A790ACFBA3D1AEB4</source_id>
+    <value>0</value>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

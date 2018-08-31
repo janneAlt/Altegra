@@ -1,0 +1,20 @@
+﻿<AML>
+ <Item type="User" id="B13C06A88BE94576B128D08CC969B5C5" action="add">
+  <default_vault keyed_name="Default" type="Vault">67BBB9204FE84A8981ED8313049BA06C</default_vault>
+  <last_login_date>2018-02-15T09:12:06</last_login_date>
+  <login_name>user1</login_name>
+  <logon_enabled>1</logon_enabled>
+  <owned_by_id>7ADB13041A7D4952BEAF935FF74CF27F</owned_by_id>
+  <pwd_is_set_on>2018-02-20T16:09:21</pwd_is_set_on>
+  <first_name>Test</first_name>
+  <last_name>User 1</last_name>
+  <Relationships>
+   <Item type="Alias" id="1F8E15082872447880BA52CEE1CC891E" action="add">
+    <from_date>2018-02-20T14:18:50</from_date>
+    <related_id keyed_name="Test User 1" type="Identity">AFDEB91C45104AE0B6DED3E87970ECBA</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="Test User 1" type="User">B13C06A88BE94576B128D08CC969B5C5</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

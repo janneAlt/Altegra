@@ -1,0 +1,43 @@
+﻿<AML>
+ <Item type="Life Cycle Map" id="F09798ECD2A34FD981C87F45B82A8527" action="add">
+  <start_state keyed_name="Preliminary" type="Life Cycle State">90CD0B705EBB400EA13873B17C49BF90</start_state>
+  <name>SRE_CertificateLc</name>
+  <Relationships>
+   <Item type="Life Cycle State" id="90CD0B705EBB400EA13873B17C49BF90" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <label xml:lang="en">Preliminary</label>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_CertificateLc" type="Life Cycle Map">F09798ECD2A34FD981C87F45B82A8527</source_id>
+    <state_permission_id keyed_name="SRE Certificate Preliminary" type="Permission">FAA39B11CC9B4854BEC855327BFC75BE</state_permission_id>
+    <x>30</x>
+    <y>55</y>
+    <name>Preliminary</name>
+   </Item>
+   <Item type="Life Cycle State" id="FFEA2997BC4C4D02A78E5BDD26D2E67F" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <label xml:lang="en">Released</label>
+    <set_is_released>1</set_is_released>
+    <set_not_lockable>1</set_not_lockable>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_CertificateLc" type="Life Cycle Map">F09798ECD2A34FD981C87F45B82A8527</source_id>
+    <state_permission_id keyed_name="SRE Certificate Released" type="Permission">DD629236085645CDB28330E33A40DDBE</state_permission_id>
+    <x>185</x>
+    <y>55</y>
+    <name>Released</name>
+   </Item>
+   <Item type="Life Cycle Transition" id="211FE16E10F24F2EBB86607E245F8883" action="add">
+    <from_state keyed_name="Preliminary" type="Life Cycle State">90CD0B705EBB400EA13873B17C49BF90</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="SRE_CoreUserGroup" type="Identity">93FA7BC57D0844329494BA5F70976DA4</role>
+    <segments />
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_CertificateLc" type="Life Cycle Map">F09798ECD2A34FD981C87F45B82A8527</source_id>
+    <to_state keyed_name="Released" type="Life Cycle State">FFEA2997BC4C4D02A78E5BDD26D2E67F</to_state>
+    <x>21</x>
+    <y>-8</y>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

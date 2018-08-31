@@ -1,0 +1,21 @@
+﻿<AML>
+ <Item type="User" id="53B378D086CC461BB403A60E03AF733C" action="add">
+  <default_vault keyed_name="Default" type="Vault">67BBB9204FE84A8981ED8313049BA06C</default_vault>
+  <email>pda@se5000.local</email>
+  <last_login_date>2018-01-22T10:24:50</last_login_date>
+  <login_name>PDA</login_name>
+  <logon_enabled>1</logon_enabled>
+  <owned_by_id>645B133931B14D1CAED50DC64D5050CC</owned_by_id>
+  <starting_page>InBasket Task</starting_page>
+  <first_name>Prakash</first_name>
+  <last_name>Dakua</last_name>
+  <Relationships>
+   <Item type="Alias" id="C1CD39B71897416591CCAF3EA1E11B13" action="add">
+    <from_date>2018-02-20T14:18:50</from_date>
+    <related_id keyed_name="Prakash Dakua" type="Identity">62FFB331CB1F4E8A828D4A40B8CD0A2E</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="Prakash Dakua" type="User">53B378D086CC461BB403A60E03AF733C</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

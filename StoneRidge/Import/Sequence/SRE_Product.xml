@@ -1,0 +1,10 @@
+﻿<AML>
+ <Item type="Sequence" id="A74C990E52FD48919DD975355656B9D6" action="add">
+  <initial_value>0</initial_value>
+  <pad_to>6</pad_to>
+  <pad_with>0</pad_with>
+  <prefix>90</prefix>
+  <step>1</step>
+  <name>SRE_Product</name>
+ </Item>
+</AML>

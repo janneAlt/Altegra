@@ -1,0 +1,12 @@
+﻿<AML>
+ <Item type="Identity" id="1AA50FD5380249FD830C8C215671E275" action="add">
+  <is_alias>0</is_alias>
+  <name>SE5000 Electronics</name>
+  <Relationships />
+ </Item>
+ <Item type="Member" id="669DD43E92174BA9A04F3ABA51D3FA70" action="add">
+  <related_id keyed_name="Fredrik Hafzelius" type="Identity">5CC5067486B74D3A97F1960C4533BDDC</related_id>
+  <sort_order>128</sort_order>
+  <source_id keyed_name="SE5000 Electronics" type="Identity">1AA50FD5380249FD830C8C215671E275</source_id>
+ </Item>
+</AML>

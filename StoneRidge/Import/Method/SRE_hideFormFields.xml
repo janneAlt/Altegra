@@ -1,0 +1,45 @@
+﻿<AML>
+ <Item type="Method" id="37EEC07C68A349889588C250A9DCF050" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[
+
+var check  = getFieldByName("createNew");
+var p2 = check.getElementsByTagName("input")[0];
+alert(p2.value);
+if(p2.value=="on")
+{
+      getFieldByName("description").style.visibility='visible';
+ getFieldByName("createBtn").style.visibility='visible';
+// getFieldByName("button0").style.visibility='';
+//     visible
+p2.disabled = false;
+ 
+}
+else{
+    
+//   getFieldByName("ronumber").style.visibility='hidden';
+//  getFieldByName("html0").style.visibility='hidden';
+// getFieldByName("button0").style.visibility='hidden';
+   
+}
+// for(i=0;i<check.length;i++)
+//         {
+//             if(check[i].checked)
+//             {
+                
+//             }
+//             else{
+// getFieldByName("ronumber").style.visibility='hidden';
+// getFieldByName("html0").style.visibility='hidden';
+// getFieldByName("button0").style.visibility='hidden';
+// }
+//         }
+window.onRefresh();
+
+
+
+]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>SRE_hideFormFields</name>
+ </Item>
+</AML>

@@ -1,0 +1,357 @@
+﻿<AML>
+ <Item type="ItemType" id="94354B694EB34056A75F2CE9393CFBFE" action="add">
+  <allow_private_permission>1</allow_private_permission>
+  <auto_search>0</auto_search>
+  <enforce_discovery>1</enforce_discovery>
+  <hide_where_used>0</hide_where_used>
+  <implementation_type>table</implementation_type>
+  <instance_data>SRE_CERTIFICATE</instance_data>
+  <is_dependent>0</is_dependent>
+  <is_relationship>0</is_relationship>
+  <is_versionable>1</is_versionable>
+  <label xml:lang="en">Certificate</label>
+  <label_plural xml:lang="en">Certificates</label_plural>
+  <large_icon>../Images/APQPCatalog.svg</large_icon>
+  <manual_versioning>1</manual_versioning>
+  <open_icon>../Images/APQPCatalog.svg</open_icon>
+  <revisions keyed_name="Default" type="Revision">7FE395DD8B9F4E1090756A34B733D75E</revisions>
+  <show_parameters_tab>1</show_parameters_tab>
+  <structure_view>tabs on</structure_view>
+  <unlock_on_logout>0</unlock_on_logout>
+  <use_src_access>0</use_src_access>
+  <name>SRE_Certificate</name>
+  <Relationships>
+   <Item type="Property" id="71480FD4C03B4319AE7232F846EDD40F" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>300</column_width>
+    <data_source keyed_name="File" type="ItemType" name="File">8052A558B9084D41B9F11805E464F443</data_source>
+    <data_type>item</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <item_behavior>float</item_behavior>
+    <label xml:lang="en">File</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>150</sort_order>
+    <source_id keyed_name="SRE_Certificate" type="ItemType" name="SRE_Certificate">94354B694EB34056A75F2CE9393CFBFE</source_id>
+    <track_history>0</track_history>
+    <name>sre_attachment</name>
+   </Item>
+   <Item type="Property" id="4A6DE71A22C14996B40B396E70458857" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>text</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">Description</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>3200</sort_order>
+    <source_id keyed_name="SRE_Certificate" type="ItemType" name="SRE_Certificate">94354B694EB34056A75F2CE9393CFBFE</source_id>
+    <track_history>0</track_history>
+    <name>sre_certificatedescription</name>
+   </Item>
+   <Item type="Property" id="5CBB2514BEE64934907BCC46C1624A94" action="add">
+    <column_alignment>left</column_alignment>
+    <data_type>string</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">Number</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>3072</sort_order>
+    <source_id keyed_name="SRE_Certificate" type="ItemType" name="SRE_Certificate">94354B694EB34056A75F2CE9393CFBFE</source_id>
+    <stored_length>32</stored_length>
+    <track_history>0</track_history>
+    <name>sre_certificatenumber</name>
+   </Item>
+   <Item type="View" id="6A153B0B65864121BE99D9BB92BCB9DC" action="add">
+    <client>js</client>
+    <related_id keyed_name="SRE_Certificate" type="Form">C33B7394BF544E32BD8F8FED484B4C72</related_id>
+    <role keyed_name="World" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>World</name>
+     </Item>
+    </role>
+    <show_ssvc>0</show_ssvc>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_Certificate" type="ItemType" name="SRE_Certificate">94354B694EB34056A75F2CE9393CFBFE</source_id>
+    <type>default</type>
+   </Item>
+   <Item type="Item Action" id="986F8CCBAAEB4F348F37B4BF52090956" action="add">
+    <related_id keyed_name="SRE_CreateRevision" type="Action">02881B8D333445998B002A8C2FDB4D61</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_Certificate" type="ItemType" name="SRE_Certificate">94354B694EB34056A75F2CE9393CFBFE</source_id>
+   </Item>
+   <Item type="ItemType Life Cycle" id="690654C86FE944979CA5305154ED692C" action="add">
+    <related_id keyed_name="SRE_CertificateLc" type="Life Cycle Map">F09798ECD2A34FD981C87F45B82A8527</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_Certificate" type="ItemType" name="SRE_Certificate">94354B694EB34056A75F2CE9393CFBFE</source_id>
+   </Item>
+   <Item type="TOC Access" id="0B6A08C180D84E539663C03406C46636" action="add">
+    <related_id keyed_name="SE5000 All Users" type="Identity">10FAC37B5B9541B88119DB67CEAFB1E7</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_Certificate" type="ItemType" name="SRE_Certificate">94354B694EB34056A75F2CE9393CFBFE</source_id>
+   </Item>
+   <Item type="Can Add" id="DEE06DC44FC145BCA21985CA23AEA845" action="add">
+    <can_add>1</can_add>
+    <related_id keyed_name="SRE_CoreUserGroup" type="Identity">93FA7BC57D0844329494BA5F70976DA4</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_Certificate" type="ItemType" name="SRE_Certificate">94354B694EB34056A75F2CE9393CFBFE</source_id>
+   </Item>
+   <Item type="Allowed Permission" id="E30D12B9C41842089914C663E50C78D5" action="add">
+    <is_default>1</is_default>
+    <related_id keyed_name="SRE_CertificatePermission" type="Permission">FCF933BC391043C1A2605DCB8F1DB607</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_Certificate" type="ItemType" name="SRE_Certificate">94354B694EB34056A75F2CE9393CFBFE</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+ <Item type="ItemType" id="94354B694EB34056A75F2CE9393CFBFE" action="edit">
+  <Relationships>
+   <Item type="Property" id="03A7659C31194BDE8877565E6DDF7E2F" action="add">
+    <column_alignment>left</column_alignment>
+    <column_width>300</column_width>
+    <data_type>string</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>1</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <keyed_name_order>1</keyed_name_order>
+    <label xml:lang="en">Name</label>
+    <order_by>10</order_by>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>130</sort_order>
+    <source_id keyed_name="SRE_Certificate" type="ItemType" name="SRE_Certificate">94354B694EB34056A75F2CE9393CFBFE</source_id>
+    <stored_length>256</stored_length>
+    <track_history>0</track_history>
+    <name>sre_name</name>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='94354B694EB34056A75F2CE9393CFBFE' and name='created_by_id'">
+    <column_alignment>left</column_alignment>
+    <column_width>130</column_width>
+    <data_source keyed_name="User" type="ItemType" name="User">45E899CD2859442982EB22BB2DF683E5</data_source>
+    <data_type>item</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>1</is_required>
+    <item_behavior>float</item_behavior>
+    <label xml:lang="en">Created by</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>230</sort_order>
+    <source_id keyed_name="SRE_Certificate" type="ItemType" name="SRE_Certificate">94354B694EB34056A75F2CE9393CFBFE</source_id>
+    <track_history>0</track_history>
+    <name>created_by_id</name>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='94354B694EB34056A75F2CE9393CFBFE' and name='created_on'">
+    <column_alignment>left</column_alignment>
+    <column_width>160</column_width>
+    <data_type>date</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>1</is_required>
+    <label xml:lang="en">Created on</label>
+    <pattern>short_date_time</pattern>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>240</sort_order>
+    <source_id keyed_name="SRE_Certificate" type="ItemType" name="SRE_Certificate">94354B694EB34056A75F2CE9393CFBFE</source_id>
+    <track_history>0</track_history>
+    <name>created_on</name>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='94354B694EB34056A75F2CE9393CFBFE' and name='locked_by_id'">
+    <column_alignment>left</column_alignment>
+    <column_width>130</column_width>
+    <data_source keyed_name="User" type="ItemType" name="User">45E899CD2859442982EB22BB2DF683E5</data_source>
+    <data_type>item</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <item_behavior>float</item_behavior>
+    <label xml:lang="en">Locked by</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>220</sort_order>
+    <source_id keyed_name="SRE_Certificate" type="ItemType" name="SRE_Certificate">94354B694EB34056A75F2CE9393CFBFE</source_id>
+    <track_history>0</track_history>
+    <name>locked_by_id</name>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='94354B694EB34056A75F2CE9393CFBFE' and name='major_rev'">
+    <column_alignment>left</column_alignment>
+    <column_width>30</column_width>
+    <data_type>string</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">Rev</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>140</sort_order>
+    <source_id keyed_name="SRE_Certificate" type="ItemType" name="SRE_Certificate">94354B694EB34056A75F2CE9393CFBFE</source_id>
+    <stored_length>8</stored_length>
+    <track_history>0</track_history>
+    <name>major_rev</name>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='94354B694EB34056A75F2CE9393CFBFE' and name='minor_rev'">
+    <column_alignment>left</column_alignment>
+    <data_type>string</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">Revision</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>1920</sort_order>
+    <source_id keyed_name="SRE_Certificate" type="ItemType" name="SRE_Certificate">94354B694EB34056A75F2CE9393CFBFE</source_id>
+    <stored_length>8</stored_length>
+    <track_history>0</track_history>
+    <name>minor_rev</name>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='94354B694EB34056A75F2CE9393CFBFE' and name='modified_by_id'">
+    <column_alignment>left</column_alignment>
+    <column_width>130</column_width>
+    <data_source keyed_name="User" type="ItemType" name="User">45E899CD2859442982EB22BB2DF683E5</data_source>
+    <data_type>item</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <item_behavior>float</item_behavior>
+    <label xml:lang="en">Modified by</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>250</sort_order>
+    <source_id keyed_name="SRE_Certificate" type="ItemType" name="SRE_Certificate">94354B694EB34056A75F2CE9393CFBFE</source_id>
+    <track_history>0</track_history>
+    <name>modified_by_id</name>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='94354B694EB34056A75F2CE9393CFBFE' and name='modified_on'">
+    <column_alignment>left</column_alignment>
+    <column_width>160</column_width>
+    <data_type>date</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">Modified on</label>
+    <pattern>short_date_time</pattern>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>260</sort_order>
+    <source_id keyed_name="SRE_Certificate" type="ItemType" name="SRE_Certificate">94354B694EB34056A75F2CE9393CFBFE</source_id>
+    <track_history>0</track_history>
+    <name>modified_on</name>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='94354B694EB34056A75F2CE9393CFBFE' and name='release_date'">
+    <column_alignment>left</column_alignment>
+    <column_width>160</column_width>
+    <data_type>date</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">Release Date</label>
+    <pattern>short_date_time</pattern>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>210</sort_order>
+    <source_id keyed_name="SRE_Certificate" type="ItemType" name="SRE_Certificate">94354B694EB34056A75F2CE9393CFBFE</source_id>
+    <track_history>0</track_history>
+    <name>release_date</name>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='94354B694EB34056A75F2CE9393CFBFE' and name='state'">
+    <column_alignment>left</column_alignment>
+    <column_width>90</column_width>
+    <data_type>string</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>0</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">State</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>1</readonly>
+    <sort_order>110</sort_order>
+    <source_id keyed_name="SRE_Certificate" type="ItemType" name="SRE_Certificate">94354B694EB34056A75F2CE9393CFBFE</source_id>
+    <stored_length>32</stored_length>
+    <track_history>0</track_history>
+    <name>state</name>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='94354B694EB34056A75F2CE9393CFBFE' and name='superseded_date'">
+    <column_alignment>left</column_alignment>
+    <data_type>date</data_type>
+    <is_hidden>1</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <label xml:lang="en">Superseded Date</label>
+    <pattern>short_date_time</pattern>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>3584</sort_order>
+    <source_id keyed_name="SRE_Certificate" type="ItemType" name="SRE_Certificate">94354B694EB34056A75F2CE9393CFBFE</source_id>
+    <track_history>0</track_history>
+    <name>superseded_date</name>
+   </Item>
+   <Item type="Property" action="edit" where="source_id='94354B694EB34056A75F2CE9393CFBFE' and name='team_id'">
+    <column_alignment>left</column_alignment>
+    <column_width>190</column_width>
+    <data_source keyed_name="Team" type="ItemType" name="Team">CC23F9130F574E7D99DF9659F27590A6</data_source>
+    <data_type>item</data_type>
+    <is_hidden>0</is_hidden>
+    <is_hidden2>1</is_hidden2>
+    <is_indexed>0</is_indexed>
+    <is_keyed>0</is_keyed>
+    <is_multi_valued>0</is_multi_valued>
+    <is_required>0</is_required>
+    <item_behavior>float</item_behavior>
+    <label xml:lang="en">Team</label>
+    <range_inclusive>0</range_inclusive>
+    <readonly>0</readonly>
+    <sort_order>200</sort_order>
+    <source_id keyed_name="SRE_Certificate" type="ItemType" name="SRE_Certificate">94354B694EB34056A75F2CE9393CFBFE</source_id>
+    <track_history>0</track_history>
+    <name>team_id</name>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

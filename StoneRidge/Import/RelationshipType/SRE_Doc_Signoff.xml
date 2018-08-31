@@ -1,0 +1,65 @@
+﻿<AML>
+ <Item type="RelationshipType" id="2E206025DD18494BB9F4A3C5901EEBA0" action="add" dependencyLevel="0">
+  <auto_search>1</auto_search>
+  <behavior>float</behavior>
+  <copy_permissions>0</copy_permissions>
+  <create_related>0</create_related>
+  <hide_in_all>0</hide_in_all>
+  <inc_rel_key_name>1</inc_rel_key_name>
+  <inc_related_key_name>1</inc_related_key_name>
+  <is_list_type>0</is_list_type>
+  <label xml:lang="en">Signoff</label>
+  <new_show_related>0</new_show_related>
+  <related_notnull>0</related_notnull>
+  <related_option>2</related_option>
+  <relationship_id keyed_name="SRE_Doc_Signoff" type="ItemType" name="SRE_Doc_Signoff">
+   <Item type="ItemType" id="EDAF3693A4934224B05C69F016449191" action="add">
+    <allow_private_permission>1</allow_private_permission>
+    <auto_search>0</auto_search>
+    <enforce_discovery>0</enforce_discovery>
+    <hide_where_used>0</hide_where_used>
+    <implementation_type>table</implementation_type>
+    <instance_data>SRE_DOC_SIGNOFF</instance_data>
+    <is_dependent>0</is_dependent>
+    <is_relationship>1</is_relationship>
+    <is_versionable>0</is_versionable>
+    <revisions keyed_name="Default" type="Revision">7FE395DD8B9F4E1090756A34B733D75E</revisions>
+    <show_parameters_tab>1</show_parameters_tab>
+    <structure_view>tabs off</structure_view>
+    <unlock_on_logout>0</unlock_on_logout>
+    <use_src_access>1</use_src_access>
+    <name>SRE_Doc_Signoff</name>
+    <Relationships>
+     <Item type="View" id="980F782EE5244187B44A8E5D7BE15CCE" action="add">
+      <client>js</client>
+      <related_id keyed_name="SRE_Doc_Signoff" type="Form">54B6D463388B4C538E912F2AB0E0CECD</related_id>
+      <role keyed_name="World" type="Identity">
+       <Item type="Identity" action="get" select="id">
+        <name>World</name>
+       </Item>
+      </role>
+      <show_ssvc>0</show_ssvc>
+      <sort_order>128</sort_order>
+      <source_id keyed_name="SRE_Doc_Signoff" type="ItemType" name="SRE_Doc_Signoff">EDAF3693A4934224B05C69F016449191</source_id>
+      <type>default</type>
+     </Item>
+    </Relationships>
+   </Item>
+  </relationship_id>
+  <sort_order>640</sort_order>
+  <source_id keyed_name="Document" type="ItemType" name="Document">B88C14B99EF449828C5D926E39EE8B89</source_id>
+  <name>SRE_Doc_Signoff</name>
+  <Relationships>
+   <Item type="Relationship View" id="F08A3F722DE4414399CFDBAE22ADFB2B" action="add">
+    <form keyed_name="SRE_Workflow_Signoffs" type="Form">A2F3AC9914DF419E922B212307C85EB0</form>
+    <related_id keyed_name="World" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>World</name>
+     </Item>
+    </related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_Doc_Signoff" type="RelationshipType">2E206025DD18494BB9F4A3C5901EEBA0</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

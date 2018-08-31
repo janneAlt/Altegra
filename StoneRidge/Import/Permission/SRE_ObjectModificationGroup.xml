@@ -1,0 +1,30 @@
+﻿<AML>
+ <Item type="Permission" id="DD13AA8826504B90968BC83C5047D470" action="add">
+  <is_private>0</is_private>
+  <name>SRE_ObjectModificationGroup</name>
+  <Relationships>
+   <Item type="Access" id="2991541B3DB24BD0B904E8F7E66381E6" action="add">
+    <can_change_access>0</can_change_access>
+    <can_delete>0</can_delete>
+    <can_discover>1</can_discover>
+    <can_get>1</can_get>
+    <can_update>0</can_update>
+    <related_id keyed_name="SE5000 All Users" type="Identity">10FAC37B5B9541B88119DB67CEAFB1E7</related_id>
+    <show_permissions_warning>0</show_permissions_warning>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="SRE_ObjectModificationGroup" type="Permission">DD13AA8826504B90968BC83C5047D470</source_id>
+   </Item>
+   <Item type="Access" id="A792C8550FC44B4B9CCEBFBC562F95F2" action="add">
+    <can_change_access>1</can_change_access>
+    <can_delete>1</can_delete>
+    <can_discover>1</can_discover>
+    <can_get>1</can_get>
+    <can_update>1</can_update>
+    <related_id keyed_name="SRE_CoreUserGroup" type="Identity">93FA7BC57D0844329494BA5F70976DA4</related_id>
+    <show_permissions_warning>0</show_permissions_warning>
+    <sort_order>512</sort_order>
+    <source_id keyed_name="SRE_ObjectModificationGroup" type="Permission">DD13AA8826504B90968BC83C5047D470</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

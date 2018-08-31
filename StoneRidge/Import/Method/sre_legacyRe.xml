@@ -1,0 +1,53 @@
+﻿<AML>
+ <Item type="Method" id="2501EDD7E6B84B5EBF49D8295B80FB98" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[Innovator inn = this.getInnovator();
+
+string updateRevisions = (string)RequestState["updateRevisions"];
+string previousRevision = (string)RequestState["prevRev"];
+// return inn.newError("here");
+if (!string.IsNullOrEmpty(updateRevisions))
+{
+// return inn.newError("here1");
+Item fetchProducts = newItem("SRE_Product","get");
+     fetchProducts.setProperty("state","Released");
+          fetchProducts=fetchProducts.apply();
+     
+   if(fetchProducts.getItemCount()==0)
+   {
+       
+    
+   }
+   else{
+       
+       
+for(int i=0; i<fetchProducts.getItemCount();i++)
+{
+     
+    Item nonCurrentVPL = inn.getItemById("SRE_Platform",fetchProducts.getItemByIndex(i).getProperty("sre_platform"));
+    
+    if(nonCurrentVPL.getProperty("is_current")=="0")
+    {
+    //   return inn.newError(previousRevision+"---"+nonCurrentVPL.getProperty("is_current"));    
+      Item updateProduct = newItem("SRE_Product","get");
+      updateProduct.setProperty("id",fetchProducts.getItemByIndex(i).getProperty("id"));
+      updateProduct=updateProduct.apply(); 
+    //   return inn.newError(previousRevision);
+       updateProduct.setAction("update");
+       updateProduct.setProperty("sre_platform",previousRevision);
+       updateProduct=updateProduct.apply();
+    }
+
+       
+ }
+   
+   } 
+    
+}
+
+
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>sre_legacyRe</name>
+ </Item>
+</AML>

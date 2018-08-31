@@ -1,0 +1,22 @@
+﻿<AML>
+ <Item type="User" id="0F86687E86D349A2BC7C25D767062214" action="add">
+  <default_vault keyed_name="Default" type="Vault">67BBB9204FE84A8981ED8313049BA06C</default_vault>
+  <email>jsu@se5000.local</email>
+  <last_login_date>2018-01-18T09:50:49</last_login_date>
+  <login_name>JSU</login_name>
+  <logon_enabled>1</logon_enabled>
+  <owned_by_id>3FB6908FF0C34CE4BD276886D9BC9510</owned_by_id>
+  <pwd_is_set_on>2018-02-20T16:09:54</pwd_is_set_on>
+  <starting_page>InBasket Task</starting_page>
+  <first_name>Jari</first_name>
+  <last_name>Suutari</last_name>
+  <Relationships>
+   <Item type="Alias" id="4BB4F365F4C54C05AA37E846897D233C" action="add">
+    <from_date>2018-02-20T14:18:49</from_date>
+    <related_id keyed_name="Jari Suutari" type="Identity">911483C6C9964CA6B6C7E203CA861168</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="Jari Suutari" type="User">0F86687E86D349A2BC7C25D767062214</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

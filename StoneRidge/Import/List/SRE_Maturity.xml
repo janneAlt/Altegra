@@ -1,0 +1,32 @@
+﻿<AML>
+ <Item type="List" id="71DA944B99564861B2A868A6BA44D406" action="add">
+  <description>Maturity Levels of StoneRidge</description>
+  <name>SRE_Maturity</name>
+  <Relationships>
+   <Item type="Value" id="FCA4688D4D494FC590463F7777D27B61" action="add">
+    <label xml:lang="en">E</label>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_Maturity" type="List">71DA944B99564861B2A868A6BA44D406</source_id>
+    <value>E</value>
+   </Item>
+   <Item type="Value" id="0CCE489801394569A9F531AC9C62D749" action="add">
+    <label xml:lang="en">Z</label>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_Maturity" type="List">71DA944B99564861B2A868A6BA44D406</source_id>
+    <value>Z</value>
+   </Item>
+   <Item type="Value" id="B6B0F395034F4AF6AB046E5F1344129A" action="add">
+    <label xml:lang="en">V</label>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="SRE_Maturity" type="List">71DA944B99564861B2A868A6BA44D406</source_id>
+    <value>V</value>
+   </Item>
+   <Item type="Value" id="BF648C27FDFD4827A727600C9296B9D6" action="add">
+    <label xml:lang="en">R</label>
+    <sort_order>512</sort_order>
+    <source_id keyed_name="SRE_Maturity" type="List">71DA944B99564861B2A868A6BA44D406</source_id>
+    <value>R</value>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

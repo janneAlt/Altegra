@@ -1,0 +1,105 @@
+﻿<AML>
+ <Item type="Method" id="02ED5E747AF84152B71EA6B8831CCEB4" action="add">
+  <comments>Clone item - server side</comments>
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[// Clone item -server side
+//
+// 2018-02-28 LL - First version
+
+Innovator inn = this.getInnovator();
+
+Item clonedItem;
+string myType = this.getType();
+Item thisItem;
+
+// Need to get the item, to make sure relationships are included
+thisItem = inn.newItem(myType, "get");	
+thisItem.setAttribute("levels", "1");
+thisItem.setID(this.getID());   
+thisItem = thisItem.apply();
+
+if(myType == "Part")
+{
+	// Clone the item with relationships, then fix them up
+	clonedItem = thisItem.clone(true);
+	
+	string relsToRemove = "SRE_Part_SendTo,SRE_Part_RO";
+	Item relItems = clonedItem.getRelationships();
+	int nRels = relItems.getItemCount();
+		
+	for (int i=0 ; i<nRels ; i++)
+	{
+		Item relItem = relItems.getItemByIndex(i);
+		string relType = relItem.getType();
+			
+		if (relsToRemove.IndexOf(relType)>=0)
+		{
+			clonedItem.removeRelationship(relItem);
+		}
+	}
+}	
+else if(myType == "Document")
+{
+	// Clone the item with relationships, then fix them
+	clonedItem = thisItem.clone(true);
+
+	string relsToRemove = "SRE_DOC_RO,SRE_Doc_RevRel";
+	Item relItems = clonedItem.getRelationships();
+	int nRels = relItems.getItemCount();
+		 
+	for (int i=0 ; i<nRels ; i++)
+	{
+	    Item relItem = relItems.getItemByIndex(i);
+		string relType = relItem.getType();
+		
+		if (relsToRemove.IndexOf(relType)>=0)
+		{
+			clonedItem.removeRelationship(relItem);
+		}
+	}
+	
+	// Remove the view file and copy the source file (if it exists)
+	clonedItem.removeProperty("sre_viewable");
+	string fileId = clonedItem.getProperty("sre_sourcefile", "");
+	if (fileId != "")
+	{
+	    Item newFile = inn.newItem("File", "copyAsNew");
+		newFile.setID(fileId);
+		newFile = newFile.apply();
+		if (!newFile.isError())
+		{
+		    clonedItem.setProperty("sre_sourcefile", newFile.getID());
+		    clonedItem.setProperty("sre_requiretemplate", "0");
+		}
+	}
+}
+else
+{
+	return inn.newError("Unsupported item type");;
+}
+
+// Set new item number and remove some properties
+string clonedItemNo = clonedItem.getProperty("item_number", "") + "++";
+clonedItem.setProperty("item_number", clonedItemNo);
+
+clonedItem.removeProperty("major_rev");
+clonedItem.removeProperty("release_date");
+clonedItem.removeProperty("effective_date");
+clonedItem.removeProperty("permission_id");
+clonedItem.removeProperty("minor_rev");
+
+Aras.Server.Security.Identity plmIdentity = Aras.Server.Security.Identity.GetByName("Aras PLM");
+bool PermissionWasSet = Aras.Server.Security.Permissions.GrantIdentity(plmIdentity);
+	
+clonedItem = clonedItem.apply();
+	
+if (PermissionWasSet == true) 
+{
+	   Aras.Server.Security.Permissions.RevokeIdentity(plmIdentity);
+}
+
+return clonedItem;]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_CloneItem</name>
+ </Item>
+</AML>

@@ -1,0 +1,188 @@
+﻿<AML>
+ <Item type="Method" id="5DC269F3132B437BB1382720E123F972" action="add">
+  <comments>updated</comments>
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[Innovator inn = this.getInnovator();
+Item vaultLoc = newItem("Variable", "get");
+vaultLoc.setProperty("name", "SRE_VaultLocation");
+vaultLoc = vaultLoc.apply();
+string vaultPath = vaultLoc.getProperty("value");
+//Getting License Path from a variable named SRE_VaultLocation
+Item licPath = newItem("Variable", "get");
+licPath.setProperty("name", "SRE_AsposeLic");
+licPath = licPath.apply();
+string licFileID = licPath.getProperty("value");
+if (licFileID == "") {
+    return inn.newError("Variable SRE_AsposeLic is not set");
+}
+string licfolderFirst = licFileID.Substring(0, 1);
+string licfolderFirstSub = licFileID.Substring(1, 2);
+string licfolderFirstSubSub = licFileID.Substring(3, 29);
+
+//Template File Path in the Vault
+string licFileVaultName = vaultPath + "\\" + licfolderFirst + "\\" + licfolderFirstSub + "\\" + licfolderFirstSubSub + "\\" + "Aspose.Total.lic";
+
+// return inn.newError(licFileVaultName);
+
+Item imgPath = newItem("Variable", "get");
+imgPath.setProperty("name", "SRE_SecureImagePath");
+imgPath = imgPath.apply();
+
+string BASE_PATH = imgPath.getProperty("value");
+
+if (BASE_PATH == "") {
+    return inn.newError("variable SRE_SecureImagePath is not set");
+}
+string imgpth = BASE_PATH+"secure.png";
+string fID = this.getProperty("srcfl");
+string vFID = this.getProperty("vlbs");
+string stateStamp = this.getProperty("StateStamp");
+
+
+Aras.Server.Security.Identity plmIdentity;
+bool permissionWasSet;
+plmIdentity = Aras.Server.Security.Identity.GetByName("Aras PLM");
+permissionWasSet = Aras.Server.Security.Permissions.GrantIdentity(plmIdentity);
+Item deleteFile = newItem("File","get");
+deleteFile.setProperty("id", vFID);
+deleteFile = deleteFile.apply();
+if(deleteFile.getItemCount()==0)
+{
+    
+}
+
+else
+{
+Item deleteFile1 = newItem("File","get");
+deleteFile1.setProperty("id", vFID);
+deleteFile1 = deleteFile1.apply();
+    
+}
+if (permissionWasSet)
+    Aras.Server.Security.Permissions.RevokeIdentity(plmIdentity);
+
+
+Item getFilename = newItem("File", "get");
+getFilename.setProperty("id", fID);
+getFilename = getFilename.apply();
+// return inn.newError(getFilename.getProperty("filename"));
+var Filelist = new List < string > ();
+string sourceFileName = getFilename.getProperty("filename");
+string partOne = fID.Substring(0, 1);
+string PartTwo = fID.Substring(1, 2);
+string PartThree = fID.Substring(3, 29);
+
+
+string baseVault = vaultLoc.getProperty("value");
+string fileName = baseVault + @"\"+partOne+@"\"+PartTwo+@"\"+PartThree+@"\"+sourceFileName;
+Item docm = inn.getItemById("Document", this.getProperty("docid"));
+ Item creatorName = inn.getItemById("User",docm.getProperty("created_by_id"));
+ Item getDocType = inn.getItemById("SRE_DocumentType",docm.getProperty("sre_doctyperef"));
+//  return inn.newError(docm.getProperty("item_number"));
+
+
+if(Path.GetExtension(fileName)==".docx")
+{
+    Aspose.Words.License license = new Aspose.Words.License();
+    license.SetLicense(licFileVaultName);
+Aspose.Words.Document doc = new Aspose.Words.Document(fileName);
+Aspose.Words.Properties.DocumentPropertyCollection customdocProps = doc.CustomDocumentProperties;
+ 
+ Aspose.Words.Properties.DocumentProperty state = customdocProps["SRE_State"];
+            state.Value = "Preliminary";
+Aspose.Words.Properties.DocumentProperty approvedby = customdocProps["sre_approvedby"];
+approvedby.Value = this.getProperty("approver");
+
+Aspose.Words.Properties.DocumentProperty approveddt = customdocProps["sre_approveddt"];
+approveddt.Value = "yyyy-MM-dd";
+
+doc.UpdateFields();
+
+
+
+
+
+
+// if(docm.getProperty("sre_secure")=="1")
+// {
+//             byte[] imgbyt = File.ReadAllBytes(imgpth);
+//             MemoryStream ms = new MemoryStream();
+//             ms.Write(imgbyt, 0, imgbyt.Length);
+//             // Insert a floating picture.
+//             DocumentBuilder bldr = new DocumentBuilder(doc);
+//             bldr.MoveToHeaderFooter(HeaderFooterType.HeaderPrimary);
+//             Aspose.Words.Drawing.Shape shape = bldr.InsertImage(ms, 100, 50);
+//             shape.WrapType = WrapType.None;
+//             shape.BehindText = false;
+
+//             shape.RelativeHorizontalPosition = RelativeHorizontalPosition.Page;
+//             shape.HorizontalAlignment = Aspose.Words.Drawing.HorizontalAlignment.Center;
+//             shape.RelativeVerticalPosition = RelativeVerticalPosition.Page;
+
+// }
+
+
+doc.UpdateFields();
+
+DocumentBuilder bldrs = new DocumentBuilder(doc);
+bldrs.MoveToHeaderFooter(HeaderFooterType.HeaderPrimary);
+NodeCollection mshps = doc.GetChildNodes(NodeType.Shape, true);
+
+
+
+doc.Save(fileName, Aspose.Words.SaveFormat.Docx);
+
+}
+else if(Path.GetExtension(fileName)==".xlsx")
+{
+    
+    Aspose.Cells.License license = new Aspose.Cells.License();
+    license.SetLicense(licFileVaultName);  
+                       // Open an Excel file
+            Workbook workbook = new Workbook(fileName);
+            Aspose.Cells.Cells cells = workbook.Worksheets[0].Cells;
+            // Title
+           
+           
+            // approved
+           
+
+             Aspose.Cells.Cell state = cells["C3"];
+            state.PutValue("Preliminary");
+          
+            Aspose.Cells.Cell approvedBy = cells["D7"];
+            approvedBy.PutValue(this.getProperty("approver"));
+            
+            Aspose.Cells.Cell issuedOn = cells["H7"];
+            issuedOn.PutValue("yyyy-MM-dd");
+            
+            Aspose.Cells.Cell docNo = cells["J7"];
+            docNo.PutValue(docm.getProperty("item_number"));
+
+            Aspose.Cells. Cell revision = cells["M7"];
+            revision.PutValue(docm.getProperty("major_rev"));
+            
+       
+            
+
+          
+            if(docm.getProperty("sre_secure")=="1")
+{
+            byte[] imgBytes = File.ReadAllBytes(imgpth);
+            MemoryStream ms = new MemoryStream();
+            ms.Write(imgBytes, 0, imgBytes.Length);
+            int len = workbook.Worksheets.Count;
+            for(int bg=0; bg<len; bg++)
+            {
+            // workbook.Worksheets[bg].Pictures.Add(0, 2, ms);
+            }
+}
+            workbook.Save(fileName, Aspose.Cells.SaveFormat.Xlsx); 
+            
+}
+
+return docm;]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_updatePropinPrel</name>
+ </Item>
+</AML>

@@ -1,0 +1,12 @@
+﻿<AML>
+ <Item type="Identity" id="759B6557E72A452997F5D884FCDA5F53" action="add">
+  <is_alias>0</is_alias>
+  <name>SE5000 Procurement</name>
+  <Relationships />
+ </Item>
+ <Item type="Member" id="924EA4FD5CC1415C8ABE6C6AC4DCB72A" action="add">
+  <related_id keyed_name="Fredrik Ohlin" type="Identity">C7717ED905A74D0DB23C3B499483BBE0</related_id>
+  <sort_order>128</sort_order>
+  <source_id keyed_name="SE5000 Procurement" type="Identity">759B6557E72A452997F5D884FCDA5F53</source_id>
+ </Item>
+</AML>

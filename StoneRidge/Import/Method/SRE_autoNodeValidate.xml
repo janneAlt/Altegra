@@ -1,0 +1,71 @@
+﻿<AML>
+ <Item type="Method" id="1CE4556746E24CDEAE856A8D29E9D45C" action="add">
+  <comments />
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[//System.Diagnostics.Debugger.Launch();
+
+// Get innovator
+Innovator inn = this.getInnovator();
+	
+// Get workflow process activity through id
+// then workflow process paths and activity assignments
+	
+String Aml = @"<AML>
+                  <Item type=""Workflow Process"" action=""get"">
+                    <Relationships>
+                      <Item type=""Workflow Process Activity"" action=""get"">
+                        <related_id>
+                          <Item type=""Activity"" id=""{0}"" action=""get"" />
+                        </related_id>
+                      </Item>
+                      <Item type=""Workflow Process Activity"" action=""get"">
+                        <related_id>
+                          <Item type=""Activity"" action=""get"">
+                            <Relationships>
+                              <Item type=""Workflow Process Path""></Item>
+                              <Item type=""Activity Assignment""></Item>
+                            </Relationships>
+                          </Item>
+                        </related_id>
+                      </Item>
+                    </Relationships>
+                  </Item>
+                </AML>";
+Aml = String.Format(Aml, this.getID());
+Item WorkflowProcess = inn.applyAML(Aml);
+
+// Get the Controlled Item 
+Item WItem = inn.newItem("Workflow", "get");
+WItem.setAttribute("where", String.Format("[Workflow].related_id = '{0}'", WorkflowProcess.getID()));
+WItem = WItem.apply();
+if (WItem.isError()) 
+{
+    return WItem;
+}
+
+// Get the poly Affected Items
+Item poly = inn.newItem(WItem.getPropertyAttribute("source_type", "name"), "get");
+poly.setID(WItem.getProperty("source_id"));
+poly = poly.apply();
+string pid = poly.getID();
+string docID = poly.getProperty("sre_reviewdocument");
+
+Item document = newItem("Document","get");
+document.setProperty("id",docID);
+document = document.apply();
+
+string docReviewType = document.getProperty("sre_reviewlevel");
+if(docReviewType=="")
+{
+    return inn.newError("Document has no review class set");
+}
+
+
+
+
+
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_autoNodeValidate</name>
+ </Item>
+</AML>

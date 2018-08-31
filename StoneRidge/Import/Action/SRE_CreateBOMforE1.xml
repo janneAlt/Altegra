@@ -1,0 +1,15 @@
+﻿<AML>
+ <Item type="Action" id="F914C2507AE941F998DEDA1481AA81BB" action="add">
+  <item_query>&lt;Item type="{@type}" id="{@id}" levels= "1" action="get" /&gt;</item_query>
+  <label xml:lang="en">Export BOM for E1</label>
+  <location>client</location>
+  <method keyed_name="SRE_TestBoMExport_CM" type="Method">
+   <Item type="Method" action="get" select="id">
+    <name>SRE_TestBoMExport_CM</name>
+   </Item>
+  </method>
+  <target>none</target>
+  <type>item</type>
+  <name>SRE_CreateBOMforE1</name>
+ </Item>
+</AML>

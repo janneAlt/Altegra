@@ -1,0 +1,131 @@
+﻿<AML>
+ <Item type="Method" id="27EDAEA5EAB54B15B710F0014EC1B035" action="add">
+  <comments>Interface method that adds a part/document in an existing Release Order</comments>
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[// <copyright Method="SRE_addToExistingRO" company="Stonerdige Electronics">
+// Copyright (c) 2018 All Rights Reserved
+// </copyright>
+// <author>Sudarshan Srinath</author>
+// <date>3/13/2018</date>
+// <summary>Interface method that adds a part/document in an existing Release Order</summary>
+
+Innovator inn = this.getInnovator();
+//Elevating rights of a user temporarily to create a relationship between PART/DOCUMENT to release Order, User does not have permissions to add a relationship when an item is approved
+Aras.Server.Security.Identity plmIdentity;
+bool permissionWasSet;
+//Initializing a list to collect all affected Items
+var itemCollection = new List < string > ();
+
+//Getting a Part's ID from Javascript Method
+string itemID = this.getProperty("partId");
+/*****************************Step 1 Get an Existing release order with this.getProperty("roid")"roid" comes from the Javascript*****/
+                Item createRO = inn.newItem("SRE_ReleaseOrder", "get");
+                createRO.setProperty("id", this.getProperty("roid"));
+                createRO = createRO.apply();
+//Check if the affected Item is a Part/Document
+
+              if (this.getProperty("type") == "Part") 
+    
+    {
+    //Adding the Top Part to itemCollection List    
+    itemCollection.Add(this.getProperty("partId"));
+    
+    //Cheking if Part has a specifying document to add the same in release order
+    Item getSpecDoc1 = inn.newItem("Part Document", "get");
+    getSpecDoc1.setProperty("source_id", this.getProperty("partId"));
+    getSpecDoc1.setProperty("sre_type", "Specifying");
+    getSpecDoc1 = getSpecDoc1.apply();
+
+    if (getSpecDoc1.getItemCount() == 0) 
+    {
+
+    }
+    else 
+    {
+                for (int k = 0; k < getSpecDoc1.getItemCount(); k++) 
+                {
+                    //Adding the Part Sepecifying document to itemCollection List
+                    Item myDoc = inn.getItemById("Document",getSpecDoc1.getItemByIndex(k).getProperty("related_id"));
+                    if(myDoc.getProperty("state")!="Released")
+                    {
+                     itemCollection.Add(getSpecDoc1.getItemByIndex(k).getProperty("related_id"));
+                    }
+                }
+    }
+
+
+ /*****************Step 2 Getting complete strucure of the Item and adding it and its Releated specifying document to a Release Order*******/
+    //Giving rights to ARAS PLM for execution of SP
+    plmIdentity = Aras.Server.Security.Identity.GetByName("Aras PLM");
+    permissionWasSet = Aras.Server.Security.Permissions.GrantIdentity(plmIdentity);
+    // Stored Procedure to get the complete structure of a Parent part, SP takes 1 argument i.e. ID
+    Item callProc = newItem("SQL", "SQL PROCESS");
+    callProc.setProperty("name", "MultiBom_GetCompleteBom1");
+    callProc.setProperty("PROCESS", "CALL");
+    callProc.setProperty("ARG1", this.getProperty("partId"));
+    callProc = callProc.apply();
+    //Count of Items in the stucture, if cout is zero we stop here
+    int countBOM = callProc.getItemCount();
+        if (countBOM == 0) 
+        {
+        
+        } 
+        else 
+        {
+
+             for (int i = 0; i < countBOM; i++) 
+             {
+             //Recursively getting all child parts that are not Released and adding it to the itemCollection List     
+             if (callProc.getItemByIndex(i).getProperty("related_state") != "Released") 
+             {
+                itemCollection.Add(callProc.getItemByIndex(i).getProperty("related_id"));
+             }
+             //Adding all child part's specifying document to the itemCollection List   
+            Item getSpecDoc = inn.newItem("Part Document", "get");
+            getSpecDoc.setProperty("source_id", callProc.getItemByIndex(i).getProperty("related_id"));
+            getSpecDoc.setProperty("sre_type", "Specifying");
+            getSpecDoc = getSpecDoc.apply();
+            if (getSpecDoc.getItemCount() == 0) {} else 
+            {
+                for (int j = 0; j < getSpecDoc.getItemCount(); j++) 
+                {
+                     Item myDoc2 = inn.getItemById("Document",getSpecDoc.getItemByIndex(j).getProperty("related_id"));
+                      if(myDoc2.getProperty("state")!="Released")
+                    {
+                    itemCollection.Add(getSpecDoc.getItemByIndex(j).getProperty("related_id"));
+                    }
+                }
+            }
+
+
+            if (permissionWasSet)
+                Aras.Server.Security.Permissions.RevokeIdentity(plmIdentity);
+
+        }
+    }
+     /*****************Step 3 Adding All items to release Order created from createRO = createRO.apply()*******/
+             foreach(string aff in itemCollection) 
+          {   //Establishing RO and Affected item relationship
+                 Item createROaffected = newItem("SRE_RO_AffectedItems", "add");
+                 createROaffected.setProperty("source_id", createRO.getID());
+                 createROaffected.setProperty("related_id", aff);
+                 createROaffected = createROaffected.apply();
+
+          }
+    }       
+     /*****************Step 2B/3B adding documents to Release order from createRO = createRO.apply()*******/
+    else 
+    {
+    Item createROaffecteddoc = newItem("SRE_RO_AffectedItems", "add");
+    createROaffecteddoc.setProperty("source_id", createRO.getID());
+    createROaffecteddoc.setProperty("related_id", itemID);
+    createROaffecteddoc = createROaffecteddoc.apply();
+    }
+
+
+
+return createRO;]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_addToExistingRO</name>
+ </Item>
+</AML>

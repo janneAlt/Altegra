@@ -1,0 +1,6 @@
+﻿<AML>
+ <Item type="Variable" id="1A5772C4CD2044EEB7B920D3DF6A32EA" action="add">
+  <default_value>E:\Temp\</default_value>
+  <name>SRE_DocTempLocation</name>
+ </Item>
+</AML>

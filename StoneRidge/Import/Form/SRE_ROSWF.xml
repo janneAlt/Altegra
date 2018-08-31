@@ -1,0 +1,39 @@
+﻿<AML>
+ <Item type="Form" id="7E45FCA3D5314851AB04FD540C8A2EB3" action="add">
+  <category_form>0</category_form>
+  <height>234</height>
+  <stylesheet><![CDATA[../styles/default.css]]></stylesheet>
+  <width>699</width>
+  <name>SRE_ROSWF</name>
+  <Relationships>
+   <Item type="Body" id="16FD666DBE63499DB4FDD7271BF1A2C5" action="add">
+    <bg_color>#FFFFFF</bg_color>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_ROSWF" type="Form">7E45FCA3D5314851AB04FD540C8A2EB3</source_id>
+    <Relationships>
+     <Item type="Field" id="9BFF93ABA47C4971B86B977AD5ADBEDF" action="add">
+      <display_length_unit>px</display_length_unit>
+      <field_type>html</field_type>
+      <html_code><![CDATA[<span id='ITEM_INFO_INTERNAL_SPAN'/>
+<script>
+  populate_ITEM_INFO_INTERNAL_SPAN = function()
+  {
+    document.getElementById('ITEM_INFO_INTERNAL_SPAN').innerHTML = aras.uiGetItemInfoTable(document.itemType);
+  }
+  window.addEventListener('load', populate_ITEM_INFO_INTERNAL_SPAN);
+</script>]]></html_code>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>128</sort_order>
+      <source_id keyed_name="16FD666DBE63499DB4FDD7271BF1A2C5" type="Body">16FD666DBE63499DB4FDD7271BF1A2C5</source_id>
+      <tab_stop>0</tab_stop>
+      <x>0</x>
+      <y>0</y>
+      <name>item_info</name>
+     </Item>
+    </Relationships>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

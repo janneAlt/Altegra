@@ -1,0 +1,43 @@
+﻿<AML>
+ <Item type="Method" id="A1F1394079D14C10BD89E47CA1F0CE35" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[// Aras Labs Project
+// Eli Donahue - 10/5/16
+//
+// onClick field event for Submit button
+// Returns the form field values to the method that called the current dialog
+
+// get param1 field
+var wrapper1 = getFieldByName("sre_message");
+var p1 = wrapper1.getElementsByTagName("textarea")[0];
+
+// get param2 field
+var wrapper2 = getFieldByName("sre_userid");
+var p2 = wrapper2.getElementsByTagName("input")[0];
+
+var wrapper3 = getFieldByName("sre_user");
+var p3 = wrapper3.getElementsByTagName("input")[0];
+// get search result
+
+// confirm fields were correctly retrieved
+if (!p1){
+	alert("Can't find field param1");
+	return;
+}
+if (!p2){
+	alert("Can't find field param2");
+	return;
+}
+
+// return entered values
+var retVal = {};
+retVal["sre_message"] = p1.value;
+retVal["sre_userid"] = p2.value;
+retVal["sre_user"] = p3.value;
+parent.returnValue = retVal; 
+parent.close();
+]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>sre_sendMethod_CM</name>
+ </Item>
+</AML>

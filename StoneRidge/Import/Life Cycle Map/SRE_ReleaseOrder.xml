@@ -1,0 +1,126 @@
+﻿<AML>
+ <Item type="Life Cycle Map" id="5D6C47A1F1F54AFB87FE7447AA12355F" action="add">
+  <start_state keyed_name="Planning" type="Life Cycle State">0342CC4D5C0747DDB728E34EDA59969D</start_state>
+  <name>SRE_ReleaseOrder</name>
+  <Relationships>
+   <Item type="Life Cycle State" id="4A18B6061AD4409F9AE35E05C99A7925" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <item_behavior>fixed</item_behavior>
+    <set_is_released>1</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>640</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="Life Cycle Map">5D6C47A1F1F54AFB87FE7447AA12355F</source_id>
+    <x>668</x>
+    <y>40</y>
+    <name>Closed</name>
+   </Item>
+   <Item type="Life Cycle State" id="0342CC4D5C0747DDB728E34EDA59969D" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="Life Cycle Map">5D6C47A1F1F54AFB87FE7447AA12355F</source_id>
+    <x>112</x>
+    <y>45</y>
+    <name>Planning</name>
+   </Item>
+   <Item type="Life Cycle State" id="86C4FF05AC4A477FBBA68D39C346A73A" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>512</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="Life Cycle Map">5D6C47A1F1F54AFB87FE7447AA12355F</source_id>
+    <x>518</x>
+    <y>42</y>
+    <name>Ready For Release</name>
+   </Item>
+   <Item type="Life Cycle State" id="651DD0EDFA7C4E1ABB3C6CD5FA13A00C" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>768</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="Life Cycle Map">5D6C47A1F1F54AFB87FE7447AA12355F</source_id>
+    <x>363</x>
+    <y>136</y>
+    <name>Reject</name>
+   </Item>
+   <Item type="Life Cycle State" id="53A75691F90B4A439B6E95484E61B39A" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="Life Cycle Map">5D6C47A1F1F54AFB87FE7447AA12355F</source_id>
+    <x>238</x>
+    <y>44</y>
+    <name>Review</name>
+   </Item>
+   <Item type="Life Cycle State" id="F8AAD74F7BA946B6A592FA5834C427E8" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="Life Cycle Map">5D6C47A1F1F54AFB87FE7447AA12355F</source_id>
+    <x>364</x>
+    <y>42</y>
+    <name>RO Review</name>
+   </Item>
+   <Item type="Life Cycle Transition" id="CDBB68606E114E33962DA21C19F8BFCA" action="add">
+    <from_state keyed_name="Planning" type="Life Cycle State">0342CC4D5C0747DDB728E34EDA59969D</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="Aras PLM" type="Identity">56A96DA9E981481688563E2D14D5D878</role>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="Life Cycle Map">5D6C47A1F1F54AFB87FE7447AA12355F</source_id>
+    <to_state keyed_name="Review" type="Life Cycle State">53A75691F90B4A439B6E95484E61B39A</to_state>
+   </Item>
+   <Item type="Life Cycle Transition" id="4F12AACC080A401B9EABDB47A4910EFC" action="add">
+    <from_state keyed_name="Review" type="Life Cycle State">53A75691F90B4A439B6E95484E61B39A</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="Aras PLM" type="Identity">56A96DA9E981481688563E2D14D5D878</role>
+    <segments />
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="Life Cycle Map">5D6C47A1F1F54AFB87FE7447AA12355F</source_id>
+    <to_state keyed_name="RO Review" type="Life Cycle State">F8AAD74F7BA946B6A592FA5834C427E8</to_state>
+    <x>0</x>
+    <y>0</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="D61700A272604245B4E9ED12B50038EA" action="add">
+    <from_state keyed_name="Ready For Release" type="Life Cycle State">86C4FF05AC4A477FBBA68D39C346A73A</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="Aras PLM" type="Identity">56A96DA9E981481688563E2D14D5D878</role>
+    <sort_order>512</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="Life Cycle Map">5D6C47A1F1F54AFB87FE7447AA12355F</source_id>
+    <to_state keyed_name="Closed" type="Life Cycle State">4A18B6061AD4409F9AE35E05C99A7925</to_state>
+   </Item>
+   <Item type="Life Cycle Transition" id="3F78D517254348FA9656641CFC86C447" action="add">
+    <from_state keyed_name="RO Review" type="Life Cycle State">F8AAD74F7BA946B6A592FA5834C427E8</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="Aras PLM" type="Identity">56A96DA9E981481688563E2D14D5D878</role>
+    <segments>312,8</segments>
+    <sort_order>768</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="Life Cycle Map">5D6C47A1F1F54AFB87FE7447AA12355F</source_id>
+    <to_state keyed_name="Review" type="Life Cycle State">53A75691F90B4A439B6E95484E61B39A</to_state>
+    <x>0</x>
+    <y>0</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="5C374B69D30E48F6BFBD2372371D6849" action="add">
+    <from_state keyed_name="RO Review" type="Life Cycle State">F8AAD74F7BA946B6A592FA5834C427E8</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="Aras PLM" type="Identity">56A96DA9E981481688563E2D14D5D878</role>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="Life Cycle Map">5D6C47A1F1F54AFB87FE7447AA12355F</source_id>
+    <to_state keyed_name="Ready For Release" type="Life Cycle State">86C4FF05AC4A477FBBA68D39C346A73A</to_state>
+   </Item>
+   <Item type="Life Cycle Transition" id="99D4669DB4E04276B7B465A51E643FCC" action="add">
+    <from_state keyed_name="RO Review" type="Life Cycle State">F8AAD74F7BA946B6A592FA5834C427E8</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="Aras PLM" type="Identity">56A96DA9E981481688563E2D14D5D878</role>
+    <segments />
+    <sort_order>640</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="Life Cycle Map">5D6C47A1F1F54AFB87FE7447AA12355F</source_id>
+    <to_state keyed_name="Reject" type="Life Cycle State">651DD0EDFA7C4E1ABB3C6CD5FA13A00C</to_state>
+    <x>5</x>
+    <y>54</y>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

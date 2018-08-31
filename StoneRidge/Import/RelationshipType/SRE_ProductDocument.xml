@@ -1,0 +1,127 @@
+﻿<AML>
+ <Item type="RelationshipType" id="FFA8506120A54D2EBCCBE6A3ED19F8D9" action="add" dependencyLevel="0">
+  <auto_search>1</auto_search>
+  <behavior>float</behavior>
+  <copy_permissions>0</copy_permissions>
+  <create_related>0</create_related>
+  <hide_in_all>0</hide_in_all>
+  <inc_rel_key_name>1</inc_rel_key_name>
+  <inc_related_key_name>1</inc_related_key_name>
+  <is_list_type>0</is_list_type>
+  <label xml:lang="en">Product Document</label>
+  <new_show_related>1</new_show_related>
+  <related_id keyed_name="Document" type="ItemType" name="Document">B88C14B99EF449828C5D926E39EE8B89</related_id>
+  <related_notnull>1</related_notnull>
+  <related_option>2</related_option>
+  <relationship_id keyed_name="SRE_ProductDocument" type="ItemType" name="SRE_ProductDocument">
+   <Item type="ItemType" id="B8D892361A94467180E7CD306CB04D02" action="add">
+    <allow_private_permission>1</allow_private_permission>
+    <auto_search>0</auto_search>
+    <enforce_discovery>0</enforce_discovery>
+    <hide_where_used>0</hide_where_used>
+    <implementation_type>table</implementation_type>
+    <instance_data>SRE_PRODUCTDOCUMENT</instance_data>
+    <is_dependent>0</is_dependent>
+    <is_relationship>1</is_relationship>
+    <is_versionable>0</is_versionable>
+    <revisions keyed_name="Default" type="Revision">7FE395DD8B9F4E1090756A34B733D75E</revisions>
+    <show_parameters_tab>1</show_parameters_tab>
+    <structure_view>tabs off</structure_view>
+    <unlock_on_logout>0</unlock_on_logout>
+    <use_src_access>1</use_src_access>
+    <name>SRE_ProductDocument</name>
+    <Relationships>
+     <Item type="Property" id="6F38EA42989347268AEAB294B24568B0" action="add">
+      <column_alignment>left</column_alignment>
+      <data_source>
+       <Item type="Property" action="get" select="id">
+        <name>related_id</name>
+        <source_id>B8D892361A94467180E7CD306CB04D02</source_id>
+       </Item>
+      </data_source>
+      <data_type>foreign</data_type>
+      <foreign_property>
+       <Item type="Property" action="get" select="id">
+        <keyed_name>keyed_name</keyed_name>
+        <source_id>
+         <Item type="ItemType" action="get" select="id">
+          <name>Document</name>
+         </Item>
+        </source_id>
+       </Item>
+      </foreign_property>
+      <is_hidden>0</is_hidden>
+      <is_hidden2>0</is_hidden2>
+      <is_indexed>0</is_indexed>
+      <is_keyed>0</is_keyed>
+      <is_multi_valued>0</is_multi_valued>
+      <is_required>0</is_required>
+      <label xml:lang="en">document</label>
+      <range_inclusive>0</range_inclusive>
+      <readonly>0</readonly>
+      <sort_order>3712</sort_order>
+      <source_id keyed_name="SRE_ProductDocument" type="ItemType" name="SRE_ProductDocument">B8D892361A94467180E7CD306CB04D02</source_id>
+      <track_history>0</track_history>
+      <name>document</name>
+     </Item>
+     <Item type="Property" id="97DE9E883FCB409987634B2C88C85281" action="add">
+      <column_alignment>left</column_alignment>
+      <data_source>
+       <Item type="Property" action="get" select="id">
+        <name>source_id</name>
+        <source_id>B8D892361A94467180E7CD306CB04D02</source_id>
+       </Item>
+      </data_source>
+      <data_type>foreign</data_type>
+      <foreign_property>
+       <Item type="Property" action="get" select="id">
+        <keyed_name>keyed_name</keyed_name>
+        <source_id>
+         <Item type="ItemType" action="get" select="id">
+          <name>SRE_Product</name>
+         </Item>
+        </source_id>
+       </Item>
+      </foreign_property>
+      <is_hidden>0</is_hidden>
+      <is_hidden2>0</is_hidden2>
+      <is_indexed>0</is_indexed>
+      <is_keyed>0</is_keyed>
+      <is_multi_valued>0</is_multi_valued>
+      <is_required>0</is_required>
+      <label xml:lang="en">product</label>
+      <range_inclusive>0</range_inclusive>
+      <readonly>0</readonly>
+      <sort_order>3584</sort_order>
+      <source_id keyed_name="SRE_ProductDocument" type="ItemType" name="SRE_ProductDocument">B8D892361A94467180E7CD306CB04D02</source_id>
+      <track_history>0</track_history>
+      <name>product</name>
+     </Item>
+     <Item type="TOC Access" id="0C336DF3153340AF855A43C724B30F0F" action="add">
+      <related_id keyed_name="Maria Eriksson" type="Identity">02B5523B78DD41BF965CAFD37AB50A12</related_id>
+      <sort_order>128</sort_order>
+      <source_id keyed_name="SRE_ProductDocument" type="ItemType" name="SRE_ProductDocument">B8D892361A94467180E7CD306CB04D02</source_id>
+      <category>Documents</category>
+     </Item>
+    </Relationships>
+   </Item>
+  </relationship_id>
+  <sort_order>4</sort_order>
+  <source_id keyed_name="SRE_Product" type="ItemType" name="SRE_Product">104DF3C55A9742FE895AAEA695146100</source_id>
+  <name>SRE_ProductDocument</name>
+  <Relationships>
+   <Item type="Relationship Grid Event" id="6E97886DE44046A187A51CEB3299513C" action="add">
+    <grid_event>oninsertrow</grid_event>
+    <related_id keyed_name="SRE_ValidateRelInsert" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>SRE_ValidateRelInsert</name>
+     </Item>
+    </related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_ProductDocument" type="RelationshipType">FFA8506120A54D2EBCCBE6A3ED19F8D9</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+ <Item type="View" action="delete" where="source_id='B8D892361A94467180E7CD306CB04D02'" />
+ <Item type="Form" action="delete" where="name='SRE_ProductDocument'" />
+</AML>

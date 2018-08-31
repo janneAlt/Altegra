@@ -1,0 +1,42 @@
+﻿<AML>
+ <Item type="Method" id="ABFDB7A916BE40688AE5F210CAC89C6E" action="add">
+  <comments />
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA['' Setting colors in grid on Part properties : state, classification
+
+Dim i As Integer
+
+For i=0 To Me.getItemCount()-1
+
+  Dim bg_color_state As String
+
+  Dim myCss As String
+  
+  Dim thisItem As Item = Me.getItemByIndex(i)
+  Dim thisStatus As String = thisItem.getProperty("state","")
+ 
+
+    '------
+      Select (thisStatus)
+          Case "Preliminary","Review" 
+            bg_color_state = "#FFFFBB" 'light yellow
+          Case "Approved" 
+            bg_color_state = "#99CC33" 'light green
+          Case Else
+            bg_color_state = "" 'none
+      End Select
+      
+     
+
+  If bg_color_state <> "" Then
+    myCss = ".state { background-color: " & bg_color_state & " }"
+    'myCss &= ".classification { background-color: " & bg_color_classification & "; text-indent: 5px;}"
+    thisItem.setProperty("css",myCss)
+    
+  End If
+Next i
+Return Me]]></method_code>
+  <method_type>VB</method_type>
+  <name>SRE_GridCOlor</name>
+ </Item>
+</AML>

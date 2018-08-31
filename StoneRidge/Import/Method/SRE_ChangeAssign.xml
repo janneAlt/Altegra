@@ -1,0 +1,448 @@
+﻿<AML>
+ <Item type="Method" id="D3DB39CAE28F4284911E7A0BE41ACE15" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[// Get innovator
+Innovator inn = this.getInnovator();
+
+Aras.Server.Security.Identity plmIdentity;
+bool permissionWasSet;
+
+// Get workflow process activity through id
+// then workflow process paths and activity assignments
+//Setting security
+plmIdentity = Aras.Server.Security.Identity.GetByName("Aras PLM");
+permissionWasSet = Aras.Server.Security.Permissions.GrantIdentity(plmIdentity);
+
+String Aml = @"<AML>
+  <Item type=""Workflow Process"" action=""get"">
+    <Relationships>
+      <Item type=""Workflow Process Activity"" action=""get"">
+        <related_id>
+          <Item type=""Activity"" id=""{0}"" action=""get"" />
+        </related_id>
+      </Item>
+      <Item type=""Workflow Process Activity"" action=""get"">
+        <related_id>
+          <Item type=""Activity"" action=""get"">
+            <Relationships>
+              <Item type=""Workflow Process Path""></Item>
+              <Item type=""Activity Assignment""></Item>
+            </Relationships>
+          </Item>
+        </related_id>
+      </Item>
+    </Relationships>
+  </Item>
+</AML>";
+Aml = String.Format(Aml, this.getID());
+
+Item WorkflowProcess = inn.applyAML(Aml);
+
+// Get the Controlled Item 
+Item WItem = inn.newItem("Workflow", "get");
+WItem.setAttribute("where", String.Format("[Workflow].related_id = '{0}'", WorkflowProcess.getID()));
+WItem = WItem.apply();
+if (WItem.isError()) {
+    return WItem;
+}
+
+// Change Item ID
+Item changeObject = inn.newItem(WItem.getPropertyAttribute("source_type", "name"), "get");
+changeObject.setID(WItem.getProperty("source_id"));
+changeObject = changeObject.apply();
+string changeObjectID = changeObject.getID();
+string typeOf = changeObject.getType();
+string activityName = this.getProperty("name");
+
+
+switch (activityName) {
+    
+    case "In Release":
+    // Item revVali1 = inn.applyMethod("SRE_ValidateExternalMethod","<itmID>"+changeObject.getID()+"</itmID>");
+        Item asgnApproverCount = this.newItem("Activity Assignment", "get");
+        asgnApproverCount.setProperty("source_id", this.getID());
+        asgnApproverCount = asgnApproverCount.apply();
+        if (asgnApproverCount.getItemCount() >= 1) {
+
+        } else {
+            Item asgnApprover = this.newItem("Activity Assignment", "add");
+            asgnApprover.setProperty("source_id", this.getID());
+            asgnApprover.setProperty("related_id", changeObject.getProperty("sre_approver"));
+            asgnApprover.setProperty("voting_weight", "100");
+            asgnApprover.setProperty("for_all_members", "1");
+            asgnApprover.setProperty("is_required", "1");
+            asgnApprover = asgnApprover.apply();
+        }
+        
+        Item getRelItems = newItem("SRE_RO_AffectedItems","get");
+     getRelItems.setProperty("source_id",changeObject.getID());
+     getRelItems=getRelItems.apply();
+
+int relCount = getRelItems.getItemCount();
+if(relCount ==0)
+{
+    
+    return inn.newError("Cannot create release Order without Affected Items");
+}
+
+for(int i = 0; i<relCount; i++)
+
+    {
+         
+    string relatedID = getRelItems.getItemByIndex(i).getProperty("related_id");
+    
+         Item getSpecificAffected = newItem("SRE_PolyAffected","get");
+         getSpecificAffected.setProperty("id",relatedID);
+         getSpecificAffected=getSpecificAffected.apply();
+         
+         string itemType = getSpecificAffected.getType();
+         string state =    getSpecificAffected.getProperty("state");
+         string teamID =  getSpecificAffected.getProperty("team_id");
+         string itemNumber =  getSpecificAffected.getProperty("item_number");
+        string BASE_PATH = "..\\Solutions\\SRE\\images\\";
+        string image = BASE_PATH + "Error.png";
+        
+         if(state!="Approved" )
+         {
+             Item addValidation = newItem("SRE_RO_Validations","add");
+                  
+                  addValidation.setProperty("sre_itemnumber",getSpecificAffected.getProperty("id"));
+                  addValidation.setProperty("sre_itemtype",itemType);
+                  addValidation.setProperty("sre_status",image);
+                  addValidation.setProperty("sre_vtype","Error");
+                  addValidation.setProperty("sre_errordetail","Cannot Perform Release the item is not Approved");
+                  addValidation.setProperty("source_id",changeObject.getID());
+                  addValidation=addValidation.apply();
+         }
+     
+         
+         
+         
+         
+         
+         
+             }
+        
+        
+        break;
+
+
+
+    case "In-Work":
+   
+        if (changeObject.getProperty("sre_touser") == "") {
+            return inn.newError("No Recipient set on the task");
+        }
+        Item asgnApprover1 = this.newItem("Activity Assignment", "add");
+        asgnApprover1.setProperty("source_id", this.getID());
+        asgnApprover1.setProperty("related_id", changeObject.getProperty("sre_touser"));
+        asgnApprover1.setProperty("voting_weight", "100");
+        asgnApprover1.setProperty("for_all_members", "1");
+        asgnApprover1.setProperty("is_required", "1");
+        asgnApprover1 = asgnApprover1.apply();
+        
+        
+        
+        
+ string qrysRWtsk = "UPDATE ACTIVITY_TASK SET DESCRIPTION='"+changeObject.getProperty("sre_message")+"',IS_REQUIRED='1' where SOURCE_ID='" + this.getID() + "'";
+        Item qryRessRWtsk = inn.applySQL(qrysRWtsk);
+        break;
+        
+        
+
+        case "Rework":
+        string qrysRW = "DELETE ACTIVITY_ASSIGNMENT where SOURCE_ID='" + this.getID() + "'";
+        Item qryRessRW = inn.applySQL(qrysRW);
+        // return inn.newError("Testing");
+        
+          
+
+            string chngItemTypeRW = changeObject.getType();
+       
+            Item getitemTeamRW = newItem(chngItemTypeRW, "get");
+            getitemTeamRW.setProperty("id", changeObject.getID());
+            getitemTeamRW = getitemTeamRW.apply();
+            string creator = getitemTeamRW.getProperty("created_by_id");
+            Item relget = newItem("Alias","get");
+            relget.setProperty("source_id",creator);
+            relget=relget.apply();
+            
+        
+
+            
+                
+                    Item asgnz = this.newItem("Activity Assignment", "add");
+                    asgnz.setProperty("source_id", this.getID());
+                    asgnz.setProperty("related_id", relget.getProperty("related_id"));
+                    asgnz.setProperty("voting_weight", "100");
+                    asgnz.setProperty("for_all_members", "1");
+                    asgnz.setProperty("is_required", "1");
+                    Item resasgnz = asgnz.apply();
+             
+
+        
+        break;
+        
+        
+        case "Review":
+        string qrys = "DELETE ACTIVITY_ASSIGNMENT where SOURCE_ID='" + this.getID() + "'";
+        Item qryRess = inn.applySQL(qrys);
+        // return inn.newError("Testing");
+        
+          
+
+            string chngItemType = changeObject.getType();
+       
+            Item getitemTeam = newItem(chngItemType, "get");
+            getitemTeam.setProperty("id", changeObject.getID());
+            getitemTeam = getitemTeam.apply();
+
+            Item iden2 = this.newItem("Team Identity", "get");
+            iden2.setProperty("source_id", getitemTeam.getProperty("team_id"));
+            Item idenRes2 = iden2.apply();
+            int idCount2 = idenRes2.getItemCount();
+
+            for (int d = 0; d < idCount2; d++) {
+                if (idenRes2.getItemByIndex(d).getProperty("team_role") == "0B99F1A57D4449CB8159A4820F7F70E5") {
+                    Item asgn = this.newItem("Activity Assignment", "add");
+                    asgn.setProperty("source_id", this.getID());
+                    asgn.setProperty("related_id", idenRes2.getItemByIndex(d).getProperty("related_id"));
+                    asgn.setProperty("voting_weight", "100");
+                    asgn.setProperty("for_all_members", "1");
+                    asgn.setProperty("is_required", "1");
+                    Item resasgn = asgn.apply();
+                }
+
+            }
+
+        
+        break;
+        
+        //2B76E907B7594BB0B101E7C2E8A4B453
+        
+                case "Approval":
+                
+                
+        string qrys1 = "DELETE ACTIVITY_ASSIGNMENT where SOURCE_ID='" + this.getID() + "'";
+        Item qryRess1 = inn.applySQL(qrys1);
+        
+        
+         
+
+            string chngItemType1 = changeObject.getType();
+        
+            Item getitemTeam1 = newItem(chngItemType1, "get");
+            getitemTeam1.setProperty("id", changeObject.getID());
+            getitemTeam1 = getitemTeam1.apply();
+
+            Item iden4 = this.newItem("Team Identity", "get");
+            iden4.setProperty("source_id", getitemTeam1.getProperty("team_id"));
+            Item idenRes4 = iden4.apply();
+            int idCount4 = idenRes4.getItemCount();
+                 
+            for (int d = 0; d < idCount4; d++) {
+                if (idenRes4.getItemByIndex(d).getProperty("team_role") == "2B76E907B7594BB0B101E7C2E8A4B453") {
+                    Item asgn = this.newItem("Activity Assignment", "add");
+                    asgn.setProperty("source_id", this.getID());
+                    asgn.setProperty("related_id", idenRes4.getItemByIndex(d).getProperty("related_id"));
+                    asgn.setProperty("voting_weight", "100");
+                    asgn.setProperty("for_all_members", "0");
+                    asgn.setProperty("is_required", "1");
+                    Item resasgn = asgn.apply();
+                    //  return inn.newError("here apr"+chngItemType1);
+                }
+
+            }
+
+        
+        break;
+
+
+        case "MultiReview":
+                
+                
+        string qrysMR = "DELETE ACTIVITY_ASSIGNMENT where SOURCE_ID='" + this.getID() + "'";
+        Item qryRessMR = inn.applySQL(qrysMR);
+        
+        string chngItemTypeMR = changeObject.getType();
+        
+            Item getitemTeamMR = newItem(chngItemTypeMR, "get");
+            getitemTeamMR.setProperty("id", changeObject.getID());
+            getitemTeamMR = getitemTeamMR.apply();
+
+            Item idenMR = this.newItem("Team Identity", "get");
+            idenMR.setProperty("source_id", getitemTeamMR.getProperty("team_id"));
+            Item idenResMR = idenMR.apply();
+            int idCountMR = idenResMR.getItemCount();
+                 
+            for (int d = 0; d < idCountMR; d++) {
+                if (idenResMR.getItemByIndex(d).getProperty("team_role") == "0B99F1A57D4449CB8159A4820F7F70E5") {
+                   this.setProperty("managed_by_id",idenResMR.getItemByIndex(d).getProperty("related_id"));
+                }
+
+            }
+
+         
+
+           
+        
+        break;
+       
+
+        case "Closed":
+        
+         Item getallaffectedItems1 = newItem("SRE_RO_AffectedItems", "get");
+            getallaffectedItems1.setProperty("source_id", changeObjectID);
+            getallaffectedItems1 = getallaffectedItems1.apply();
+
+            int cnt1 = getallaffectedItems1.getItemCount();
+
+            if (cnt1 == 0) {
+
+                return inn.newError("No Affected Items added to change");
+            }
+            for (int i = 0; i < cnt1; i++) 
+            {
+                string itmID = getallaffectedItems1.getItemByIndex(i).getProperty("related_id");
+                Item getItems = newItem("SRE_PolyAffected", "get");
+                getItems.setProperty("id", itmID);
+                getItems=getItems.apply();
+                if(getItems.getProperty("state")!="Released"){
+                getItems.promote("Released","Released by RO: "+ changeObject.getProperty("sre_id"));
+                }
+                 if(getItems.getType()=="Document")
+          {
+              
+              var docItems = new List < string > ();
+             string docConfig = getItems.getProperty("config_id");
+             
+             Item allDocs = newItem("Document","get");
+             allDocs.setProperty("config_id",docConfig);
+             allDocs=allDocs.apply();
+             
+             for(int j=0; j<allDocs.getItemCount();j++)
+             {
+                 
+                Item partDocRel = newItem("Part Document","get");
+                partDocRel.setProperty("sre_type","Referencing");
+                partDocRel=partDocRel.apply();
+                
+                if(partDocRel.getItemCount()>=1)
+                {
+                    
+                   for(int k =0; k<partDocRel.getItemCount(); k++)
+                   {
+                       Item getConfigDoc = inn.getItemById("Document",partDocRel.getItemByIndex(k).getProperty("related_id"));
+                       if(getConfigDoc.getProperty("config_id")==docConfig)
+                       {
+                           
+               docItems.Add(partDocRel.getItemByIndex(k).getID());
+                       }
+                   }
+                }
+                
+                
+                 
+             }
+             
+             foreach(string docs in docItems)
+             {
+                //  return inn.newError(docItems.Count.ToString());
+                 Item getRelItem =newItem("Part Document","get");
+                 getRelItem.setProperty("id",docs);
+                 getRelItem=getRelItem.apply();
+                 
+                 getRelItem.setAction("edit");
+                 getRelItem.setProperty("related_id",getItems.getID());
+                 getRelItem=getRelItem.apply();
+                 
+             }
+          } 
+                
+            
+            }
+        
+        break;
+        
+        case "Close":
+                
+if(changeObject.getType()=="Document"&&!string.IsNullOrEmpty(changeObject.getProperty("sre_sourcefile"))&&changeObject.getProperty("sre_requiretemplate")=="1")
+                {
+                //   return inn.newError("here");
+                    Item ur = inn.getItemById("User", inn.getUserID());
+                   string approvedName = ur.getProperty("last_name")+","+ur.getProperty("first_name");
+                   Item updateProps = inn.applyMethod("SRE_updateDocProps_Add","<approver>"+approvedName+"</approver><docid>"+changeObject.getID()+"</docid><srcfl>"+changeObject.getProperty("sre_sourcefile")+"</srcfl>");
+                   
+                   
+                }
+                
+               if(changeObject.getType()=="Document"&&!string.IsNullOrEmpty(changeObject.getProperty("sre_sourcefile"))){
+                 Item myItem = inn.applyMethod("SRE_GeneratePDFApprove","<src>"+changeObject.getProperty("sre_sourcefile")+"</src><itmnr>"+changeObject.getProperty("item_number")+"</itmnr>");     
+                }
+          if(changeObject.getType()=="SRE_Product")
+          {
+              if(changeObject.getProperty("sre_platform")=="")
+              {
+                  return inn.newError("Cannot Release Product with out a Valid Part List");
+              }
+              Item platform = inn.getItemById("SRE_Platform",changeObject.getProperty("sre_platform"));
+              
+              if(platform.getProperty("state")!="Released")
+              {
+                  
+                  return inn.newError("Valid Part list is not released, cannot release product");
+              }
+              
+          }
+          
+          if(changeObject.getType()=="SRE_Platform")
+          {
+              var items = new List < string > ();
+                Item prodGet = newItem("SRE_Product","get");
+                prodGet.setProperty("state","Released");
+                prodGet=prodGet.apply();
+                
+                if(prodGet.getItemCount()!=0)
+                {
+                    for(int i =0; i<prodGet.getItemCount();i++)
+                    {
+                        if(prodGet.getItemByIndex(i).getProperty("sre_platform")!="")
+                        {
+                            
+                            Item getVPL = inn.getItemById("SRE_Platform",prodGet.getItemByIndex(i).getProperty("sre_platform"));
+                            string sourceVPL = getVPL.getProperty("config_id");
+                            if(changeObject.getProperty("config_id")==sourceVPL)
+                            {
+                                // return inn.newError("here Products VPL id "+getVPL.getID()+" CurrentVPLID "+changeObject.getID()+" Product ID "+prodGet.getItemByIndex(i).getProperty("id"));
+                                items.Add(prodGet.getItemByIndex(i).getProperty("id"));
+                            }
+                        }
+                        
+                    }
+                    
+                }
+                foreach(string itm in items)
+                {
+                    Item updateProduct = inn.getItemById("SRE_Product",itm);
+                    // return inn.newError(updateProduct.getProperty("item_number")+" Current VPL "+changeObject.getID());
+                    updateProduct.setAction("edit");
+                    updateProduct.setProperty("sre_platform",changeObject.getID());
+                    updateProduct=updateProduct.apply();
+                    
+                }
+
+
+
+          }
+                            
+        
+        break;
+}
+
+if (permissionWasSet)
+    Aras.Server.Security.Permissions.RevokeIdentity(plmIdentity);
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_ChangeAssign</name>
+ </Item>
+</AML>

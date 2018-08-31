@@ -1,0 +1,163 @@
+﻿<AML>
+ <Item type="Form" id="207F13D897854CA3BE3EA2EE11BA4F73" action="add">
+  <category_form>0</category_form>
+  <height>234</height>
+  <stylesheet><![CDATA[../styles/default.css]]></stylesheet>
+  <width>699</width>
+  <name>SRE_ReleaseOrdeSubflow</name>
+  <Relationships>
+   <Item type="Body" id="B1ED56300C6646CF893D402511E6E226" action="add">
+    <bg_color>#FFFFFF</bg_color>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrdeSubflow" type="Form">207F13D897854CA3BE3EA2EE11BA4F73</source_id>
+    <Relationships>
+     <Item type="Field" id="39A4895DDD6943ACB9046A8C0C68BEE7" action="add">
+      <display_length_unit>px</display_length_unit>
+      <field_type>html</field_type>
+      <html_code><![CDATA[<span id='ITEM_INFO_INTERNAL_SPAN'/>
+<script>
+  populate_ITEM_INFO_INTERNAL_SPAN = function()
+  {
+    document.getElementById('ITEM_INFO_INTERNAL_SPAN').innerHTML = aras.uiGetItemInfoTable(document.itemType);
+  }
+  window.addEventListener('load', populate_ITEM_INFO_INTERNAL_SPAN);
+</script>]]></html_code>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>768</sort_order>
+      <source_id keyed_name="B1ED56300C6646CF893D402511E6E226" type="Body">B1ED56300C6646CF893D402511E6E226</source_id>
+      <tab_stop>0</tab_stop>
+      <x>0</x>
+      <y>0</y>
+      <name>item_info</name>
+     </Item>
+     <Item type="Field" id="1C204F62AC244CFA81CE5BED8F63EDD7" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>textarea</field_type>
+      <font_color>#000000</font_color>
+      <font_family>arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">Comments</label>
+      <label_position>left</label_position>
+      <list_no_blank>0</list_no_blank>
+      <propertytype_id keyed_name="sre_comments" type="Property">E8BB88F24EF24772BDAD5943CD28B59D</propertytype_id>
+      <sort_order>640</sort_order>
+      <source_id keyed_name="B1ED56300C6646CF893D402511E6E226" type="Body">B1ED56300C6646CF893D402511E6E226</source_id>
+      <tab_index>3584</tab_index>
+      <tab_stop>1</tab_stop>
+      <textarea_cols>256</textarea_cols>
+      <textarea_rows>100</textarea_rows>
+      <x>221</x>
+      <y>70</y>
+      <name>sre_comments</name>
+     </Item>
+     <Item type="Field" id="DC6032ED86414254B419E05B4D3712DF" action="add">
+      <border_width>0</border_width>
+      <display_length>256</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>item</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>1</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">Affected Item</label>
+      <label_position>left</label_position>
+      <list_no_blank>0</list_no_blank>
+      <propertytype_id keyed_name="sre_item" type="Property">C77347E6B84446309B0B76957ABF36DF</propertytype_id>
+      <sort_order>1152</sort_order>
+      <source_id keyed_name="B1ED56300C6646CF893D402511E6E226" type="Body">B1ED56300C6646CF893D402511E6E226</source_id>
+      <tab_index>3968</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>203</x>
+      <y>30</y>
+      <name>sre_item</name>
+     </Item>
+     <Item type="Field" id="4222AA858AF04DCF9D26F7091942FBBD" action="add">
+      <border_width>0</border_width>
+      <display_length>256</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">Task Number</label>
+      <label_position>left</label_position>
+      <list_no_blank>0</list_no_blank>
+      <propertytype_id keyed_name="sre_tasknumber" type="Property">939F361C6F7B46B8B5654579A9B8288C</propertytype_id>
+      <sort_order>1024</sort_order>
+      <source_id keyed_name="B1ED56300C6646CF893D402511E6E226" type="Body">B1ED56300C6646CF893D402511E6E226</source_id>
+      <tab_index>3712</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>206</x>
+      <y>10</y>
+      <name>sre_tasknumber</name>
+     </Item>
+     <Item type="Field" id="3B01621D955C4CB28C3D3042DFDA8190" action="add">
+      <border_width>0</border_width>
+      <display_length>256</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>dropdown</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">Type</label>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <propertytype_id keyed_name="sre_type" type="Property">440277B9CE2147B0B9E4A4F5A89AC69F</propertytype_id>
+      <sort_order>1280</sort_order>
+      <source_id keyed_name="B1ED56300C6646CF893D402511E6E226" type="Body">B1ED56300C6646CF893D402511E6E226</source_id>
+      <tab_index>4096</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>274</x>
+      <y>174</y>
+      <name>sre_type</name>
+     </Item>
+     <Item type="Field" id="698435AA339E454297C58DBB318CB7B8" action="add">
+      <border_width>0</border_width>
+      <display_length>256</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">state</label>
+      <label_position>left</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>896</sort_order>
+      <source_id keyed_name="B1ED56300C6646CF893D402511E6E226" type="Body">B1ED56300C6646CF893D402511E6E226</source_id>
+      <tab_index>1408</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>248</x>
+      <y>50</y>
+      <name>state</name>
+     </Item>
+    </Relationships>
+   </Item>
+  </Relationships>
+ </Item>
+ <Item type="Field" id="698435AA339E454297C58DBB318CB7B8" action="edit">
+  <!-- Please note: this AML depends on the "SRE_ReleaseOrdeSubflow" ItemType. Please make sure it exists before running this. -->
+  <propertytype_id>
+   <Item type="Property" action="get" select="id">
+    <name>state</name>
+    <source_id type="ItemType" keyed_name="SRE_ReleaseOrdeSubflow">4D453D4D991444B7BBF39A5AED54E7E6</source_id>
+   </Item>
+  </propertytype_id>
+ </Item>
+</AML>

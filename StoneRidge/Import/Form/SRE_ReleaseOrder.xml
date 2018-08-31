@@ -1,0 +1,181 @@
+﻿<AML>
+ <Item type="Form" id="DE995BC9C7134C638E709B0EA1B38D82" action="add">
+  <category_form>0</category_form>
+  <height>234</height>
+  <stylesheet><![CDATA[../styles/default.css]]></stylesheet>
+  <width>699</width>
+  <name>SRE_ReleaseOrder</name>
+  <Relationships>
+   <Item type="Body" id="BDAF71B094154E16954DDE00CC1E753D" action="add">
+    <bg_color>#FFFFFF</bg_color>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="Form">DE995BC9C7134C638E709B0EA1B38D82</source_id>
+    <Relationships>
+     <Item type="Field" id="85F16B0A97C94EB088E17C796A41FB3E" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>html</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <html_code><![CDATA[<span id="ITEM_STATE_INTERNAL_SPAN"/>
+<script>
+  window.getItemStateInnerHTML = function(itemStateValue)
+  {
+    var tableHTML = '<table width="100" id="item_status" border="0" bgcolor="#FFFFFF" empty-cells:show; style="border-color:#9999ff; border-width:1pt; border-style:dashed;" >';
+	tableHTML += '<tr height="20" valign="center" >';
+	tableHTML += '<td align="center" style="text-transform:capitalize; font-family:arial, helvetica, sans-serif; font-size:10pt; font-weight:bold; color:#0000FF;">';
+	tableHTML += itemStateValue;
+	tableHTML += '</td></tr></table>'
+
+    return tableHTML;	
+  }
+</script>]]></html_code>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>768</sort_order>
+      <source_id keyed_name="BDAF71B094154E16954DDE00CC1E753D" type="Body">BDAF71B094154E16954DDE00CC1E753D</source_id>
+      <tab_stop>1</tab_stop>
+      <x>10</x>
+      <y>101</y>
+      <name>html_item_class</name>
+     </Item>
+     <Item type="Field" id="227D5231388848CDA91BB67A9974A101" action="add">
+      <display_length_unit>px</display_length_unit>
+      <field_type>html</field_type>
+      <html_code><![CDATA[<span id='ITEM_INFO_INTERNAL_SPAN'/>
+<script>
+  populate_ITEM_INFO_INTERNAL_SPAN = function()
+  {
+    document.getElementById('ITEM_INFO_INTERNAL_SPAN').innerHTML = aras.uiGetItemInfoTable(document.itemType);
+  }
+  window.addEventListener('load', populate_ITEM_INFO_INTERNAL_SPAN);
+</script>]]></html_code>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>640</sort_order>
+      <source_id keyed_name="BDAF71B094154E16954DDE00CC1E753D" type="Body">BDAF71B094154E16954DDE00CC1E753D</source_id>
+      <tab_stop>0</tab_stop>
+      <x>0</x>
+      <y>0</y>
+      <name>item_info</name>
+     </Item>
+     <Item type="Field" id="515FC6B895064FABBB662C84D19CC0ED" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>html</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <html_code><![CDATA[<div id="myvalidation" width="200" height="80"></div>]]></html_code>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label_position>top</label_position>
+      <list_no_blank>0</list_no_blank>
+      <sort_order>896</sort_order>
+      <source_id keyed_name="BDAF71B094154E16954DDE00CC1E753D" type="Body">BDAF71B094154E16954DDE00CC1E753D</source_id>
+      <tab_stop>1</tab_stop>
+      <x>845</x>
+      <y>42</y>
+      <name>roValidations</name>
+     </Item>
+     <Item type="Field" id="CCC171337F884F278BCD95354FDC501D" action="add">
+      <border_width>0</border_width>
+      <display_length>257</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>item</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">Release Manager</label>
+      <label_position>left</label_position>
+      <list_no_blank>0</list_no_blank>
+      <propertytype_id keyed_name="sre_approver" type="Property">E0E00041DB954B64A409B2B9D208E6D7</propertytype_id>
+      <sort_order>512</sort_order>
+      <source_id keyed_name="BDAF71B094154E16954DDE00CC1E753D" type="Body">BDAF71B094154E16954DDE00CC1E753D</source_id>
+      <tab_index>40</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>127</x>
+      <y>66</y>
+      <name>sre_approver</name>
+     </Item>
+     <Item type="Field" id="A90BEC4BEEFE407CA2167305045414A4" action="add">
+      <border_width>0</border_width>
+      <display_length_unit>px</display_length_unit>
+      <field_type>textarea</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">Description</label>
+      <label_position>left</label_position>
+      <list_no_blank>0</list_no_blank>
+      <propertytype_id keyed_name="sre_description" type="Property">9770BB0BBF894ED8B071EC0FA9F9747E</propertytype_id>
+      <sort_order>256</sort_order>
+      <source_id keyed_name="BDAF71B094154E16954DDE00CC1E753D" type="Body">BDAF71B094154E16954DDE00CC1E753D</source_id>
+      <tab_index>20</tab_index>
+      <tab_stop>1</tab_stop>
+      <textarea_cols>256</textarea_cols>
+      <textarea_rows>30</textarea_rows>
+      <x>158</x>
+      <y>30</y>
+      <name>sre_description</name>
+     </Item>
+     <Item type="Field" id="B397B83758964A6794DD241E5D23EF18" action="add">
+      <border_width>0</border_width>
+      <display_length>256</display_length>
+      <display_length_unit>px</display_length_unit>
+      <field_type>text</field_type>
+      <font_color>#000000</font_color>
+      <font_family>tahoma, arial, helvetica, sans-serif</font_family>
+      <font_size>8pt</font_size>
+      <font_weight>bold</font_weight>
+      <is_disabled>0</is_disabled>
+      <is_visible>1</is_visible>
+      <label xml:lang="en">ID</label>
+      <label_position>left</label_position>
+      <list_no_blank>0</list_no_blank>
+      <propertytype_id keyed_name="sre_id" type="Property">F0A79F0852FB4F719E92781692121976</propertytype_id>
+      <sort_order>128</sort_order>
+      <source_id keyed_name="BDAF71B094154E16954DDE00CC1E753D" type="Body">BDAF71B094154E16954DDE00CC1E753D</source_id>
+      <tab_index>10</tab_index>
+      <tab_stop>1</tab_stop>
+      <x>206</x>
+      <y>10</y>
+      <name>sre_id</name>
+     </Item>
+    </Relationships>
+   </Item>
+   <Item type="Form Event" id="B923D3A380B84E4BB185458BCD599FB3" action="add">
+    <form_event>onformpopulated</form_event>
+    <related_id keyed_name="SRE_ROSTATE" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>SRE_ROSTATE</name>
+     </Item>
+    </related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="Form">DE995BC9C7134C638E709B0EA1B38D82</source_id>
+   </Item>
+   <Item type="Form Event" id="E6B85D937B8E4B41954EEEE494D60A7A" action="add">
+    <form_event>onformpopulated</form_event>
+    <related_id keyed_name="SRE_RO_validationFormImage" type="Method">
+     <Item type="Method" action="get" select="id">
+      <name>SRE_RO_validationFormImage</name>
+     </Item>
+    </related_id>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_ReleaseOrder" type="Form">DE995BC9C7134C638E709B0EA1B38D82</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

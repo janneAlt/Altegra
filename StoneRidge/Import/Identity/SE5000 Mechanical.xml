@@ -1,0 +1,12 @@
+﻿<AML>
+ <Item type="Identity" id="5566C2518318499BB4479B1AD3CBAEF4" action="add">
+  <is_alias>0</is_alias>
+  <name>SE5000 Mechanical</name>
+  <Relationships />
+ </Item>
+ <Item type="Member" id="EC3484EA95594C5984CF4A4FEB3DA96D" action="add">
+  <related_id keyed_name="Magnus Barfvestam" type="Identity">287F3F730829469AAC4B91920E192FF9</related_id>
+  <sort_order>128</sort_order>
+  <source_id keyed_name="SE5000 Mechanical" type="Identity">5566C2518318499BB4479B1AD3CBAEF4</source_id>
+ </Item>
+</AML>

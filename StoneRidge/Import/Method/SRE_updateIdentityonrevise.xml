@@ -1,0 +1,49 @@
+﻿<AML>
+ <Item type="Method" id="3EF08908B06F4680B31BDE0DE9522EB3" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[
+// Grant 'Aras PLM' permissions
+Aras.Server.Security.Identity plmIdentity = Aras.Server.Security.Identity.GetByName("Aras PLM");
+bool PermissionWasSet = Aras.Server.Security.Permissions.GrantIdentity(plmIdentity);
+
+Innovator inn = this.getInnovator();
+
+// Retrieve the id of the new version
+string thisType = this.getType();
+string oldId = this.getID();
+string itemTypeDbNameCurrent = CCO.DB.GenerateTableName(thisType);
+string oldConfigId = this.getProperty("config_id");
+
+
+
+// Get the latest generation
+Item newVer = this.newItem(thisType, "get");
+newVer.setAttribute("select", "id");
+newVer.setProperty("config_id", this.getProperty("config_id"));
+newVer.setProperty("is_current", "1");
+newVer = newVer.apply();
+if (newVer.isError())
+	return newVer;
+
+newVer.setAction("update");
+newVer.setProperty("sre_revsionhistory","");
+newVer = newVer.apply();
+
+//     string sql = "UPDATE PART SET SRE_REVSIONHISTORY= NULL where ID='"+newId+"'";
+// Item myres  = inn.applySQL(sql);
+
+
+
+
+
+// Revoke 'Aras PLM' permissions
+if (PermissionWasSet)
+	Aras.Server.Security.Permissions.RevokeIdentity(plmIdentity);
+
+return this;
+
+]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_updateIdentityonrevise</name>
+ </Item>
+</AML>

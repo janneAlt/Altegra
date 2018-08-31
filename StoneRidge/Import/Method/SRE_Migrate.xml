@@ -1,0 +1,143 @@
+﻿<AML>
+ <Item type="Method" id="5CCCA48C8F194664842327411107CD29" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[Innovator inn = this.getInnovator();
+
+
+var list = new List<string>();
+var fileStream = new FileStream(@"d:\migration\900588V1.0_01P01.txt", FileMode.Open, FileAccess.Read);
+using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
+{
+    string line;
+    while ((line = streamReader.ReadLine()) != null)
+    {
+       string[] myline = line.Split('\t');
+       string type = myline[0];
+       string partnumber = myline[1];
+       string maturity = myline[2];
+       string variant = myline[3];
+       string partstate = myline[4];
+       string rstate = myline[5];
+       string identity = myline[6];
+       string pname = myline[7];
+       Item nameid = newItem("SRE_Name","get");
+       nameid.setProperty("sre_name",pname);
+       nameid=nameid.apply();
+       if(nameid.isError())
+       {
+           return inn.newError(pname);
+           
+       }
+       
+       string name = nameid.getProperty("id");
+       string description = myline[8];
+       
+      string um = myline[9];
+    //   return inn.newError("here");
+       Item qryPart = newItem("Part","get");
+       qryPart.setProperty("item_number",partnumber);
+       Item qryPartres = qryPart.apply();
+       
+       int qrycnt= qryPartres.getItemCount();
+      if(qryPartres.getProperty("item_number")==partnumber&&qryPartres.getProperty("major_rev")!=rstate)
+      {
+          CCO.Utilities.WriteDebug("method_logold",qryPartres.getProperty("item_number"));
+          Item revitem =  qryPartres.apply("version");
+          
+          string qry = "UPDATE PART SET MAJOR_REV='"+rstate+"' where ID ='"+revitem.getID()+"'";
+          Item sqlqpply = inn.applySQL(qry);
+          
+          
+           if(rstate.Contains("."))
+       {
+           
+       revitem.setProperty("sre_maturity",maturity);
+       revitem.setProperty("sre_variant",variant);
+       revitem.setProperty("sre_partstate",partstate);
+       revitem.setProperty("sre_softwareversion",rstate);
+       revitem.setProperty("sre_identity",identity);
+       revitem.setProperty("description",description);
+       revitem.setProperty("unit",um);
+      Item newPartRes = revitem.apply();
+       if(newPartRes.isError())
+      {
+          
+          return inn.newError("Fail");
+      }
+       }
+       else{
+       revitem.setProperty("sre_maturity",maturity);
+       revitem.setProperty("sre_variant",variant);
+       revitem.setProperty("sre_partstate",partstate);
+       revitem.setProperty("sre_identity",identity);
+       revitem.setProperty("description",description);
+       revitem.setProperty("unit",um);
+       Item newPartRes = revitem.apply();
+       if(newPartRes.isError())
+      {
+          
+          return inn.newError("Fail");
+      }
+       }
+      }
+       
+       else{
+        CCO.Utilities.WriteDebug("method_lognew",qryPartres.getProperty("item_number"));
+       
+       if(rstate.Contains("."))
+       {
+           
+           Item newPart = newItem("Part","merge");
+       newPart.setAttribute("id",qryPartres.getID());       
+       newPart.setProperty("classification",type);
+       newPart.setProperty("item_number",partnumber);
+       newPart.setProperty("sre_maturity",maturity);
+       newPart.setProperty("sre_variant",variant);
+       newPart.setProperty("sre_partstate",partstate);
+       newPart.setProperty("sre_softwareversion",rstate);
+       newPart.setProperty("sre_identity",identity);
+       newPart.setProperty("name",name);
+       newPart.setProperty("description",description);
+       newPart.setProperty("unit",um);
+      Item newPartRes = newPart.apply();
+       if(newPartRes.isError())
+      {
+          
+          return inn.newError("Fail");
+      }
+       }
+       else{
+       Item newPart = newItem("Part","add");
+       newPart.setAttribute("id",qryPartres.getID()); 
+       newPart.setProperty("classification",type);
+       newPart.setProperty("item_number",partnumber);
+       newPart.setProperty("sre_maturity",maturity);
+       newPart.setProperty("sre_variant",variant);
+       newPart.setProperty("sre_partstate",partstate);
+       newPart.setProperty("major_rev",rstate);
+       newPart.setProperty("sre_identity",identity);
+       newPart.setProperty("name",name);
+       newPart.setProperty("description",description);
+       newPart.setProperty("unit",um);
+      Item newPartRes = newPart.apply();
+       if(newPartRes.isError())
+      {
+          
+          return inn.newError("Fail");
+      }
+       }
+       }
+     
+       
+      
+      
+       
+    }
+}
+
+
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_Migrate</name>
+ </Item>
+</AML>

@@ -1,0 +1,55 @@
+﻿<AML>
+ <Item type="Method" id="1B786138760249278DF0BA14341BFD87" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[Innovator inn = this.getInnovator();
+
+string classification = this.getProperty("classification");
+if(classification!="" && classification!="Master" && classification!="Regular")
+{
+   
+    Item getTemplateID= newItem("Variable","get");
+    getTemplateID.setProperty("name",classification);
+    getTemplateID=getTemplateID.apply();
+    //  return inn.newError(getTemplateID.getItemCount().ToString());
+    if(getTemplateID.getItemCount() == 0)
+    {
+      return inn.newError("variable with name: "+classification+" has no value set");   
+        
+    }
+    
+    string templateID = getTemplateID.getProperty("value");
+    
+    if(templateID=="")
+    {
+        
+        return inn.newError("Template is not defined, Please check the variable with selected Classifcation name");
+    }
+    // return inn.newError("here");
+    Item getTemplateInstance = newItem("SRE_DocTypeTemplate","get");
+    getTemplateInstance.setProperty("source_id",templateID);
+    getTemplateInstance=getTemplateInstance.apply();
+    
+    if(getTemplateInstance.getItemCount()==0)
+    {
+        
+        return inn.newError("Standard Template has no File");
+    }
+    string fileID = getTemplateInstance.getProperty("related_id");
+    
+    Item getCurrentItem = newItem("SRE_DocTypeTemplate","add");
+    getCurrentItem.setProperty("source_id",this.getID());
+    getCurrentItem.setProperty("related_id",fileID);
+    getCurrentItem.setProperty("sre_basedon",templateID);
+    getCurrentItem=getCurrentItem.apply();
+    
+}
+
+
+     
+
+
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_StandardTemplates</name>
+ </Item>
+</AML>

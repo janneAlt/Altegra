@@ -1,0 +1,125 @@
+﻿<AML>
+ <Item type="Method" id="88A182FEF68941B9AC065D45D7905137" action="add">
+  <comments>updated</comments>
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[Innovator inn = this.getInnovator();
+Item vaultLoc = newItem("Variable", "get");
+vaultLoc.setProperty("name", "SRE_VaultLocation");
+vaultLoc = vaultLoc.apply();
+string vaultPath = vaultLoc.getProperty("value");
+//Getting License Path from a variable named SRE_VaultLocation
+Item licPath = newItem("Variable", "get");
+licPath.setProperty("name", "SRE_AsposeLic");
+licPath = licPath.apply();
+string licFileID = licPath.getProperty("value");
+if (licFileID == "") {
+    return inn.newError("Variable SRE_AsposeLic is not set");
+}
+string licfolderFirst = licFileID.Substring(0, 1);
+string licfolderFirstSub = licFileID.Substring(1, 2);
+string licfolderFirstSubSub = licFileID.Substring(3, 29);
+
+//Template File Path in the Vault
+string licFileVaultName = vaultPath + "\\" + licfolderFirst + "\\" + licfolderFirstSub + "\\" + licfolderFirstSubSub + "\\" + "Aspose.Total.lic";
+
+// return inn.newError(licFileVaultName);
+
+Item imgPath = newItem("Variable", "get");
+imgPath.setProperty("name", "SRE_SecureImagePath");
+imgPath = imgPath.apply();
+
+string BASE_PATH = imgPath.getProperty("value");
+
+if (BASE_PATH == "") {
+    return inn.newError("variable SRE_SecureImagePath is not set");
+}
+string imgpth = BASE_PATH+"secure.png";
+if(this.getProperty("sre_sourcefile")=="")
+{
+    
+    
+}
+string fID = this.getProperty("sre_sourcefile");
+
+
+Aras.Server.Security.Identity plmIdentity;
+bool permissionWasSet;
+plmIdentity = Aras.Server.Security.Identity.GetByName("Aras PLM");
+permissionWasSet = Aras.Server.Security.Permissions.GrantIdentity(plmIdentity);
+
+if (permissionWasSet)
+    Aras.Server.Security.Permissions.RevokeIdentity(plmIdentity);
+
+
+Item getFilename = newItem("File", "get");
+getFilename.setProperty("id", fID);
+getFilename = getFilename.apply();
+// return inn.newError(getFilename.getProperty("filename"));
+var Filelist = new List < string > ();
+string sourceFileName = getFilename.getProperty("filename");
+string partOne = fID.Substring(0, 1);
+string PartTwo = fID.Substring(1, 2);
+string PartThree = fID.Substring(3, 29);
+
+
+string baseVault = vaultLoc.getProperty("value");
+string fileName = baseVault + @"\"+partOne+@"\"+PartTwo+@"\"+PartThree+@"\"+sourceFileName;
+
+//  return inn.newError(this.getProperty("item_number"));
+
+
+if(Path.GetExtension(fileName)==".docx")
+{
+
+
+
+
+
+Aspose.Words.Document doc = new Aspose.Words.Document(fileName);
+Aspose.Words.Properties.DocumentPropertyCollection customdocProps = doc.CustomDocumentProperties;
+
+
+Aspose.Words.Properties.DocumentProperty number = customdocProps["sre_docNum"];
+number.Value = this.getProperty("item_number");
+
+Aspose.Words.Properties.DocumentProperty rev = customdocProps["sre_docRev"];
+rev.Value = this.getProperty("major_rev");
+
+Aspose.Words.Properties.DocumentProperty title = customdocProps["sre_title"];
+title.Value = this.getProperty("name");
+
+// Aspose.Words.Properties.DocumentProperty fnm = customdocProps["FileName"];
+// fnm.Value = this.getProperty("item_number");
+
+
+doc.UpdateFields();
+
+doc.Save(fileName, Aspose.Words.SaveFormat.Docx);
+
+}
+else if(Path.GetExtension(fileName)==".xlsx")
+{
+    Aspose.Cells.License license = new Aspose.Cells.License();
+    license.SetLicense(licFileVaultName);  
+                       // Open an Excel file
+            Workbook workbook = new Workbook(fileName);
+            Aspose.Cells.Cells cells = workbook.Worksheets[0].Cells;
+            // Title
+            Aspose.Cells.Cell title = cells["C2"];
+            title.PutValue(this.getProperty("name"));
+          
+            Aspose.Cells. Cell revision = cells["M4"];
+            revision.PutValue(this.getProperty("major_rev"));
+           
+            Worksheet ws = workbook.Worksheets[0];
+            ws.Shapes.RemoveAt(1);
+           
+            workbook.Save(fileName, Aspose.Cells.SaveFormat.Xlsx); 
+    
+}
+
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_UpdateDocPropOnUpdate</name>
+ </Item>
+</AML>

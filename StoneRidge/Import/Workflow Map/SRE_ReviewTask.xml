@@ -1,0 +1,305 @@
+﻿<AML>
+ <Item type="Workflow Map" id="D85CD31BBCC148D9BEE4378BD28E52FE" action="add">
+  <description xml:lang="en">Task Review</description>
+  <node_bg_color>       </node_bg_color>
+  <node_label1_color>       </node_label1_color>
+  <node_label1_font />
+  <node_label2_color>       </node_label2_color>
+  <node_label2_font />
+  <node_name_color>       </node_name_color>
+  <node_name_font />
+  <node_size />
+  <process_owner keyed_name="Creator" type="Identity">
+   <Item type="Identity" action="get" select="id">
+    <name>Creator</name>
+   </Item>
+  </process_owner>
+  <transition_line_color>       </transition_line_color>
+  <transition_name_color>       </transition_name_color>
+  <transition_name_font />
+  <name>SRE_ReviewTask</name>
+  <Relationships>
+   <Item type="Workflow Map Activity" action="add">
+    <related_id keyed_name="Start" type="Activity Template">
+     <Item type="Activity Template" id="BBCC80EF369A4353BA3AD8928B33F42D" action="add">
+      <can_delegate>0</can_delegate>
+      <can_refuse>0</can_refuse>
+      <consolidate_ondelegate>0</consolidate_ondelegate>
+      <expected_duration>0</expected_duration>
+      <icon>../images/WorkflowStart.svg</icon>
+      <is_auto>1</is_auto>
+      <is_end>0</is_end>
+      <is_start>1</is_start>
+      <message xml:lang="en">Workflow Start</message>
+      <priority>2</priority>
+      <reminder_count>0</reminder_count>
+      <reminder_interval>0</reminder_interval>
+      <timeout_duration>0</timeout_duration>
+      <wait_for_all_inputs>0</wait_for_all_inputs>
+      <wait_for_all_votes>0</wait_for_all_votes>
+      <x>39</x>
+      <y>77</y>
+      <name>Start</name>
+      <Relationships>
+       <Item type="Workflow Map Path" id="8A71B2D554AE4740B20B567D09733175" action="add">
+        <authentication>none</authentication>
+        <is_default>1</is_default>
+        <is_override>0</is_override>
+        <name>Start</name>
+        <related_id>AC466C8A75774124BCA9CF32FA3E9518</related_id>
+        <segments />
+        <sort_order>128</sort_order>
+        <source_id keyed_name="Start" type="Activity Template">BBCC80EF369A4353BA3AD8928B33F42D</source_id>
+        <x>27</x>
+        <y>9</y>
+       </Item>
+      </Relationships>
+     </Item>
+    </related_id>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_ReviewTask" type="Workflow Map">D85CD31BBCC148D9BEE4378BD28E52FE</source_id>
+   </Item>
+   <Item type="Workflow Map Activity" action="add">
+    <related_id keyed_name="Review Task" type="Activity Template">
+     <Item type="Activity Template" id="CFCA6991AD3447EB93BAB57182485237" action="add">
+      <can_delegate>1</can_delegate>
+      <can_refuse>0</can_refuse>
+      <consolidate_ondelegate>0</consolidate_ondelegate>
+      <icon>../images/WorkflowNode.svg</icon>
+      <is_auto>0</is_auto>
+      <is_end>0</is_end>
+      <is_start>0</is_start>
+      <message xml:lang="en">Please Review...</message>
+      <wait_for_all_inputs>0</wait_for_all_inputs>
+      <wait_for_all_votes>0</wait_for_all_votes>
+      <x>326</x>
+      <y>73</y>
+      <name>Review Task</name>
+      <Relationships>
+       <Item type="Activity Template Method" id="1F16DE666C344D4E90EE0893439E4075" action="add">
+        <event>on_activate</event>
+        <related_id keyed_name="SRE_ChangeAssign" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>SRE_ChangeAssign</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="Review Task" type="Activity Template">CFCA6991AD3447EB93BAB57182485237</source_id>
+       </Item>
+       <Item type="Workflow Map Path" id="90C3CF0322AE4062B017FD45ED819A0F" action="add">
+        <authentication>none</authentication>
+        <is_default>0</is_default>
+        <is_override>0</is_override>
+        <name>Rework</name>
+        <related_id>60C2F6319D8C4F5B842B881F554054B1</related_id>
+        <segments />
+        <sort_order>256</sort_order>
+        <source_id keyed_name="Review Task" type="Activity Template">CFCA6991AD3447EB93BAB57182485237</source_id>
+        <x>10</x>
+        <y>33</y>
+       </Item>
+       <Item type="Workflow Map Path" id="D536BE87F62F475EBC7CE728F37A3A0D" action="add">
+        <authentication>none</authentication>
+        <is_default>1</is_default>
+        <is_override>0</is_override>
+        <name>Approve</name>
+        <related_id>BD1CBFCDEC914742BB24C8A751EC259A</related_id>
+        <segments />
+        <sort_order>384</sort_order>
+        <source_id keyed_name="Review Task" type="Activity Template">CFCA6991AD3447EB93BAB57182485237</source_id>
+        <x>20</x>
+        <y>-9</y>
+       </Item>
+      </Relationships>
+     </Item>
+    </related_id>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="SRE_ReviewTask" type="Workflow Map">D85CD31BBCC148D9BEE4378BD28E52FE</source_id>
+   </Item>
+   <Item type="Workflow Map Activity" action="add">
+    <related_id keyed_name="Rework" type="Activity Template">
+     <Item type="Activity Template" id="60C2F6319D8C4F5B842B881F554054B1" action="add">
+      <can_delegate>1</can_delegate>
+      <can_refuse>1</can_refuse>
+      <consolidate_ondelegate>0</consolidate_ondelegate>
+      <icon>../images/WorkflowNode.svg</icon>
+      <is_auto>0</is_auto>
+      <is_end>0</is_end>
+      <is_start>0</is_start>
+      <managed_by_id keyed_name="Creator" type="Identity">8FE5430B42014D94AE83246F299D9CC4</managed_by_id>
+      <message xml:lang="en">Please Review...</message>
+      <wait_for_all_inputs>0</wait_for_all_inputs>
+      <wait_for_all_votes>0</wait_for_all_votes>
+      <x>324</x>
+      <y>152</y>
+      <name>Rework</name>
+      <Relationships>
+       <Item type="Activity Template Assignment" id="368190D0A422401C999ED0AA2F457E50" action="add">
+        <managed_by_id keyed_name="Creator" type="Identity">8FE5430B42014D94AE83246F299D9CC4</managed_by_id>
+        <related_id keyed_name="Creator" type="Identity">
+         <Item type="Identity" action="get" select="id">
+          <name>Creator</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="Rework" type="Activity Template">60C2F6319D8C4F5B842B881F554054B1</source_id>
+        <is_required>0</is_required>
+        <for_all_members>0</for_all_members>
+        <voting_weight>100</voting_weight>
+       </Item>
+       <Item type="Workflow Map Path" id="D9465BCC89B04CE2911C1B608032D37A" action="add">
+        <authentication>none</authentication>
+        <is_default>0</is_default>
+        <is_override>0</is_override>
+        <managed_by_id keyed_name="Creator" type="Identity">8FE5430B42014D94AE83246F299D9CC4</managed_by_id>
+        <name>Review</name>
+        <related_id>CFCA6991AD3447EB93BAB57182485237</related_id>
+        <segments>287,135</segments>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="Rework" type="Activity Template">60C2F6319D8C4F5B842B881F554054B1</source_id>
+        <x>-65</x>
+        <y>-7</y>
+       </Item>
+      </Relationships>
+     </Item>
+    </related_id>
+    <sort_order>512</sort_order>
+    <source_id keyed_name="SRE_ReviewTask" type="Workflow Map">D85CD31BBCC148D9BEE4378BD28E52FE</source_id>
+   </Item>
+   <Item type="Workflow Map Activity" action="add">
+    <related_id keyed_name="Release Approved" type="Activity Template">
+     <Item type="Activity Template" id="BD1CBFCDEC914742BB24C8A751EC259A" action="add">
+      <can_delegate>1</can_delegate>
+      <can_refuse>0</can_refuse>
+      <consolidate_ondelegate>0</consolidate_ondelegate>
+      <icon>../Images/Following.svg</icon>
+      <is_auto>0</is_auto>
+      <is_end>1</is_end>
+      <is_start>0</is_start>
+      <message xml:lang="en">Approved</message>
+      <wait_for_all_inputs>0</wait_for_all_inputs>
+      <wait_for_all_votes>0</wait_for_all_votes>
+      <x>457</x>
+      <y>74</y>
+      <name>Release Approved</name>
+      <Relationships>
+       <Item type="Activity Template Transition" id="0FF0E39071A34BD9AA07311066BA7824" action="add">
+        <controlled_itemtype keyed_name="SRE_ReleaseOrdeSubflow" type="ItemType" name="SRE_ReleaseOrdeSubflow">4D453D4D991444B7BBF39A5AED54E7E6</controlled_itemtype>
+        <event>on_activate</event>
+        <related_id keyed_name="4BE857CE609E4B00A3E9FB85F305C7B9" type="Life Cycle Transition">4BE857CE609E4B00A3E9FB85F305C7B9</related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="Release Approved" type="Activity Template">BD1CBFCDEC914742BB24C8A751EC259A</source_id>
+       </Item>
+      </Relationships>
+     </Item>
+    </related_id>
+    <sort_order>640</sort_order>
+    <source_id keyed_name="SRE_ReviewTask" type="Workflow Map">D85CD31BBCC148D9BEE4378BD28E52FE</source_id>
+   </Item>
+   <Item type="Workflow Map Activity" action="add">
+    <related_id keyed_name="Planning" type="Activity Template">
+     <Item type="Activity Template" id="AC466C8A75774124BCA9CF32FA3E9518" action="add">
+      <can_delegate>1</can_delegate>
+      <can_refuse>1</can_refuse>
+      <consolidate_ondelegate>0</consolidate_ondelegate>
+      <icon>../images/WorkflowNode.svg</icon>
+      <is_auto>1</is_auto>
+      <is_end>0</is_end>
+      <is_start>0</is_start>
+      <message xml:lang="en">Please Review...</message>
+      <wait_for_all_inputs>0</wait_for_all_inputs>
+      <wait_for_all_votes>0</wait_for_all_votes>
+      <x>132</x>
+      <y>76</y>
+      <name>Planning</name>
+      <Relationships>
+       <Item type="Activity Template Assignment" id="FD9E808C209946D6B99EA59A921B476A" action="add">
+        <related_id keyed_name="Creator" type="Identity">
+         <Item type="Identity" action="get" select="id">
+          <name>Creator</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="Planning" type="Activity Template">AC466C8A75774124BCA9CF32FA3E9518</source_id>
+        <is_required>0</is_required>
+        <for_all_members>0</for_all_members>
+        <voting_weight>100</voting_weight>
+       </Item>
+       <Item type="Workflow Map Path" id="3211C9D60C1C4CFDAE84815927E1AD5A" action="add">
+        <authentication>none</authentication>
+        <is_default>1</is_default>
+        <is_override>0</is_override>
+        <name>Auto Review</name>
+        <related_id>01B494647F5441AD88162E1D9AE58432</related_id>
+        <segments />
+        <sort_order>128</sort_order>
+        <source_id keyed_name="Planning" type="Activity Template">AC466C8A75774124BCA9CF32FA3E9518</source_id>
+        <x>28</x>
+        <y>9</y>
+       </Item>
+      </Relationships>
+     </Item>
+    </related_id>
+    <sort_order>768</sort_order>
+    <source_id keyed_name="SRE_ReviewTask" type="Workflow Map">D85CD31BBCC148D9BEE4378BD28E52FE</source_id>
+   </Item>
+   <Item type="Workflow Map Activity" action="add">
+    <related_id keyed_name="Auto Node" type="Activity Template">
+     <Item type="Activity Template" id="01B494647F5441AD88162E1D9AE58432" action="add">
+      <can_delegate>1</can_delegate>
+      <can_refuse>1</can_refuse>
+      <consolidate_ondelegate>0</consolidate_ondelegate>
+      <icon>../images/WorkflowNode.svg</icon>
+      <is_auto>1</is_auto>
+      <is_end>0</is_end>
+      <is_start>0</is_start>
+      <message xml:lang="en">Please Review...</message>
+      <wait_for_all_inputs>0</wait_for_all_inputs>
+      <wait_for_all_votes>0</wait_for_all_votes>
+      <x>225</x>
+      <y>77</y>
+      <name>Auto Node</name>
+      <Relationships>
+       <Item type="Activity Template Method" id="A35F442C18EA408EA29EF6F170DF40AD" action="add">
+        <event>on_activate</event>
+        <related_id keyed_name="SRE_AutoNode_Document" type="Method">
+         <Item type="Method" action="get" select="id">
+          <name>SRE_AutoNode_Document</name>
+         </Item>
+        </related_id>
+        <sort_order>128</sort_order>
+        <source_id keyed_name="Auto Node" type="Activity Template">01B494647F5441AD88162E1D9AE58432</source_id>
+       </Item>
+       <Item type="Workflow Map Path" id="B323D5A0F96F4548842D1AE2ACA0E545" action="add">
+        <authentication>none</authentication>
+        <is_default>0</is_default>
+        <is_override>0</is_override>
+        <name>Review</name>
+        <related_id>CFCA6991AD3447EB93BAB57182485237</related_id>
+        <segments />
+        <sort_order>128</sort_order>
+        <source_id keyed_name="Auto Node" type="Activity Template">01B494647F5441AD88162E1D9AE58432</source_id>
+        <x>0</x>
+        <y>0</y>
+       </Item>
+       <Item type="Workflow Map Path" id="EA1CD085FA7341668D55B25BCE5A1F10" action="add">
+        <authentication>none</authentication>
+        <is_default>0</is_default>
+        <is_override>0</is_override>
+        <name>Quick Release</name>
+        <related_id>BD1CBFCDEC914742BB24C8A751EC259A</related_id>
+        <segments>333,31</segments>
+        <sort_order>256</sort_order>
+        <source_id keyed_name="Auto Node" type="Activity Template">01B494647F5441AD88162E1D9AE58432</source_id>
+        <x>63</x>
+        <y>-62</y>
+       </Item>
+      </Relationships>
+     </Item>
+    </related_id>
+    <sort_order>896</sort_order>
+    <source_id keyed_name="SRE_ReviewTask" type="Workflow Map">D85CD31BBCC148D9BEE4378BD28E52FE</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

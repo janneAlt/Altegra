@@ -1,0 +1,72 @@
+﻿<AML>
+ <Item type="Method" id="83CBD145D74A4508AB82C8D5D0A85C1D" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[Innovator inn = this.getInnovator();
+
+
+var list = new List<string>();
+var fileStream = new FileStream(@"D:\Altegra\Deployment files\Migration\parts\900588Z1.003P01_BOM.txt", FileMode.Open, FileAccess.Read);
+using (var streamReader = new StreamReader(fileStream, Encoding.UTF8))
+{
+    string line;
+    while ((line = streamReader.ReadLine()) != null)
+    {
+       string[] myline = line.Split('\t');
+       string parentPart = myline[0];
+       string ChildPart = myline[1];
+       string quantity = myline[2];
+      
+       
+    
+       
+       Item searchParentID = newItem("Part","get");
+       searchParentID.setProperty("sre_identity",parentPart);
+       searchParentID = searchParentID.apply();
+       
+       if(searchParentID.isError())
+       {
+         return inn.newError(parentPart); 
+           
+       }
+       string parentPartID = searchParentID.getProperty("id");
+     
+       
+       Item searchchildID = newItem("Part","get");
+       searchchildID.setProperty("sre_identity",ChildPart);
+       searchchildID = searchchildID.apply();
+         
+       if(searchchildID.isError())
+       {
+         return inn.newError(ChildPart);  
+           
+       }
+       string childPartID = searchchildID.getProperty("id");
+        // return inn.newError(childPartID);
+        CCO.Utilities.WriteDebug("partbomids",childPartID+"_"+parentPartID);
+        
+      Item newPart = newItem("Part BOM","add");
+      newPart.setProperty("source_id",parentPartID);
+      newPart.setProperty("related_id",childPartID);
+      newPart.setProperty("quantity",quantity.ToString());
+      
+       
+      Item newPartRes = newPart.apply();
+       CCO.Utilities.WriteDebug("error",newPartRes.getID());
+      if (newPartRes.isError())
+      {
+          return inn.newError("here");
+          
+      }
+      
+       
+      
+       
+    }
+}
+
+
+return this;]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_partBOM</name>
+ </Item>
+</AML>

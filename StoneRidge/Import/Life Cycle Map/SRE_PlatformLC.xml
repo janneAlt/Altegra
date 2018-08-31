@@ -1,0 +1,80 @@
+﻿<AML>
+ <Item type="Life Cycle Map" id="229E05BB1D06439097BE0C28E192A130" action="add">
+  <description>SRE Platform Lifecycle</description>
+  <start_state keyed_name="Preliminary" type="Life Cycle State">5A8D90F6253A4B0DB1D8E391BA7725B2</start_state>
+  <name>SRE_PlatformLC</name>
+  <Relationships>
+   <Item type="Life Cycle State" id="9B4EE21873374AA3B8DCE2B287B06AE5" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <label xml:lang="en">In-Review</label>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE_PlatformLC" type="Life Cycle Map">229E05BB1D06439097BE0C28E192A130</source_id>
+    <state_permission_id keyed_name="SRE Platfrom InReview" type="Permission">D75C00090CFF426BB39B599A8F7AF803</state_permission_id>
+    <workflow keyed_name="SRE_documentPartReviewProcess" type="Workflow Map">F8800EE4A046482B95E931651F8853ED</workflow>
+    <x>183</x>
+    <y>76</y>
+    <name>In-Review</name>
+   </Item>
+   <Item type="Life Cycle State" id="5A8D90F6253A4B0DB1D8E391BA7725B2" action="add">
+    <image>../images/LifeCycleState.svg</image>
+    <label xml:lang="en">Preliminary</label>
+    <set_is_released>0</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="SRE_PlatformLC" type="Life Cycle Map">229E05BB1D06439097BE0C28E192A130</source_id>
+    <state_permission_id keyed_name="SRE Platfrom Preliminary" type="Permission">A03D557FEE4D4CB28E5E96712EA62331</state_permission_id>
+    <x>24</x>
+    <y>76</y>
+    <name>Preliminary</name>
+   </Item>
+   <Item type="Life Cycle State" id="4D30DA2C7C1F40728DF534951807201E" action="add">
+    <image>../Images/Checkmark.svg</image>
+    <item_behavior>fixed</item_behavior>
+    <label xml:lang="en">Released</label>
+    <set_is_released>1</set_is_released>
+    <set_not_lockable>0</set_not_lockable>
+    <sort_order>384</sort_order>
+    <source_id keyed_name="SRE_PlatformLC" type="Life Cycle Map">229E05BB1D06439097BE0C28E192A130</source_id>
+    <state_permission_id keyed_name="SRE Platform Released" type="Permission">2CFBA93CF95546669982834A3DD0AA1A</state_permission_id>
+    <x>354</x>
+    <y>73</y>
+    <name>Released</name>
+   </Item>
+   <Item type="Life Cycle Transition" id="469E632540BD4D9C96AAFAA448FF3D83" action="add">
+    <from_state keyed_name="Preliminary" type="Life Cycle State">5A8D90F6253A4B0DB1D8E391BA7725B2</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="SRE_CoreUserGroup" type="Identity">93FA7BC57D0844329494BA5F70976DA4</role>
+    <segments />
+    <sort_order>896</sort_order>
+    <source_id keyed_name="SRE_PlatformLC" type="Life Cycle Map">229E05BB1D06439097BE0C28E192A130</source_id>
+    <to_state keyed_name="In-Review" type="Life Cycle State">9B4EE21873374AA3B8DCE2B287B06AE5</to_state>
+    <x>30</x>
+    <y>-15</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="914E2FB4432645118631CDF235AA9B17" action="add">
+    <from_state keyed_name="In-Review" type="Life Cycle State">9B4EE21873374AA3B8DCE2B287B06AE5</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="SRE_CoreUserGroup" type="Identity">93FA7BC57D0844329494BA5F70976DA4</role>
+    <segments>113,185</segments>
+    <sort_order>768</sort_order>
+    <source_id keyed_name="SRE_PlatformLC" type="Life Cycle Map">229E05BB1D06439097BE0C28E192A130</source_id>
+    <to_state keyed_name="Preliminary" type="Life Cycle State">5A8D90F6253A4B0DB1D8E391BA7725B2</to_state>
+    <x>-131</x>
+    <y>122</y>
+   </Item>
+   <Item type="Life Cycle Transition" id="9DE88CBAD6214BC5A02FC3C45ECE0932" action="add">
+    <from_state keyed_name="In-Review" type="Life Cycle State">9B4EE21873374AA3B8DCE2B287B06AE5</from_state>
+    <get_comment>0</get_comment>
+    <role keyed_name="Aras PLM" type="Identity">56A96DA9E981481688563E2D14D5D878</role>
+    <segments />
+    <sort_order>384</sort_order>
+    <source_id keyed_name="SRE_PlatformLC" type="Life Cycle Map">229E05BB1D06439097BE0C28E192A130</source_id>
+    <to_state keyed_name="Released" type="Life Cycle State">4D30DA2C7C1F40728DF534951807201E</to_state>
+    <x>60</x>
+    <y>-17</y>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>

@@ -1,0 +1,15 @@
+﻿<AML>
+ <Item type="Action" id="B8DB2A53A5D94E47AEB02A59E40A5583" action="add">
+  <item_query>&lt;Item type="{@type}" id="{@id}" levels= "1" action="get" /&gt;</item_query>
+  <label xml:lang="en">Send To</label>
+  <location>client</location>
+  <method keyed_name="SRE_CallMethod" type="Method">
+   <Item type="Method" action="get" select="id">
+    <name>SRE_CallMethod</name>
+   </Item>
+  </method>
+  <target>none</target>
+  <type>item</type>
+  <name>SRE_SendTo</name>
+ </Item>
+</AML>

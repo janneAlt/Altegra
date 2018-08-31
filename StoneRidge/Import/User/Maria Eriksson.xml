@@ -1,0 +1,23 @@
+﻿<AML>
+ <Item type="User" id="32B7591B28694A1FA93F5BDE7A8079FB" action="add">
+  <default_vault keyed_name="Default" type="Vault">67BBB9204FE84A8981ED8313049BA06C</default_vault>
+  <email>mia@se5000.local</email>
+  <last_login_date>2018-08-28T09:44:22</last_login_date>
+  <login_name>MIA</login_name>
+  <logon_enabled>1</logon_enabled>
+  <owned_by_id>6AE5C45C1D854813950F9DEA40839A85</owned_by_id>
+  <pwd_is_set_on>2018-02-20T16:08:24</pwd_is_set_on>
+  <starting_page>InBasket Task</starting_page>
+  <working_directory>M:\Aras_temp</working_directory>
+  <first_name>Maria</first_name>
+  <last_name>Eriksson</last_name>
+  <Relationships>
+   <Item type="Alias" id="D6FC77B3F48940799E6ADD0FE8B9F710" action="add">
+    <from_date>2018-02-20T14:18:49</from_date>
+    <related_id keyed_name="Maria Eriksson" type="Identity">02B5523B78DD41BF965CAFD37AB50A12</related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="Maria Eriksson" type="User">32B7591B28694A1FA93F5BDE7A8079FB</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>
