@@ -1,0 +1,52 @@
+﻿<AML>
+ <Item type="Permission" id="5799AAB9B1664FDB9E64750D21B22FDD" action="add">
+  <is_private>0</is_private>
+  <name>SRE Product Released</name>
+  <Relationships>
+   <Item type="Access" id="081E349DB4B2443FACA6DA1231BA4225" action="add">
+    <can_change_access>0</can_change_access>
+    <can_delete>0</can_delete>
+    <can_discover>1</can_discover>
+    <can_get>1</can_get>
+    <can_update>0</can_update>
+    <related_id keyed_name="SE5000 All Users" type="Identity">10FAC37B5B9541B88119DB67CEAFB1E7</related_id>
+    <show_permissions_warning>0</show_permissions_warning>
+    <sort_order>1152</sort_order>
+    <source_id keyed_name="SRE Product Released" type="Permission">5799AAB9B1664FDB9E64750D21B22FDD</source_id>
+   </Item>
+   <Item type="Access" id="336D019DE8B8400292D2650FAA7DFAB0" action="add">
+    <can_change_access>1</can_change_access>
+    <can_delete>1</can_delete>
+    <can_discover>1</can_discover>
+    <can_get>1</can_get>
+    <can_update>1</can_update>
+    <related_id keyed_name="SRE_CoreUserGroup" type="Identity">93FA7BC57D0844329494BA5F70976DA4</related_id>
+    <show_permissions_warning>1</show_permissions_warning>
+    <sort_order>256</sort_order>
+    <source_id keyed_name="SRE Product Released" type="Permission">5799AAB9B1664FDB9E64750D21B22FDD</source_id>
+   </Item>
+   <Item type="Access" id="75C1047FE8EF413784C7618F57B388ED" action="add">
+    <can_change_access>0</can_change_access>
+    <can_delete>0</can_delete>
+    <can_discover>1</can_discover>
+    <can_get>1</can_get>
+    <can_update>1</can_update>
+    <related_id keyed_name="Editor" type="Identity">8F78DAAD4DE346AC86878E16720A63A0</related_id>
+    <show_permissions_warning>1</show_permissions_warning>
+    <sort_order>1280</sort_order>
+    <source_id keyed_name="SRE Product Released" type="Permission">5799AAB9B1664FDB9E64750D21B22FDD</source_id>
+   </Item>
+   <Item type="Access" id="82D93AAA1B1E47428839DD496557566A" action="add">
+    <can_change_access>1</can_change_access>
+    <can_delete>1</can_delete>
+    <can_discover>1</can_discover>
+    <can_get>1</can_get>
+    <can_update>1</can_update>
+    <related_id keyed_name="Administrators" type="Identity">2618D6F5A90949BAA7E920D1B04C7EE1</related_id>
+    <show_permissions_warning>1</show_permissions_warning>
+    <sort_order>768</sort_order>
+    <source_id keyed_name="SRE Product Released" type="Permission">5799AAB9B1664FDB9E64750D21B22FDD</source_id>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>
