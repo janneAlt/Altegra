@@ -1,0 +1,66 @@
+﻿<AML>
+ <Item type="RelationshipType" id="6DF509275E884915B873CD38FB953E60" action="add" dependencyLevel="0">
+  <auto_search>1</auto_search>
+  <behavior>float</behavior>
+  <copy_permissions>0</copy_permissions>
+  <create_related>0</create_related>
+  <hide_in_all>0</hide_in_all>
+  <inc_rel_key_name>1</inc_rel_key_name>
+  <inc_related_key_name>1</inc_related_key_name>
+  <is_list_type>0</is_list_type>
+  <label xml:lang="en">Part Document Tree</label>
+  <new_show_related>0</new_show_related>
+  <related_notnull>0</related_notnull>
+  <related_option>2</related_option>
+  <relationship_id keyed_name="tgv_PartDoc" type="ItemType" name="tgv_PartDoc">
+   <Item type="ItemType" id="81351BCB9A8C46E19011682D8FAB2A14" action="add">
+    <allow_private_permission>1</allow_private_permission>
+    <auto_search>0</auto_search>
+    <enforce_discovery>0</enforce_discovery>
+    <hide_where_used>0</hide_where_used>
+    <implementation_type>table</implementation_type>
+    <instance_data>TGV_PARTDOC</instance_data>
+    <is_dependent>0</is_dependent>
+    <is_relationship>1</is_relationship>
+    <is_versionable>0</is_versionable>
+    <revisions keyed_name="Default" type="Revision">7FE395DD8B9F4E1090756A34B733D75E</revisions>
+    <show_parameters_tab>1</show_parameters_tab>
+    <structure_view>tabs off</structure_view>
+    <unlock_on_logout>0</unlock_on_logout>
+    <use_src_access>1</use_src_access>
+    <name>tgv_PartDoc</name>
+    <Relationships>
+     <Item type="View" id="A6CEF483853D4C10969D0731E1295CB7" action="add">
+      <client>js</client>
+      <related_id keyed_name="tgv_PartDoc" type="Form">5725AB86FD8B4B9EAEBDA42591EEBC8E</related_id>
+      <role keyed_name="World" type="Identity">
+       <Item type="Identity" action="get" select="id">
+        <name>World</name>
+       </Item>
+      </role>
+      <show_ssvc>0</show_ssvc>
+      <sort_order>128</sort_order>
+      <source_id keyed_name="tgv_PartDoc" type="ItemType" name="tgv_PartDoc">81351BCB9A8C46E19011682D8FAB2A14</source_id>
+      <type>default</type>
+     </Item>
+    </Relationships>
+   </Item>
+  </relationship_id>
+  <sort_order>1664</sort_order>
+  <source_id keyed_name="Part" type="ItemType" name="Part">4F1AC04A2B484F3ABA4E20DB63808A88</source_id>
+  <name>tgv_PartDoc</name>
+  <Relationships>
+   <Item type="Relationship View" id="51C2B701D2BA4FAB8B5AE14F3BC9A281" action="add">
+    <parameters>'tgvdId=3053638B169B409F837F627B1EEA17F4&amp;startConditionProvider=ItemDefault({"id":"id"})'</parameters>
+    <related_id keyed_name="World" type="Identity">
+     <Item type="Identity" action="get" select="id">
+      <name>World</name>
+     </Item>
+    </related_id>
+    <sort_order>128</sort_order>
+    <source_id keyed_name="tgv_PartDoc" type="RelationshipType">6DF509275E884915B873CD38FB953E60</source_id>
+    <start_page>../Modules/aras.innovator.TreeGridView/Views/MainPage.html</start_page>
+   </Item>
+  </Relationships>
+ </Item>
+</AML>
