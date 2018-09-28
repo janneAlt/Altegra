@@ -1,0 +1,54 @@
+﻿<AML>
+ <Item type="Method" id="721C8FF9E2D1454ABC4E1533E527E766" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[Innovator inn = this.getInnovator();
+
+string partID = this.getProperty("partid");
+
+Item getTemplate = newItem("SRE_DocumentType","get");
+getTemplate.setProperty("sre_id","1XX1");
+getTemplate=getTemplate.apply();
+
+Item PartInfo = inn.getItemById("Part",partID);
+
+string classification = PartInfo.getProperty("classification");
+
+// if(classification!="Customer Variant")
+// {
+//     return inn.newError("This report only supports generation from Customer Variant Level");
+// }
+
+
+if(getTemplate.getItemCount()<=0)
+{
+    return inn.newError("Document Template for tree grid not setup, Contact administrator");
+    
+}
+
+
+
+Item newReportDocument = inn.newItem("Document","add");
+newReportDocument.setProperty("item_number",inn.getNextSequence("SRE_TreeGrid"));
+newReportDocument.setProperty("name","TGV Report for "+classification+" "+PartInfo.getProperty("keyed_name"));
+newReportDocument.setProperty("sre_doctyperef",getTemplate.getID());
+newReportDocument.setProperty("sre_secure","0");
+newReportDocument.setProperty("classification","Do not need review");
+newReportDocument=newReportDocument.apply();
+
+Item genReport = inn.applyMethod("SRE_TGVInterface_SM","<docid>"+newReportDocument.getID()+"</docid><partid>"+partID+"</partid>");
+if(genReport.isError())
+{
+    return inn.newError(genReport.getErrorDetail());
+    
+}
+
+newReportDocument.setAction("edit");
+newReportDocument.setProperty("sre_sourcefile",genReport.getID());
+newReportDocument=newReportDocument.apply();
+
+
+return newReportDocument;]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_ExcelExportTree_PartDoc</name>
+ </Item>
+</AML>

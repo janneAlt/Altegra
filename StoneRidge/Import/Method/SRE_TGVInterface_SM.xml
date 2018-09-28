@@ -1,0 +1,380 @@
+﻿<AML>
+ <Item type="Method" id="D5B0E844AF4E4AE3B8DCE0733B47735C" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[// <copyright Method="SRE_TGVInterface_SM" company="Stonerdige Electronics">
+// Copyright (c) 2018 All Rights Reserved
+// </copyright>
+// <author>Sudarshan Srinath</author>
+// <date>9/28/2018</date>
+// <summary>Creates consumable part document structure reports</summary>
+
+Innovator inn = this.getInnovator();
+
+
+//Checking on creation of document if sre_requiretemplate=1 that is if user has chosen to generate a document based on a template in ARAS
+
+var docID = this.getProperty("docid");
+// var docID = "ABFBA5691BA04F72B62F764FE7E00975";
+// var partId = "4487355D740F4055979F1D6C410C4854";
+var partId = this.getProperty("partid");
+
+var cust = new List < string > ();
+Item getCustDetails = inn.getItemById("Part",partId);
+if(getCustDetails.getProperty("classification")=="Customer Variant")
+{
+  
+  Item customer = inn.getItemById("customer",getCustDetails.getProperty("sre_customer"));
+  cust.Add(getCustDetails.getProperty("sre_customerpartnumber")+";"+ customer.getProperty("keyed_name"));  
+ 
+}
+else
+{cust.Add("NA;NA");}
+
+var BOM = new List < string > ();
+var srcid = new List < string > ();
+
+/********************************************************PartBOM Logic********************************************/
+
+Item callProc = newItem("SQL", "SQL PROCESS");
+callProc.setProperty("name", "MultiBom_GetCompleteBom1");
+callProc.setProperty("PROCESS", "CALL");
+callProc.setProperty("ARG1", partId);
+callProc = callProc.apply();
+
+BOM.Add("-" + ";" + getCustDetails.getProperty("classification") + ";" + partDetails(inn, partId));
+
+Item getFirstlvlDoc = inn.newItem("Part Document", "get");
+getFirstlvlDoc.setProperty("source_id", partId);
+getFirstlvlDoc = getFirstlvlDoc.apply();
+if (getFirstlvlDoc.getItemCount() != 0) {
+
+    for (int k = 0; k < getFirstlvlDoc.getItemCount(); k++) {
+        BOM.Add("-" + ";" + getFirstlvlDoc.getItemByIndex(k).getProperty("sre_type") + "-Document" + ";" + docDetails(inn, getFirstlvlDoc.getItemByIndex(k).getProperty("related_id")));
+
+    }
+}
+for (int partC = callProc.getItemCount() - 1; partC >= 0; partC--)
+// for(int partC = 0; partC<callProc.getItemCount(); partC++)
+
+{
+
+    string relatedPart = callProc.getItemByIndex(partC).getProperty("related_id");
+    string level = callProc.getItemByIndex(partC).getProperty("level");
+    BOM.Add(level + ";" + "Part" + ";" + partDetails(inn, relatedPart));
+
+    Item getRelPartDoc = inn.newItem("Part Document", "get");
+    getRelPartDoc.setProperty("source_id", relatedPart);
+    getRelPartDoc = getRelPartDoc.apply();
+    if (getRelPartDoc.getItemCount() != 0) {
+
+        for (int docCnt = 0; docCnt < getRelPartDoc.getItemCount(); docCnt++) {
+
+            BOM.Add(level + ";" + getRelPartDoc.getItemByIndex(docCnt).getProperty("sre_type") + "-Document" + ";" + docDetails(inn, getRelPartDoc.getItemByIndex(docCnt).getProperty("related_id")));
+        }
+    }
+
+}
+
+
+
+
+
+/******************************************************Logic End************************************************/
+
+Item getDoc = inn.getItemById("Document", docID);
+//Global Item1  user to get the loggedin users last,first name
+Item user = inn.getItemById("User", inn.getUserID());
+
+// return inn.newError(this.getProperty("sre_doctyperef"));
+/********************Core Logic Begins Here***************************/
+
+/********************Step 1 Fetch the template Item and access the template file ***************************/
+/*Fetching DocumentType Item to fetch secific document template, file associated and also to popluate word/excel document template with document type name*/
+
+Item documentType = newItem("SRE_DocumentType", "get");
+documentType.setProperty("sre_id", "1XX1");
+documentType = documentType.apply();
+
+/*Fetching Template File*/
+Item getDocFile = newItem("SRE_DocTypeTemplate", "get");
+getDocFile.setProperty("source_id", documentType.getID());
+getDocFile = getDocFile.apply();
+
+//Fetching the template File ID
+string templateFileID = getDocFile.getProperty("related_id");
+
+//Fetching the template File    
+Item getFilename = newItem("File", "get");
+getFilename.setProperty("id", templateFileID);
+getFilename = getFilename.apply();
+
+//Checking if Document has a template File  
+if (getFilename.getItemCount() <= 0) {
+    return inn.newError("Missing template in Document Type");
+}
+//Getting the vault Path from a variable named SRE_VaultLocation
+Item vaultLoc = newItem("Variable", "get");
+vaultLoc.setProperty("name", "SRE_VaultLocation");
+vaultLoc = vaultLoc.apply();
+string vaultPath = vaultLoc.getProperty("value");
+//Getting License Path from a variable named SRE_VaultLocation
+Item licPath = newItem("Variable", "get");
+licPath.setProperty("name", "SRE_AsposeLic");
+licPath = licPath.apply();
+string licFileID = licPath.getProperty("value");
+if (licFileID == "") {
+    return inn.newError("Variable SRE_AsposeLic is not set");
+}
+string licfolderFirst = licFileID.Substring(0, 1);
+string licfolderFirstSub = licFileID.Substring(1, 2);
+string licfolderFirstSubSub = licFileID.Substring(3, 29);
+
+//Template File Path in the Vault
+string licFileVaultName = vaultPath + "\\" + licfolderFirst + "\\" + licfolderFirstSub + "\\" + licfolderFirstSubSub + "\\" + "Aspose.Total.lic";
+
+// return inn.newError(licFileVaultName);
+
+
+
+
+
+
+//Generating the vault path location   
+string folderFirst = templateFileID.Substring(0, 1);
+string folderFirstSub = templateFileID.Substring(1, 2);
+string folderFirstSubSub = templateFileID.Substring(3, 29);
+
+//Template File Path in the Vault
+string templateFileVaultName = vaultPath + "\\" + folderFirst + "\\" + folderFirstSub + "\\" + folderFirstSubSub + "\\" + getFilename.getProperty("filename");
+// Getting the file extension of the template
+string ext = Path.GetExtension(templateFileVaultName);
+/********************End of Step 1 ***************************/
+
+/********************Intermediary step for processing documents outside vault ***************************/
+
+
+//Getting path where a word/excel document will be processed outside the vault, operations live copy and delete can be perfomed outside vault
+Item foldLoc = newItem("Variable", "get");
+foldLoc.setProperty("name", "SRE_DocTempLocation");
+foldLoc = foldLoc.apply();
+//Check if the variable exists        
+if (foldLoc.getProperty("value") == "") {
+    return inn.newError("Export Folder Variable not set");
+}
+//complete path of the document processing location
+string folder = foldLoc.getProperty("value");
+
+/********************Intermediary step Ends Here ***************************/
+
+/*********************** Step 2 Defining the output file: a Document may be in different formats like .dotm, doc(Legacy Document) and .dot to docx ***************************/
+//Setting new file name with full path for word document in variable targetFileName
+string targetFileName;
+if (ext == ".dotm" || ext == ".doc" || ext == ".docx" | ext == ".dot") {
+    targetFileName = folder + getDoc.getProperty("item_number") + ".docx";
+}
+//Setting new file name with full path for excel Documents
+else {
+    targetFileName = folder + getDoc.getProperty("item_number") + ext;
+
+}
+
+/*Checking if file with same name exists in the Document processing folder if it exists we delete so that we do not consume the wrong file; ensure if you have write permissions in the server folder*/
+if (File.Exists(targetFileName) == true) {
+    File.Delete(targetFileName);
+}
+//Create copy of the template file in the Document processing folder for checkin as a new document in ARAS
+File.Copy(templateFileVaultName, targetFileName);
+
+
+if (Path.GetExtension(targetFileName) == ".xlsx")
+
+{
+    /* Setting Aspose for Cells License before processing a document globally */
+    Aspose.Cells.License license = new Aspose.Cells.License();
+    license.SetLicense(licFileVaultName);
+    /* License Set */
+
+    // Open the Excel file
+    Workbook workbook = new Workbook(targetFileName);
+    Aspose.Cells.Cells cells = workbook.Worksheets[0].Cells;
+
+    Aspose.Cells.Cell title = cells["C5"];
+    title.PutValue(getDoc.getProperty("sre_name"));
+
+    Aspose.Cells.Cell issuedBy = cells["C7"];
+    issuedBy.PutValue(user.getProperty("login_name"));
+
+    Aspose.Cells.Cell docNo = cells["J7"];
+    docNo.PutValue(getDoc.getProperty("item_number"));
+
+    Aspose.Cells.Cell revision = cells["M7"];
+    revision.PutValue("01");
+
+    Aspose.Cells.Cell state = cells["C3"];
+    state.PutValue("Preliminary");
+
+    Aspose.Cells.Cell dctyp = cells["M3"];
+    dctyp.PutValue(documentType.getProperty("sre_name"));
+   string[] customerDet = cust[0].Split(';');
+    Aspose.Cells.Cells cells2 = workbook.Worksheets[1].Cells;
+    Aspose.Cells.Cell cpn = cells2["A1"];
+    cpn.PutValue("Customer PN: "+customerDet[0]);
+    Aspose.Cells.Cell cnn = cells2["B1"];
+    cnn.PutValue("Customer Name: "+customerDet[1]);
+
+    Aspose.Cells.Cell headLvl = cells2["A2"];
+    headLvl.PutValue("Level");
+    Aspose.Cells.Cell headType = cells2["B2"];
+    headType.PutValue("Type");
+    Aspose.Cells.Cell headKeyedName = cells2["C2"];
+    headKeyedName.PutValue("Keyed Name");
+    for (int clm = BOM.Count - 1; clm >= 0; clm--)
+    //   for(int clm = 0; clm< BOM.Count;clm++)
+    {
+
+
+        int clmIndex = clm + 3;
+        string[] items = BOM[clm].Split(';');
+
+if(items[1]=="Part"||items[1]=="Customer Variant")
+{
+        Aspose.Cells.Cell repVal = cells2["A" + clmIndex];
+        repVal.PutValue(items[0]);
+        
+        Aspose.Cells.Style styleA = cells2["A" + clmIndex].GetStyle();
+        styleA.ForegroundColor = System.Drawing.Color.LightBlue;
+        styleA.Pattern = Aspose.Cells.BackgroundType.Solid; 
+        cells2["A" + clmIndex].SetStyle(styleA); 
+        
+        //  return inn.newError("here"+items.Length+"asd");
+        Aspose.Cells.Cell repVal2 = cells2["B" + clmIndex];
+        repVal2.PutValue(items[1]);
+        
+        Aspose.Cells.Style styleB = cells2["B" + clmIndex].GetStyle();
+        styleB.ForegroundColor = System.Drawing.Color.LightBlue;
+        styleB.Pattern = Aspose.Cells.BackgroundType.Solid; 
+        cells2["B" + clmIndex].SetStyle(styleB); 
+        // return inn.newError("here"+items.Length+"asd33");
+        Aspose.Cells.Cell repVal3 = cells2["C" + clmIndex];
+        repVal3.PutValue(items[2]);
+        
+        Aspose.Cells.Style styleC = cells2["C" + clmIndex].GetStyle();
+        styleC.ForegroundColor = System.Drawing.Color.LightBlue;
+        styleC.Pattern = Aspose.Cells.BackgroundType.Solid; 
+        cells2["C" + clmIndex].SetStyle(styleC); 
+        
+        // return inn.newError("here"+items.Length+"asdssdx3");
+}
+
+else
+{
+    Aspose.Cells.Cell repVal = cells2["A" + clmIndex];
+        repVal.PutValue(items[0]);
+        
+        Aspose.Cells.Style styleA = cells2["A" + clmIndex].GetStyle();
+        styleA.ForegroundColor = System.Drawing.Color.LightGreen;
+        styleA.Pattern = Aspose.Cells.BackgroundType.Solid; 
+        cells2["A" + clmIndex].SetStyle(styleA); 
+        
+        //  return inn.newError("here"+items.Length+"asd");
+        Aspose.Cells.Cell repVal2 = cells2["B" + clmIndex];
+        repVal2.PutValue(items[1]);
+        
+        Aspose.Cells.Style styleB = cells2["B" + clmIndex].GetStyle();
+        styleB.ForegroundColor = System.Drawing.Color.LightGreen;
+        styleB.Pattern = Aspose.Cells.BackgroundType.Solid; 
+        cells2["B" + clmIndex].SetStyle(styleB); 
+        // return inn.newError("here"+items.Length+"asd33");
+        Aspose.Cells.Cell repVal3 = cells2["C" + clmIndex];
+        repVal3.PutValue(items[2]);
+        
+        Aspose.Cells.Style styleC = cells2["C" + clmIndex].GetStyle();
+        styleC.ForegroundColor = System.Drawing.Color.LightGreen;
+        styleC.Pattern = Aspose.Cells.BackgroundType.Solid; 
+        cells2["C" + clmIndex].SetStyle(styleC);  
+}
+
+    }
+    DataSorter sorter = workbook.DataSorter;
+
+    // Set the first order for datasorter object.
+    sorter.Order1 = Aspose.Cells.SortOrder.Ascending;
+
+    // Define the first key.
+    sorter.Key1 = 0;
+
+
+
+
+    // Create a cells area (range).
+    CellArea ca = new CellArea();
+
+    // Specify the start row index.
+    ca.StartRow = 3;
+
+    // Specify the start column index.
+    ca.StartColumn = 0;
+
+    // Specify the last row index.
+    ca.EndRow = BOM.Count;
+
+    // Specify the last column index.
+    ca.EndColumn = 2;
+
+    // Sort data in the specified data range (A1:B14)
+    sorter.Sort(workbook.Worksheets[1].Cells, ca);
+    workbook.Worksheets[1].AutoFitRows();
+
+    workbook.Worksheets[1].AutoFitColumns();
+
+    //Updating the excel Document
+    workbook.CustomDocumentProperties.Add("sre_config_id", docID);
+    workbook.CustomDocumentProperties.Add("sre_document_id", docID);
+    workbook.Save(targetFileName, Aspose.Cells.SaveFormat.Xlsx);
+
+}
+
+/**** End of Step 3B***/
+
+
+/**** Step 4 Cheking file To Aras ***/
+
+//Creating newFile in ARAS
+Item myfile = inn.newItem("File", "add");
+myfile.setProperty("filename", getDoc.getProperty("item_number") + Path.GetExtension(targetFileName));
+myfile.attachPhysicalFile(targetFileName);
+myfile = myfile.apply();
+
+//adding file reference to document property sre_sourcefile
+
+
+// Deleting the file from the document processing folder
+if (File.Exists(targetFileName)) {
+    File.Delete(targetFileName);
+}
+/**** End of Step 4 ***/
+
+
+
+
+
+return myfile;
+}
+public string partDetails(Innovator inn, string pID) {
+
+    Item partInfo = inn.getItemById("Part", pID);
+    string keyedName = partInfo.getProperty("keyed_name");
+
+    return keyedName;
+}
+
+public string docDetails(Innovator inn, string dID) {
+
+        Item docInfo = inn.getItemById("Document", dID);
+        string keyedName = docInfo.getProperty("item_number")+" "+docInfo.getProperty("major_revision")+" "+docInfo.getProperty("name") ;
+        // Helper code
+        return keyedName;]]></method_code>
+  <method_type>C#</method_type>
+  <name>SRE_TGVInterface_SM</name>
+ </Item>
+</AML>

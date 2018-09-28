@@ -1,0 +1,30 @@
+﻿<AML>
+ <Item type="Method" id="41BDFA121FDB46D3A74EA86F76DBCBFC" action="add">
+  <execution_allowed_to keyed_name="World" type="Identity">A73B655731924CD0B027E4F4D5FCC0A9</execution_allowed_to>
+  <method_code><![CDATA[
+ var topWindow = aras.getMostTopWindowWithAras(window);
+ var partID = topWindow.topWindow.itemID;
+ 
+var innovator = top.aras.newIOMInnovator();
+
+var PartInfo = innovator.getItemById("Part",partID);
+
+var classification = PartInfo.getProperty("classification");
+
+// if(classification!="Customer Variant")
+// {
+//     return alert("This report only supports generation from Customer Variant Level");
+// }
+var r = innovator.applyMethod("SRE_ExcelExportTree_PartDoc","<partid>"+partID+"</partid>");
+
+if(r.isError())
+{
+    
+    return alert(r.getErrorDetail());
+}
+	    top.aras.uiShowItemEx(r.node, 'tab view',false);
+	    return alert("Report generated");]]></method_code>
+  <method_type>JavaScript</method_type>
+  <name>SRE_exportExcel_clickmethod</name>
+ </Item>
+</AML>

@@ -1,0 +1,9 @@
+﻿<AML>
+ <Item type="CommandBarButton" id="1DD456BE9D8442AC8F7C60963BDC402D" action="add">
+  <image>../Images/ExportToExcel.svg</image>
+  <label xml:lang="en">Export To Excel</label>
+  <on_click_handler keyed_name="SRE_exportExcel_clickmethod" type="Method">41BDFA121FDB46D3A74EA86F76DBCBFC</on_click_handler>
+  <tooltip_template xml:lang="en">Export To Excel</tooltip_template>
+  <name>sre_exporttoExcel</name>
+ </Item>
+</AML>
